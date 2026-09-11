@@ -58,12 +58,23 @@ em.s {
 }
 
 .mark {
-  font-size: 19px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  display: block;
+  line-height: 0;
   text-decoration: none;
 }
-.mark em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+
+/* The wordmark is one inline <symbol>, used here and in the footer.
+   Its ink starts 92/3340.9 = 2.753% left of the j stem, because the j tail
+   hooks out under the letter. Optical alignment means hanging that tail
+   into the margin rather than aligning the bounding box. */
+.logo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3340.9 / 922;
+  fill: currentColor;
+}
+
+.mark .logo { width: 78px; }
 
 .pill {
   display: inline-block;
@@ -360,15 +371,17 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
 
 .wordmark {
   margin: 54px 0 0;
-  font-size: clamp(52px, 17vw, 220px);
-  line-height: 0.92;
-  letter-spacing: -0.06em;
-  font-weight: 700;
   color: var(--fg);
 }
-.wordmark em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 
-.legal { margin-top: 26px; font-size: 13px; color: var(--fg-dim); }
+/* Overshoot the width and pull left so the j STEM lands on the column edge
+   and the final s lands on the right edge: 1/(1 - 0.02753) = 1.02832. */
+.wordmark .logo {
+  width: 102.832%;
+  margin-left: -2.831%;
+}
+
+.legal { margin-top: 30px; font-size: 13px; color: var(--fg-dim); }
 
 /* ---------- article ---------- */
 

@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#0a0a0a"/>
-  <text x="32" y="45" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="-2" fill="#c6f24e" text-anchor="middle">j</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0a0a0a"/><g transform="translate(28.58 42.15) scale(0.0389)" fill="#c6f24e"><path d="M-22.0 200.0V92.0H43.8Q72.0 92.0 72.0 62.0V-496.0H198.0V88.0Q198.0 139.0 168.0 169.5Q138.0 200.0 88.0 200.0Z"/><path d="M7.0 -634.0a88 88 0 1 0 176 0a88 88 0 1 0 -176 0Z"/></g></svg>
