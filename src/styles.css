@@ -1,5 +1,25 @@
 /* jains.es — AI & Digital Transformation Agency */
 
+/* Space Grotesk (display) and Inter (text), both variable, subset to the
+   characters this site uses and to the weights it asks for. Space Grotesk is
+   here because it derives from a monospace the same way ABC Diatype does —
+   same lineage, not an imitation of the silhouette. */
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/space-grotesk-var.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/inter-var.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg: #0a0a0a;
   --bg-soft: #141414;
@@ -9,7 +29,8 @@
   --line: #242424;
   --radius: 20px;
   --maxw: 1180px;
-  --sans: "Helvetica Neue", Helvetica, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --display: "Space Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --serif: "Iowan Old Style", Georgia, "Times New Roman", serif;
 }
 
@@ -22,6 +43,7 @@ body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--sans);
+  font-optical-sizing: auto;
   font-size: 17px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -29,6 +51,32 @@ body {
 }
 
 a { color: inherit; }
+
+/* There were no focus styles at all before this. Keyboard users had only the
+   browser default ring, which is nearly invisible on the white pill buttons. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+.pill:focus-visible { outline-offset: 4px; }
+.card:focus-visible, .quote:focus-visible { outline-offset: 6px; }
+
+.skip {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 100;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #0a0a0a;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.18s ease;
+}
+.skip:focus { top: 12px; }
 
 img { max-width: 100%; display: block; }
 
@@ -110,6 +158,7 @@ section { padding-block: 110px; }
 }
 
 h2.title {
+  font-family: var(--display);
   font-size: clamp(30px, 4.4vw, 52px);
   line-height: 1.08;
   letter-spacing: -0.035em;
@@ -128,6 +177,7 @@ h2.title {
 }
 
 .hero h1 {
+  font-family: var(--display);
   font-size: clamp(38px, 7.4vw, 88px);
   line-height: 1.04;
   letter-spacing: -0.045em;
@@ -156,6 +206,7 @@ h2.title {
 }
 
 .num strong {
+  font-family: var(--display);
   display: block;
   font-size: clamp(40px, 6vw, 76px);
   line-height: 1;
@@ -173,6 +224,7 @@ h2.title {
 /* ---------- prose blocks ---------- */
 
 .lede {
+  font-family: var(--display);
   font-size: clamp(22px, 3.2vw, 38px);
   line-height: 1.24;
   letter-spacing: -0.03em;
@@ -188,6 +240,7 @@ h2.title {
   padding-top: 22px;
 }
 .service h3 {
+  font-family: var(--display);
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -227,6 +280,7 @@ h2.title {
 }
 
 .card h3 {
+  font-family: var(--display);
   font-size: 25px;
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -286,6 +340,7 @@ h2.title {
 }
 
 .quote blockquote {
+  font-family: var(--display);
   margin: 0 0 26px;
   font-size: 19px;
   line-height: 1.4;
@@ -329,6 +384,7 @@ h2.title {
 .post:hover { padding-left: 10px; }
 
 .post h3 {
+  font-family: var(--display);
   font-size: clamp(19px, 2.4vw, 27px);
   font-weight: 600;
   letter-spacing: -0.028em;
@@ -344,6 +400,7 @@ h2.title {
 
 .contact { text-align: center; }
 .contact h2 {
+  font-family: var(--display);
   font-size: clamp(32px, 5.6vw, 66px);
   line-height: 1.06;
   letter-spacing: -0.04em;
@@ -387,6 +444,7 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
 
 .article { max-width: 720px; margin: 0 auto; padding-inline: 24px; padding-block: 70px 110px; }
 .article h1 {
+  font-family: var(--display);
   font-size: clamp(32px, 5.2vw, 54px);
   line-height: 1.08;
   letter-spacing: -0.04em;
@@ -395,6 +453,7 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
 }
 .article .meta { color: var(--fg-dim); font-size: 15px; margin: 0 0 48px; }
 .article h2 {
+  font-family: var(--display);
   font-size: clamp(22px, 3vw, 30px);
   letter-spacing: -0.03em;
   font-weight: 600;

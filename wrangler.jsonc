@@ -23,7 +23,9 @@
   ],
 
   "assets": {
-    "directory": ".",
+    // Vite output. Everything served is built; nothing in the repo root is
+    // exposed, which is why there is no .assetsignore any more.
+    "directory": "dist",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash"
   }
