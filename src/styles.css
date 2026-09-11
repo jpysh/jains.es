@@ -511,17 +511,22 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
 
 /* ---------- scroll-driven reveal ---------- */
 
+/* Ranges are expressed against `entry`, never `cover`. A `cover`-relative
+   range needs the element to travel the full height of the scrollport, which
+   elements in the last screenful of the page never do — the document runs out
+   of scroll first. That left the footer wordmark permanently clipped to zero
+   width and the contact heading stuck at weight 300. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .reveal {
       animation: fadeup linear both;
       animation-timeline: view();
-      animation-range: entry 4% cover 34%;
+      animation-range: entry 4% entry 86%;
     }
     .dim {
       animation: brighten linear both;
       animation-timeline: view();
-      animation-range: entry 12% cover 42%;
+      animation-range: entry 12% entry 90%;
     }
   }
 }
@@ -534,6 +539,158 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
 @keyframes brighten {
   from { opacity: 0.22; }
   to { opacity: 1; }
+}
+
+
+/* ---------- scroll-driven motion ---------- */
+
+/* Cross-document view transitions. Chrome 126+ and Safari 18+ animate between
+   the one-pager and the articles; Firefox has not shipped them, where this is
+   simply ignored and navigation behaves normally. */
+@view-transition { navigation: auto; }
+
+.mark .logo { view-transition-name: sitemark; }
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
+
+/* An integer custom property so a number can be animated. Registering it is
+   what makes it interpolable; without @property it would jump. */
+@property --wght {
+  syntax: "<number>";
+  initial-value: 700;
+  inherits: false;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+
+    /* Headings resolve from light to bold as they enter. This is the variable
+       font doing something a static font cannot, rather than a fade. */
+    h2.title, .contact h2, .lede {
+      --wght: 300;
+      font-variation-settings: "wght" var(--wght);
+      animation: weigh linear both;
+      animation-timeline: view();
+      animation-range: entry 15% entry 92%;
+    }
+
+    /* Project cards cascade. Each card has its own view() timeline, so the
+       stagger comes from when each one actually enters — no delays to tune. */
+    .card {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 85%;
+    }
+
+    /* The numbers wipe up out of a clip rather than counting: two of the three
+       are ranges ("1-7 days", "~2 hrs") and cannot be counted to. */
+    .num strong {
+      animation: wipe linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 88%;
+    }
+
+    /* The footer wordmark draws itself left to right. */
+    .wordmark .logo {
+      animation: draw linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 95%;
+    }
+
+    .eyebrow, .service, .post, .quote {
+      animation: fadeup linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 85%;
+    }
+  }
+}
+
+@keyframes weigh {
+  from { --wght: 300; opacity: 0.45; }
+  to   { --wght: 700; opacity: 1; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(48px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes wipe {
+  from { clip-path: inset(100% 0 0 0); transform: translateY(0.22em); }
+  to   { clip-path: inset(0 0 0 0); transform: translateY(0); }
+}
+
+@keyframes draw {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+/* ---------- cursor ---------- */
+
+/* Only ever attached on a fine pointer with motion allowed; see cursor.js. */
+.has-cursor, .has-cursor a, .has-cursor button { cursor: none; }
+
+.cur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.cur-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.cur-ring {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin: -19px 0 0 -19px;
+  border: 1px solid rgba(244, 244, 240, 0.45);
+  border-radius: 999px;
+  transition: width 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+              height 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background-color 0.28s ease,
+              border-color 0.28s ease;
+}
+
+.cur-ring span {
+  font-family: var(--display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #0a0a0a;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+/* Over something actionable the ring fills and names the verb. */
+.cur-ring.is-label {
+  width: 74px;
+  height: 74px;
+  margin: -37px 0 0 -37px;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.cur-ring.is-label span { opacity: 1; transform: scale(1); }
+
+.cur-ring.is-link {
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  background: rgba(244, 244, 240, 0.10);
+  border-color: rgba(244, 244, 240, 0.7);
 }
 
 /* ---------- responsive ---------- */
