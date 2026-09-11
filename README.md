@@ -43,20 +43,15 @@ The site is live at <https://jains.es>, served by Cloudflare Workers Static Asse
 Both `jains.es` and `www.jains.es` are attached as custom domains in `wrangler.jsonc`,
 so wrangler creates and manages their DNS records — don't edit those records by hand.
 
-### Deploy from this machine
+Cloudflare Workers Builds is connected to `jpysh/jains.es`: **pushing to `main`
+deploys the site**, usually within a minute. There is no build step — Cloudflare
+runs `npx wrangler deploy`, which reads `wrangler.jsonc`.
+
+To deploy by hand instead (a local change you have not committed, or a rollback):
 
 ```bash
 npx wrangler deploy
 ```
-
-### Deploy automatically on push (optional, not yet set up)
-
-1. **Cloudflare dashboard → Compute (Workers) → `jains-es` → Settings → Build**.
-2. Connect the GitHub repository `jpysh/jains.es`.
-3. Leave the build command **empty**; deploy command `npx wrangler deploy`.
-
-Every push to `main` then redeploys. Until this is connected, pushing to GitHub does
-**not** update the live site — run `npx wrangler deploy` as well.
 
 ### What is not served
 
