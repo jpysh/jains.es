@@ -1,0 +1,12 @@
+.git
+.gitattributes
+.gitignore
+.assetsignore
+wrangler.jsonc
+README.md
+INCIDENT_REPORT.md
+Dockerfile
+nginx.conf
+tunnel.yml
+self_heal.sh
+node_modules

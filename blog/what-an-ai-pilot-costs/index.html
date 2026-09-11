@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What an AI pilot actually costs a 50-person company — Jains</title>
+<meta name="description" content="Real numbers for an AI pilot at a 50-person company: what you pay, where the money actually goes, and what we threw away building AI screening for a job board.">
+<link rel="canonical" href="https://jains.es/blog/what-an-ai-pilot-costs/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jains.es/blog/what-an-ai-pilot-costs/">
+<meta property="og:title" content="What an AI pilot actually costs a 50-person company">
+<meta property="og:description" content="Real numbers, where the money actually goes, and what we threw away building AI screening for a job board.">
+<meta property="og:image" content="https://jains.es/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a class="mark" href="/">jains<em>.es</em></a>
+  <a class="pill" href="/#contact">Start a project</a>
+</nav>
+
+<article class="article">
+  <a class="back" href="/">← All writing</a>
+
+  <h1>What an AI pilot actually costs a 50-person company</h1>
+  <p class="meta">Jains · AI &amp; Digital Transformation Agency</p>
+
+  <p>Every mid-sized company we talk to has the same two beliefs at once: that AI will change how they work, and that finding out will cost six figures. The second belief is why nothing happens. So here are real numbers.</p>
+
+  <p>This is what a first AI project costs a company of roughly fifty people — not a strategy engagement, not a platform licence, an actual working thing in production. We'll also cover the parts we built and then deleted, because that's where most of the wasted budget in this category goes.</p>
+
+  <h2>The short answer</h2>
+
+  <p>A useful first AI project at that size lands between <strong>€4,000 and €15,000</strong> to build, and between <strong>€30 and €400 a month</strong> to run. The range is wide because of one variable: whether your data is already in a system or still lives in people's inboxes.</p>
+
+  <p>If you were quoted €80,000 for a pilot, you were quoted for a discovery phase, a steering committee and a platform licence. None of those three things is the software.</p>
+
+  <h2>Where the money actually goes</h2>
+
+  <p><strong>Model usage is the small number.</strong> This surprises people every time. A company-wide assistant answering a few hundred questions a day, or a pipeline classifying a few thousand documents a month, runs at tens of euros. Not thousands. The cost of intelligence collapsed; most pricing expectations haven't caught up.</p>
+
+  <p><strong>Getting at your data is the big number.</strong> The expensive part is never the AI. It's that the information the model needs is split across a CRM, a shared drive, three spreadsheets and one person who knows how the numbering works. Every hour of that is an hour of integration work, and it's the line item that separates a €4,000 project from a €15,000 one.</p>
+
+  <p><strong>Your team's attention is the real currency.</strong> A pilot that needs eight hours a week from your operations lead has already cost you more than the invoice. We design around roughly two hours a week, because anything more gets quietly deprioritised the first busy month — and a deprioritised pilot is a total loss, not a partial one.</p>
+
+  <p><strong>Running it is cheap if it's built simply.</strong> Static hosting is free. Serverless compute at this volume is free or close to it. Where monthly costs balloon is managed platforms billing per seat for infrastructure that would otherwise cost €5 a month.</p>
+
+  <h2>What we threw away building AI screening</h2>
+
+  <p>We built a job board and candidate pipeline for a recruiter working in Nigeria — you can see it at <a href="https://excelmindsjobs.com" target="_blank" rel="noopener">Excelminds Jobs</a>. The obvious AI feature was CV screening: rank the applicants, save the recruiter hours. We built it. Then we threw most of it away.</p>
+
+  <blockquote>The ranking was accurate and nobody trusted it. A score with no reasoning is just a number arguing with a professional's judgement.</blockquote>
+
+  <p>Three things died in that project, and they're the same three that die in most of them:</p>
+
+  <p><strong>The scoring model.</strong> Replaced with extraction. Instead of "this candidate is a 78% match", the system now pulls out the five things the recruiter always looks for — years in role, location, notice period, certifications, a sane employment timeline — and lays them in a row. The AI reads; the human decides. Adoption went from occasional to every single day.</p>
+
+  <p><strong>The chat interface.</strong> Everyone asks for a chatbot. Almost nobody wants to type a question when a filtered list would answer it. We replaced the chat box with better defaults on the list view and usage went up.</p>
+
+  <p><strong>The automated rejection emails.</strong> Technically simple, quietly a liability. In hiring, an automated decision communicated automatically is a legal and reputational exposure that no efficiency gain covers. The system now drafts; a person sends.</p>
+
+  <p>Roughly 40% of what we built in that pilot is not in the product today. That's not failure — it's the actual cost structure of a first AI project, and any quote that doesn't have room for it is a quote for something that won't get used.</p>
+
+  <h2>A pilot that doesn't waste your money</h2>
+
+  <p>Four rules we hold to:</p>
+
+  <ul>
+    <li><strong>One workflow, not one department.</strong> "AI for HR" is not a project. "Pull the five decision fields out of every incoming CV" is a project, and it ships in days.</li>
+    <li><strong>Something clickable in week one.</strong> If the first deliverable is a document, the second one will be too.</li>
+    <li><strong>Measure the boring number.</strong> Not accuracy — <em>time to first decision</em>. It's the one your team feels, and the one that predicts whether they keep using it in month three.</li>
+    <li><strong>Own the output.</strong> Your domain, your repository, your data. If the pilot fails, you should lose the pilot, not your leverage.</li>
+  </ul>
+
+  <h2>When it isn't worth it</h2>
+
+  <p>If the process you want to automate runs fewer than about twenty times a month, and a person can do it in ten minutes, leave it alone. The maintenance will outrun the saving. We say this to roughly one enquiry in five, before any money changes hands.</p>
+
+  <hr>
+
+  <p>We build AI products and digital transformation for SMBs and enterprise HR and tech teams — typically live within one to seven days. If you've got a workflow that's stuck, <a href="/#contact">tell us what it is</a> and we'll tell you honestly whether it's worth building.</p>
+
+  <p><a class="back" href="/blog/ship-in-a-day/">Next: how Guldaar went from idea to live site in 24 hours →</a></p>
+
+</article>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div><a href="/#work">Work</a> &nbsp;·&nbsp; <a href="/">Home</a> &nbsp;·&nbsp; <a href="https://github.com/jpysh" target="_blank" rel="noopener">GitHub</a></div>
+      <div><a href="https://wa.me/420777558262" target="_blank" rel="noopener">+420 777 558 262</a> &nbsp;·&nbsp; <a href="mailto:helloayursen@gmail.com">helloayursen@gmail.com</a></div>
+    </div>
+    <div class="wordmark">jains<em>.es</em></div>
+    <p class="legal">Jains AI &amp; Digital Transformation Agency. Built and hosted on Cloudflare.</p>
+  </div>
+</footer>
+
+</body>
+</html>
