@@ -39,30 +39,36 @@ Then open <http://localhost:8099>.
 
 ## Deploying
 
-Deployment is automatic: **push to `main` and Cloudflare rebuilds the site.**
+The site is live at <https://jains.es>, served by Cloudflare Workers Static Assets.
+Both `jains.es` and `www.jains.es` are attached as custom domains in `wrangler.jsonc`,
+so wrangler creates and manages their DNS records — don't edit those records by hand.
 
-### One-time setup (Cloudflare dashboard)
-
-1. Go to **Cloudflare dashboard → Compute (Workers) → Create → Import a repository**.
-2. Connect the GitHub account `jpysh` and pick the `jains.es` repository.
-3. Leave the build command **empty** and the deploy command as `npx wrangler deploy`.
-4. Deploy. Cloudflare gives the site a `https://jains-es.<your-subdomain>.workers.dev` URL.
-5. Check that URL. When it looks right, attach the real domain:
-   **Worker → Settings → Domains & Routes → Add → Custom domain → `jains.es`** (and `www.jains.es`).
-   Cloudflare replaces the DNS record automatically.
-
-### After the domain is attached
-
-The site no longer runs through the Mac Mini or the `cloudflared` tunnel. The `Dockerfile`,
-`nginx.conf`, `tunnel.yml` and `self_heal.sh` in this repository are from the previous
-self-hosted setup and are excluded from the deployed site by `.assetsignore`. They can be
-deleted once the Workers deployment is confirmed working.
-
-### Manual deploy
+### Deploy from this machine
 
 ```bash
 npx wrangler deploy
 ```
+
+### Deploy automatically on push (optional, not yet set up)
+
+1. **Cloudflare dashboard → Compute (Workers) → `jains-es` → Settings → Build**.
+2. Connect the GitHub repository `jpysh/jains.es`.
+3. Leave the build command **empty**; deploy command `npx wrangler deploy`.
+
+Every push to `main` then redeploys. Until this is connected, pushing to GitHub does
+**not** update the live site — run `npx wrangler deploy` as well.
+
+### What is not served
+
+`.assetsignore` keeps this README, the git directory, the wrangler config and the
+leftover self-hosting files (`Dockerfile`, `nginx.conf`, `tunnel.yml`, `self_heal.sh`)
+out of the deployed site. Verify after any change to it:
+
+```bash
+curl -o /dev/null -w '%{http_code}\n' https://jains.es/README.md
+```
+
+404 is correct.
 
 ## Notes
 
