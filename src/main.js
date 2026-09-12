@@ -19,16 +19,6 @@ function webglAvailable() {
  * it can actually be used. The headline is plain text and is the LCP element
  * either way — the canvas is never allowed to block it.
  */
-const form = document.querySelector('#contact-form');
-if (form) {
-  import('./form.js')
-    .then(({ initForm }) => initForm(form))
-    .catch(() => {
-      /* The form still has required attributes and the direct routes are
-         printed right beneath it. */
-    });
-}
-
 /**
  * The custom cursor replaces a UI affordance people rely on, so it is gated
  * on a fine pointer and on motion being allowed, and it removes itself the

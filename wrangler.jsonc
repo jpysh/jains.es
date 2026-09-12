@@ -3,10 +3,9 @@
   "name": "jains-es",
   "compatibility_date": "2026-09-11",
 
-  // The script exists only for the contact endpoint. Requests that match a
-  // built asset are served straight from asset storage without invoking it, so
-  // ordinary page traffic still costs no request quota.
-  "main": "src/worker.js",
+  // No "main": a Worker with an assets directory and no script is served
+  // entirely from Cloudflare's asset storage and never invokes the Workers
+  // runtime, so it uses no request quota. Don't add a script without a reason.
 
   // Don't publish a second copy on jains-es.<subdomain>.workers.dev. A duplicate
   // live origin can be indexed by search engines and bypasses the zone's settings.
@@ -27,9 +26,6 @@
     // Vite output. Everything served is built; nothing in the repo root is
     // exposed, which is why there is no .assetsignore any more.
     "directory": "dist",
-    // Without this, /api/contact matches no asset, not_found_handling serves
-    // the 404 page, and the Worker is never invoked at all.
-    "run_worker_first": ["/api/*"],
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash"
   }

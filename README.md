@@ -16,8 +16,6 @@ src/
   styles.css               all styling for every page
   hero.js                  the particle field (OGL), loaded after first paint
   cursor.js                custom cursor, fine pointers only
-  form.js                  contact form submission
-  worker.js                the only server code: POST /api/contact
 public/                    copied verbatim into dist/
   assets/fonts/*.woff2     Space Grotesk + Inter, variable, subset
   assets/favicon.svg       tab icon (the j and its dot)
@@ -79,26 +77,6 @@ curl -o /dev/null -w '%{http_code}\n' https://jains.es/README.md
 ```
 
 404 is correct.
-
-## The contact form
-
-`src/worker.js` handles `POST /api/contact` and nothing else. Requests that
-match a built asset are served from asset storage without invoking it, so
-ordinary page traffic still costs no request quota.
-
-It needs one secret:
-
-```bash
-npx wrangler secret put RESEND_API_KEY
-```
-
-Optional overrides, same command: `CONTACT_TO` (defaults to
-helloayursen@gmail.com) and `CONTACT_FROM` (defaults to Resend's shared
-`onboarding@resend.dev`; set it to an address on a domain verified in Resend
-to stop mail landing in spam).
-
-Without the secret the endpoint returns 503 with `fallback: true` and the page
-shows the WhatsApp and email routes instead of claiming the message was sent.
 
 ## Notes
 
