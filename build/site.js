@@ -235,7 +235,14 @@ const postRows = (posts) =>
 
 function renderPost(p, posts) {
   const cat = CATEGORIES[p.meta.category];
-  const next = posts.find((o) => o.slug !== p.slug && o.meta.category === p.meta.category) || posts.find((o) => o.slug !== p.slug);
+
+  // Related posts, generated rather than hand-linked. Same category first,
+  // newest first, topped up from the rest of the blog if the category is thin.
+  // Every post therefore carries links to its topic page and to three others,
+  // which is what stops a 23-post blog being 23 orphans.
+  const sameCat = posts.filter((o) => o.slug !== p.slug && o.meta.category === p.meta.category);
+  const others = posts.filter((o) => o.slug !== p.slug && o.meta.category !== p.meta.category);
+  const related = [...sameCat, ...others].slice(0, 3);
 
   const sources = `
   <section class="sources">
@@ -313,9 +320,19 @@ ${md.render(p.body).trim()}
 ${sources}
   <hr>
 
-  <p>We build AI products and digital transformation for SMBs and enterprise HR and tech teams — live in one to seven days, about two hours a week of your time, handed over in a repository you own. <a href="/#contact">Tell us what's stuck.</a></p>
-${next ? `\n  <p><a class="back" href="${next.path}">Next: ${esc(next.meta.title)} →</a></p>\n` : ''}
+  <p>We build AI products and digital transformation for SMBs and enterprise HR and tech teams — live in one to seven days, about two hours a week of your time, handed over in a repository you own. <a href="/#work">See the work</a> or <a href="/#contact">tell us what's stuck.</a></p>
 </article>
+${
+  related.length
+    ? `
+<section class="wrap related">
+  <p class="eyebrow">More in <a href="/blog/topic/${p.meta.category}/">${esc(cat.name)}</a></p>
+${postRows(related)}
+  <p class="more"><a href="/blog/">All writing →</a></p>
+</section>
+`
+    : ''
+}
 ` +
     footer
   );

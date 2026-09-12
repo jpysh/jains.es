@@ -832,3 +832,17 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
 
 .tier-key { font-size: 13px; color: var(--fg-dim); margin: 20px 0 0; line-height: 1.6; }
 .tier-key strong { color: var(--fg); font-weight: 600; }
+
+/* Related posts. Generated per post from the same category, so every article
+   carries links to its topic page and three siblings rather than dead-ending. */
+
+.related {
+  padding-block: 0 110px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.related .eyebrow { margin-bottom: 18px; }
+.related .eyebrow a { color: var(--accent); text-decoration: none; }
+.related .eyebrow a:hover { text-decoration: underline; }
+.related .post { padding: 22px 0; }
+.related .post h3 { font-size: clamp(17px, 2vw, 20px); }
