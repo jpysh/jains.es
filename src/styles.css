@@ -157,7 +157,7 @@ section { padding-block: 110px; }
   margin: 0 0 28px;
 }
 
-h2.title {
+.title {
   font-family: var(--display);
   font-size: clamp(30px, 4.4vw, 52px);
   line-height: 1.08;
@@ -570,7 +570,7 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
 
     /* Headings resolve from light to bold as they enter. This is the variable
        font doing something a static font cannot, rather than a fade. */
-    h2.title, .contact h2, .lede {
+    .title, .contact h2, .lede {
       --wght: 300;
       font-variation-settings: "wght" var(--wght);
       animation: weigh linear both;
@@ -714,3 +714,121 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
   .card { padding: 22px 22px 0; min-height: 320px; }
   .shot img { height: 200px; }
 }
+
+/* ---------- blog index, topic pages, sources ---------- */
+
+/* The homepage links out to the three topics; the index and topic pages carry
+   the same row style as the homepage list, so there is one way a post looks. */
+
+.topic-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 34px;
+}
+.topic-links a,
+.topic-nav a {
+  font-size: 14px;
+  color: var(--fg-dim);
+  text-decoration: none;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.topic-links a:hover,
+.topic-nav a:hover { color: var(--accent); border-color: var(--accent); }
+
+.more { margin: 30px 0 0; font-size: 15px; }
+.more a { color: var(--accent); text-decoration: none; }
+.more a:hover { text-decoration: underline; }
+
+.blog-index { padding-block: 86px 110px; }
+.blog-index .title { margin-bottom: 20px; }
+.blog-index .lede { max-width: 30ch; margin-bottom: 44px; }
+
+.topic-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 64px;
+}
+.topic-nav a span { color: var(--fg-dim); opacity: 0.6; margin-left: 4px; }
+
+.topic-group { margin-bottom: 72px; }
+.topic-group h2 {
+  font-family: var(--display);
+  font-size: clamp(22px, 2.8vw, 31px);
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+.topic-group h2 a { color: inherit; text-decoration: none; }
+.topic-group h2 a:hover { color: var(--accent); }
+.topic-group > .dim { font-size: 16px; margin: 0 0 26px; max-width: 58ch; }
+
+.crumbs { font-size: 14px; color: var(--fg-dim); margin-bottom: 26px; }
+.crumbs a { color: var(--fg-dim); text-decoration: none; }
+.crumbs a:hover { color: var(--accent); }
+.crumbs span { margin: 0 6px; opacity: 0.5; }
+
+.article .meta a { color: var(--fg-dim); }
+.article .meta a:hover { color: var(--accent); }
+
+/* Sources. Every post carries one, and the tier says whether a claim comes
+   from the thing itself or from an outlet reporting it. The build refuses to
+   emit a post whose sources are missing a tier, so this can't quietly rot. */
+
+.sources {
+  margin-top: 64px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+.sources h2 {
+  font-family: var(--display);
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  margin: 0 0 20px;
+  color: var(--fg-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.sources ol { margin: 0; padding: 0; list-style: none; counter-reset: src; }
+.sources li {
+  counter-increment: src;
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 14px 0 14px 30px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.sources li::before {
+  content: counter(src);
+  position: absolute;
+  left: 0;
+  top: 15px;
+  font-size: 13px;
+  color: var(--fg-dim);
+  font-variant-numeric: tabular-nums;
+}
+.sources li a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--line); }
+.sources li a:hover { color: var(--accent); border-color: var(--accent); }
+.src-meta { display: block; color: var(--fg-dim); font-size: 13px; margin-top: 3px; }
+
+.tier {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 5px;
+  margin-right: 8px;
+  vertical-align: 1px;
+}
+.tier-primary { background: var(--accent); color: #0a0a0a; }
+.tier-reported { background: transparent; color: var(--fg-dim); box-shadow: inset 0 0 0 1px var(--line); }
+
+.tier-key { font-size: 13px; color: var(--fg-dim); margin: 20px 0 0; line-height: 1.6; }
+.tier-key strong { color: var(--fg); font-weight: 600; }

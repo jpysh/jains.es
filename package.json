@@ -3,15 +3,19 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "node build/site.js",
     "dev": "vite",
+    "post": "node build/new-post.js",
+    "prebuild": "node build/site.js",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "vite build && wrangler deploy"
+    "deploy": "npm run build && wrangler deploy"
   },
   "devDependencies": {
     "vite": "^6.0.0"
   },
   "dependencies": {
+    "markdown-it": "^14.3.2",
     "ogl": "^1.0.11"
   }
 }

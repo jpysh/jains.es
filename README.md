@@ -8,9 +8,14 @@ deployed to Cloudflare Workers Static Assets from this repository.
 ## Layout
 
 ```
-index.html                 the one-pager          }
+index.html                 the one-pager          }  hand-written
 404.html                   not-found page         }  Vite entry points
-blog/<slug>/index.html     one article each       }
+content/posts/<slug>.md    one article each, Markdown + front matter
+blog/                      GENERATED — post pages, the index, topic pages
+build/
+  site.js                  generates blog/, sitemap.xml, feed.xml, the
+                           homepage post list; validates every post
+  new-post.js              npm run post "Title"
 src/
   main.js                  entry; imports the CSS, lazy-loads the rest
   styles.css               all styling for every page
@@ -22,9 +27,10 @@ public/                    copied verbatim into dist/
   assets/logo.svg          standalone wordmark, for use outside the site
   assets/og.jpg            link-preview image (1200x630)
   assets/projects/*.jpg    project screenshots
-  robots.txt, sitemap.xml
+  robots.txt               static
+  sitemap.xml, feed.xml    GENERATED
 tools/make-logo.py         regenerates the wordmark and favicon
-vite.config.js             one input per HTML page
+vite.config.js             index.html, 404.html, and every generated blog page
 wrangler.jsonc             Cloudflare Workers config (serves dist/)
 ```
 
@@ -37,9 +43,31 @@ Regenerate it with `python3 tools/make-logo.py` from a directory containing
 - **Copy, projects, testimonials** — `index.html`. Project cards are plain `<a class="card">`
   blocks; the pastel colour is the inline `--card` custom property.
 - **Styling** — `src/styles.css`. Colours are CSS custom properties at the top of the file.
-- **New blog post** — copy an existing `blog/<slug>/` directory, change the content, then add
-  the post to the Writing list in `index.html`, an entry in `public/sitemap.xml`,
-  and an input in `vite.config.js`.
+- **New blog post** — one command, one file:
+
+  ```bash
+  npm run post "The title of the post"
+  ```
+
+  That scaffolds `content/posts/the-title-of-the-post.md` with today's date and empty
+  front matter. Write it, then `npm run build`. The post page, the blog index, the topic
+  page, `sitemap.xml`, `feed.xml` and the homepage list all update themselves — there is
+  nothing else to edit, and the filename is the URL, so don't rename it after it is live.
+
+  The build **fails** on an unknown category, a malformed date, a duplicate slug, or a
+  source missing its tier, rather than shipping a post that would quietly fall out of its
+  topic page. Categories are `retail-tech` (Retail and commerce tech), `hrtech` (Work and
+  talent tech) and `edtech` (Learning and training tech).
+
+  Sources are one per line in the front matter, `tier | publisher | date | title | url`,
+  where tier is `primary` (the regulator, vendor, paper or survey itself) or `reported`
+  (a named outlet reporting a fact first). They render as a numbered, tagged list at the
+  foot of the post and as `citation` in its schema.
+
+- **Generated files** — anything under `blog/`, plus `public/sitemap.xml` and
+  `public/feed.xml`, is written by `build/site.js` and gitignored. So is the block between
+  `<!-- generated:posts -->` and `<!-- /generated:posts -->` in `index.html`. Editing any of
+  them by hand lasts until the next build.
 
 Preview locally:
 
@@ -79,6 +107,9 @@ curl -o /dev/null -w '%{http_code}\n' https://jains.es/README.md
 404 is correct.
 
 ## Notes
+
+- There is deliberately **no form anywhere on the site**. The contact form was built and
+  removed (c0f88b3); contact is a WhatsApp link and a mailto. Don't reintroduce one.
 
 - Testimonial names and companies are real and the quotes are approved. The avatars are
   initials until we have photographs.
