@@ -1,8 +1,11 @@
 # jains.es
 
 Read README.md first — it covers the layout, how to add a post, and how deploys
-work. This file is only the things that are easy to get wrong and expensive to
-undo.
+work. **BLOGGING.md** is the full posting workflow: front-matter format, source
+tiers, the writing standard, and the research-then-gate process for news-anchored
+posts. Read it before writing or researching a post.
+
+This file is only the things that are easy to get wrong and expensive to undo.
 
 ## Never
 

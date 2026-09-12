@@ -43,7 +43,7 @@ Regenerate it with `python3 tools/make-logo.py` from a directory containing
 - **Copy, projects, testimonials** — `index.html`. Project cards are plain `<a class="card">`
   blocks; the pastel colour is the inline `--card` custom property.
 - **Styling** — `src/styles.css`. Colours are CSS custom properties at the top of the file.
-- **New blog post** — one command, one file:
+- **New blog post** — see [BLOGGING.md](BLOGGING.md) for the full workflow. The short version is one command, one file:
 
   ```bash
   npm run post "The title of the post"
