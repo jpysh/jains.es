@@ -443,6 +443,96 @@ h2.title {
 .contact p { color: var(--fg-dim); max-width: 46ch; margin: 0 auto 38px; }
 .contact .hero-cta { justify-content: center; }
 
+
+/* ---------- contact form ---------- */
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  max-width: 720px;
+  margin: 0 auto 34px;
+  text-align: left;
+}
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field-wide { grid-column: 1 / -1; }
+
+.field label {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+.field label span { text-transform: none; letter-spacing: 0; opacity: 0.65; }
+
+.field input,
+.field select,
+.field textarea {
+  font: inherit;
+  font-size: 16px;            /* 16px stops iOS zooming the page on focus */
+  color: var(--fg);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 13px 15px;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+.field textarea { resize: vertical; min-height: 110px; }
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover { border-color: #3a3a3a; }
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: #171717;
+}
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.field.is-bad input,
+.field.is-bad select,
+.field.is-bad textarea { border-color: #d98b7a; }
+
+/* Off-screen rather than display:none — some bots skip hidden inputs, and a
+   real screen reader user never reaches it because of aria-hidden + tabindex. */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-foot {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.form .pill { border: 0; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; }
+.has-cursor .form .pill { cursor: none; }
+.form .pill[disabled] { opacity: 0.55; pointer-events: none; }
+
+.form-msg { margin: 0; font-size: 15px; color: var(--fg-dim); }
+.form-msg.is-ok { color: var(--accent); }
+.form-msg.is-bad { color: #e8a494; }
+
+.or {
+  margin: 0 0 16px;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+
 /* ---------- footer ---------- */
 
 footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
@@ -703,6 +793,7 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
   section { padding-block: 76px; }
   .hero { min-height: 72vh; }
   .post { flex-direction: column; gap: 8px; align-items: flex-start; }
+  .form { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 440px) {

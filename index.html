@@ -268,9 +268,52 @@
 <section class="wrap contact" id="contact">
   <h2>Tell us what's <em class="s">stuck</em>.</h2>
   <p>One message, one reply from the person who'd do the work. If it's not a fit, we'll say so in the first exchange and point you somewhere better.</p>
+
+  <form class="form" id="contact-form" novalidate>
+    <div class="field">
+      <label for="f-name">Name</label>
+      <input id="f-name" name="name" type="text" autocomplete="name" required>
+    </div>
+    <div class="field">
+      <label for="f-email">Email</label>
+      <input id="f-email" name="email" type="email" autocomplete="email" required>
+    </div>
+    <div class="field">
+      <label for="f-company">Company <span>optional</span></label>
+      <input id="f-company" name="company" type="text" autocomplete="organization">
+    </div>
+    <div class="field">
+      <label for="f-budget">Budget <span>optional</span></label>
+      <select id="f-budget" name="budget">
+        <option value="">Prefer not to say</option>
+        <option value="under-5k">Under &euro;5,000</option>
+        <option value="5-15k">&euro;5,000&ndash;15,000</option>
+        <option value="15-50k">&euro;15,000&ndash;50,000</option>
+        <option value="over-50k">Over &euro;50,000</option>
+        <option value="not-sure">Not sure yet</option>
+      </select>
+    </div>
+    <div class="field field-wide">
+      <label for="f-message">What's stuck?</label>
+      <textarea id="f-message" name="message" rows="4" required></textarea>
+    </div>
+
+    <!-- Honeypot. Hidden from people, irresistible to bots. -->
+    <div class="hp" aria-hidden="true">
+      <label for="f-website">Leave this empty</label>
+      <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+    </div>
+
+    <div class="form-foot">
+      <button class="pill" type="submit" data-cursor="send">Send message</button>
+      <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
+    </div>
+  </form>
+
+  <p class="or">or reach us directly</p>
   <div class="hero-cta">
-    <a class="pill" data-cursor="send" href="https://wa.me/420777558262?text=Hi%20—%20I%20found%20jains.es%20and%20wanted%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">WhatsApp us</a>
-    <a class="pill ghost" href="mailto:helloayursen@gmail.com?subject=Project%20enquiry%20via%20jains.es">Email us</a>
+    <a class="pill ghost" data-cursor="send" href="https://wa.me/420777558262?text=Hi%20&mdash;%20I%20found%20jains.es%20and%20wanted%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">WhatsApp</a>
+    <a class="pill ghost" href="mailto:helloayursen@gmail.com?subject=Project%20enquiry%20via%20jains.es">Email</a>
   </div>
 </section>
 
