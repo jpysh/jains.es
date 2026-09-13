@@ -374,8 +374,9 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   font-weight: 600;
   padding: 7px 14px;
   border-radius: 999px;
-  background: #101010;
-  color: #f4f4f0;
+  background: var(--card);
+  color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.3);
   white-space: nowrap;
 }
 
@@ -390,7 +391,6 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   border-radius: 999px;
   border: 1px solid rgba(0, 0, 0, 0.26);
 }
-.tag.wip { background: var(--card); border-color: rgba(0, 0, 0, 0.3); }
 
 .shot {
   position: relative;
@@ -695,7 +695,7 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
       0 1px 0 rgba(0, 0, 0, 0.4),
       0 26px 44px -18px rgba(0, 0, 0, 0.65);
   }
-  .card:hover .go { background: var(--card); color: #000; }
+  .card:hover .go { background: #101010; color: #f4f4f0; border-color: #101010; }
   .post:hover { padding-left: 10px; }
   .post:hover h3 { color: var(--accent); }
   .foot-links a:hover,   .back:hover { color: var(--accent); }
