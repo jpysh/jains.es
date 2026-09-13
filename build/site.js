@@ -168,6 +168,7 @@ const head = ({ title, description, url, ogTitle, ogDescription, extra = '' }) =
 <script type="module" src="/src/main.js"></script>
 ${extra}</head>
 <body>
+<span id="top" tabindex="-1"></span>
 
 ${LOGO}
 
@@ -193,6 +194,10 @@ const footer = `
     </nav>
   </div>
 </footer>
+
+<a class="to-top" href="#top" aria-label="Back to top">
+  <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
 
 </body>
 </html>

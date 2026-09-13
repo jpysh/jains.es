@@ -49,6 +49,10 @@
 
 html { scroll-behavior: smooth; }
 
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 body {
   margin: 0;
   background: var(--bg);
@@ -695,6 +699,7 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
   .post:hover { padding-left: 10px; }
   .post:hover h3 { color: var(--accent); }
   .foot-links a:hover,   .back:hover { color: var(--accent); }
+  .to-top:hover { color: #0a0a0a; background: var(--accent); border-color: var(--accent); }
   .topic-links a:hover,
   .topic-nav a:hover {
     color: #0a0a0a;
@@ -892,3 +897,53 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
 .related .eyebrow a { color: var(--accent); text-decoration: none; }
 .related .post { padding: 22px 0; }
 .related .post h3 { font-size: clamp(17px, 2vw, 20px); }
+
+/* ---------- back to top ---------- */
+
+/* A plain anchor to the top of the document, so it works with no JavaScript
+   and keyboard users get it in the tab order at the end of the page.
+   Deliberately visible by default: a utility that only appears when a
+   scroll-driven animation is supported would be missing on iOS 18, on Firefox
+   and for anyone using reduced motion. The animation below only takes it away
+   near the top, where it has nothing to do. */
+.to-top {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  color: var(--fg);
+  background: rgba(10, 10, 10, 0.72);
+  backdrop-filter: saturate(1.4) blur(14px);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  border: 1px solid var(--line);
+  text-decoration: none;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+@media (min-width: 901px) {
+  .to-top { right: 24px; bottom: 24px; width: 48px; height: 48px; }
+}
+
+/* Fade it out over the first screenful: at the top of the page the button has
+   nothing to do, and it would sit on the hero. Pointer events go with it so it
+   cannot be clicked while invisible. */
+@supports (animation-timeline: scroll()) and (animation-range: entry) {
+  @media (prefers-reduced-motion: no-preference) {
+    .to-top {
+      animation: to-top-in linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 90vh;
+    }
+  }
+}
+
+@keyframes to-top-in {
+  0%   { opacity: 0; transform: translateY(10px) scale(0.94); pointer-events: none; }
+  55%  { opacity: 0; transform: translateY(10px) scale(0.94); pointer-events: none; }
+  100% { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+}
