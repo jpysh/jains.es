@@ -121,7 +121,10 @@ em.s {
 }
 
 .mark {
-  display: block;
+  display: flex;
+  align-items: center;
+  min-height: 26px;
+  padding-block: 4px;
   line-height: 0;
   text-decoration: none;
 }
@@ -520,7 +523,7 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
   border-top: 1px solid var(--line);
   padding-top: 20px;
 }
-.foot-links a { color: var(--fg-dim); text-decoration: none; }
+.foot-links a { color: var(--fg-dim); text-decoration: none; padding-block: 4px; }
 
 
 /* ---------- article ---------- */
@@ -557,7 +560,7 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
 }
 .article hr { border: 0; border-top: 1px solid var(--line); margin: 56px 0; }
 
-.back { display: inline-block; margin-bottom: 34px; color: var(--fg-dim); text-decoration: none; font-size: 15px; }
+.back { display: inline-block; padding-block: 4px; margin-bottom: 30px; color: var(--fg-dim); text-decoration: none; font-size: 15px; }
 
 /* ---------- scroll-driven reveal ---------- */
 
@@ -727,6 +730,18 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
   .card h3 { font-size: 25px; }
 }
 
+/* A tablet tier. Without one, 441 to 900px inherited the phone layout: the
+   stat row stacked three full-width rows whose captions capped at 256px, and
+   the lede sat at 20ch inside a 768px column. Both left most of the width
+   empty, which read as the layout being broken rather than roomy. */
+@media (min-width: 601px) {
+  .numbers { grid-template-columns: repeat(3, 1fr); gap: 32px 24px; padding-top: 56px; }
+  .services { grid-template-columns: repeat(2, 1fr); }
+  .quotes { grid-template-columns: repeat(2, 1fr); }
+  .lede { max-width: 26ch; }
+  .hero h1 { max-width: 18ch; }
+}
+
 @media (min-width: 901px) {
   :root { --fade-y: 26px; --rise-y: 44px; }
 
@@ -774,7 +789,7 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
   font-weight: 500;
   color: var(--fg);
   text-decoration: none;
-  padding: 9px 16px;
+  padding: 10px 16px;
   background: var(--bg-soft);
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -797,7 +812,7 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
 .post-meta .dot { color: var(--line); }
 
 .more { margin: 30px 0 0; font-size: 15px; }
-.more a { color: var(--accent); text-decoration: none; }
+.more a { display: inline-block; padding-block: 4px; color: var(--accent); text-decoration: none; }
 
 .blog-index { padding-block: 86px 110px; }
 .blog-index .title { margin-bottom: 20px; }
@@ -823,10 +838,10 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
 .topic-group > .dim { font-size: 16px; margin: 0 0 26px; max-width: 58ch; }
 
 .crumbs { font-size: 14px; color: var(--fg-dim); margin-bottom: 26px; }
-.crumbs a { color: var(--fg-dim); text-decoration: none; }
+.crumbs a { display: inline-block; padding-block: 5px; color: var(--fg-dim); text-decoration: none; }
 .crumbs span { margin: 0 6px; opacity: 0.5; }
 
-.article .meta a { color: var(--fg-dim); }
+.article .meta a { display: inline-block; padding-block: 4px; color: var(--fg-dim); }
 
 /* Sources. Every post carries one, and the tier says whether a claim comes
    from the thing itself or from an outlet reporting it. The build refuses to
