@@ -538,9 +538,11 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
   color: var(--fg);
 }
 
-/* In a phone column the overshoot is just a very large word, so the wordmark
-   is capped here and the edge-to-edge trick is added back at 901px. */
-.wordmark .logo { width: 54%; }
+/* A footer wordmark is a sign-off, not a banner. In a phone column the
+   edge-to-edge overshoot made it the loudest thing in the footer, so it is
+   sized as a mark here and the trick is added back at 901px where a wide
+   column makes it a statement rather than just a big word. */
+.wordmark .logo { width: clamp(108px, 34vw, 210px); }
 
 .legal { margin-top: 30px; font-size: 13px; color: var(--fg-dim); }
 
