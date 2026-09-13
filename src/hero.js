@@ -98,7 +98,7 @@ const FRAG = /* glsl */ `
 
 const lerp = (a, b, t) => a + (b - a) * t;
 
-export function initHero(canvas, { count = 4200, accent = [0.922, 0.957, 0.0] } = {}) {
+export function initHero(canvas, { count = 4200, accent = [0.996, 1.0, 0.655] } = {}) {
   const renderer = new Renderer({
     canvas,
     alpha: true,
