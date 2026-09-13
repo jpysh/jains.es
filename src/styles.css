@@ -38,6 +38,11 @@
   --sect-bottom: clamp(34px, 5vw, 68px);
   --band-bg: #f4f4f0;
   --band-fg: #101010;
+  --band-soft: #181818;
+
+  /* Reveal travel. Phone values first; larger screens get the longer throw. */
+  --fade-y: 18px;
+  --rise-y: 22px;
   --display: "Space Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --serif: "Iowan Old Style", Georgia, "Times New Roman", serif;
@@ -107,6 +112,24 @@ em.s {
   color: var(--band-fg);
 }
 .band-light .eyebrow { color: #5f5f58; }
+
+/* A second, quieter band. Writing needed to read as its own territory, but a
+   second off-white would compete with the work band and make the page a
+   stripe. A raised near-black with hairlines top and bottom separates it
+   without raising its voice. */
+.band-soft {
+  background: var(--band-soft);
+  border-top: 1px solid #2e2e2e;
+  border-bottom: 1px solid #2e2e2e;
+}
+
+/* The topic pills sat on --bg-soft, which is this band's own background, so
+   inside it they need to go the other way to stay legible as controls. */
+.band-soft .topic-links a,
+.band-soft .topic-nav a {
+  background: #0c0c0c;
+  border-color: #2c2c2c;
+}
 .band-light .title { color: var(--band-fg); }
 .band-light .dim { color: #4a4a45; }
 
@@ -452,6 +475,8 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
 /* ---------- writing ---------- */
 
 .posts { border-top: 1px solid var(--line); }
+.band-soft .posts { border-top-color: #303030; }
+.band-soft .post { border-bottom-color: #303030; }
 
 .post {
   display: flex;
@@ -562,23 +587,23 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
    elements in the last screenful of the page never do — the document runs out
    of scroll first. That left the footer wordmark permanently clipped to zero
    width and the contact heading stuck at weight 300. */
-@supports (animation-timeline: view()) {
+@supports (animation-timeline: view()) and (animation-range: entry) {
   @media (prefers-reduced-motion: no-preference) {
     .reveal {
       animation: fadeup linear both;
       animation-timeline: view();
-      animation-range: entry 4% entry 86%;
+      animation-range: entry 5% entry 96%;
     }
     .dim {
       animation: brighten linear both;
       animation-timeline: view();
-      animation-range: entry 12% entry 90%;
+      animation-range: entry 10% entry 96%;
     }
   }
 }
 
 @keyframes fadeup {
-  from { opacity: 0; transform: translateY(26px); }
+  from { opacity: 0; transform: translateY(var(--fade-y)); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -609,7 +634,7 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
   inherits: false;
 }
 
-@supports (animation-timeline: view()) {
+@supports (animation-timeline: view()) and (animation-range: entry) {
   @media (prefers-reduced-motion: no-preference) {
 
     /* Headings resolve from light to bold as they enter. This is the variable
@@ -619,7 +644,7 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
       font-variation-settings: "wght" var(--wght);
       animation: weigh linear both;
       animation-timeline: view();
-      animation-range: entry 15% entry 92%;
+      animation-range: entry 10% entry 95%;
     }
 
     /* Project cards cascade. Each card has its own view() timeline, so the
@@ -627,7 +652,7 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
     .card {
       animation: rise linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 85%;
+      animation-range: entry 0% entry 94%;
     }
 
     /* The numbers wipe up out of a clip rather than counting: two of the three
@@ -635,7 +660,7 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
     .num strong {
       animation: wipe linear both;
       animation-timeline: view();
-      animation-range: entry 10% entry 88%;
+      animation-range: entry 8% entry 94%;
     }
 
     /* The footer wordmark draws itself left to right. */
@@ -648,7 +673,7 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
     .eyebrow, .service, .post, .quote {
       animation: fadeup linear both;
       animation-timeline: view();
-      animation-range: entry 5% entry 85%;
+      animation-range: entry 5% entry 95%;
     }
 
     /* Browsing surfaces only. The blog index and the topic pages are lists to
@@ -658,13 +683,13 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
     .rail, .topic-group > .dim, .topic-links a, .topic-nav a {
       animation: fadeup linear both;
       animation-timeline: view();
-      animation-range: entry 5% entry 82%;
+      animation-range: entry 5% entry 93%;
     }
 
     .topic-group h2 {
       animation: fadeup linear both;
       animation-timeline: view();
-      animation-range: entry 2% entry 78%;
+      animation-range: entry 2% entry 92%;
     }
   }
 }
@@ -675,7 +700,7 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
 }
 
 @keyframes rise {
-  from { opacity: 0; transform: translateY(48px) scale(0.985); }
+  from { opacity: 0; transform: translateY(var(--rise-y)) scale(0.99); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
@@ -737,6 +762,8 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
 }
 
 @media (min-width: 901px) {
+  :root { --fade-y: 26px; --rise-y: 44px; }
+
   .numbers { grid-template-columns: repeat(3, 1fr); gap: 28px; padding-top: 0; }
   .services { grid-template-columns: repeat(3, 1fr); }
   .quotes { grid-template-columns: repeat(3, 1fr); }
