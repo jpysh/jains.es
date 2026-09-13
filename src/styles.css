@@ -161,14 +161,12 @@ em.s {
   white-space: nowrap;
   transition: background 0.2s ease, transform 0.2s ease;
 }
-.pill:hover { background: var(--accent); transform: translateY(-1px); }
 
 .pill.ghost {
   background: transparent;
   color: var(--fg);
   border: 1px solid var(--line);
 }
-.pill.ghost:hover { border-color: var(--fg); background: transparent; }
 
 /* ---------- sections ---------- */
 
@@ -350,14 +348,6 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
     0 1px 0 rgba(0, 0, 0, 0.28),
     0 18px 34px -18px rgba(0, 0, 0, 0.45);
 }
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.07),
-    0 1px 0 rgba(0, 0, 0, 0.28),
-    0 26px 44px -18px rgba(0, 0, 0, 0.5);
-}
 
 .card-head {
   display: flex;
@@ -382,7 +372,6 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   background: rgba(0, 0, 0, 0.1);
   white-space: nowrap;
 }
-.card:hover .go { background: #101010; color: var(--card); }
 
 .card p { margin: 12px 0 0; font-size: 15px; line-height: 1.45; max-width: 40ch; }
 
@@ -475,7 +464,6 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   text-decoration: none;
   transition: padding-left 0.22s ease;
 }
-.post:hover { padding-left: 10px; }
 
 .post h3 {
   font-family: var(--display);
@@ -486,7 +474,6 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   margin: 0;
   max-width: 32ch;
 }
-.post:hover h3 { color: var(--accent); }
 
 .post .meta { font-size: 14px; color: var(--fg-dim); white-space: nowrap; }
 
@@ -520,7 +507,6 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
   color: var(--fg-dim);
 }
 .foot-top a { color: var(--fg); text-decoration: none; }
-.foot-top a:hover { color: var(--accent); }
 
 .wordmark {
   margin: 40px 0 0;
@@ -568,7 +554,6 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
 .article hr { border: 0; border-top: 1px solid var(--line); margin: 56px 0; }
 
 .back { display: inline-block; margin-bottom: 34px; color: var(--fg-dim); text-decoration: none; font-size: 15px; }
-.back:hover { color: var(--accent); }
 
 /* ---------- scroll-driven reveal ---------- */
 
@@ -665,6 +650,22 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
       animation-timeline: view();
       animation-range: entry 5% entry 85%;
     }
+
+    /* Browsing surfaces only. The blog index and the topic pages are lists to
+       scan, so they behave like the homepage list. Article prose is left
+       alone deliberately — a paragraph that animates while you are already
+       reading it is the most irritating version of this effect. */
+    .rail, .topic-group > .dim, .topic-links a, .topic-nav a {
+      animation: fadeup linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 82%;
+    }
+
+    .topic-group h2 {
+      animation: fadeup linear both;
+      animation-timeline: view();
+      animation-range: entry 2% entry 78%;
+    }
   }
 }
 
@@ -686,6 +687,40 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
 @keyframes draw {
   from { clip-path: inset(0 100% 0 0); }
   to   { clip-path: inset(0 0 0 0); }
+}
+
+/* ---------- hover ---------- */
+
+/* Only where a real pointer exists. On a touch screen :hover latches after a
+   tap and leaves the tapped element stuck in its hover state. */
+@media (hover: hover) and (pointer: fine) {
+  .pill:hover { background: var(--accent); transform: translateY(-1px); }
+  .pill.ghost:hover { border-color: var(--fg); background: transparent; }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.07),
+      0 1px 0 rgba(0, 0, 0, 0.28),
+      0 26px 44px -18px rgba(0, 0, 0, 0.5);
+  }
+  .card:hover .go { background: #101010; color: var(--card); }
+  .post:hover { padding-left: 10px; }
+  .post:hover h3 { color: var(--accent); }
+  .foot-top a:hover { color: var(--accent); }
+  .back:hover { color: var(--accent); }
+  .topic-links a:hover,
+  .topic-nav a:hover {
+    color: #0a0a0a;
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .more a:hover { text-decoration: underline; }
+  .topic-group h2 a:hover { color: var(--accent); }
+  .crumbs a:hover { color: var(--accent); }
+  .article .meta a:hover { color: var(--accent); }
+  .sources li a:hover { color: var(--accent); border-color: var(--accent); }
+  .related .eyebrow a:hover { text-decoration: underline; }
 }
 
 /* ---------- responsive ---------- */
@@ -758,12 +793,6 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
   border-radius: 999px;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
-.topic-links a:hover,
-.topic-nav a:hover {
-  color: #0a0a0a;
-  background: var(--accent);
-  border-color: var(--accent);
-}
 
 /* The tag that marks a row as a post belonging to a topic. */
 .post-topic {
@@ -782,7 +811,6 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
 
 .more { margin: 30px 0 0; font-size: 15px; }
 .more a { color: var(--accent); text-decoration: none; }
-.more a:hover { text-decoration: underline; }
 
 .blog-index { padding-block: 86px 110px; }
 .blog-index .title { margin-bottom: 20px; }
@@ -805,16 +833,13 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
   margin: 0 0 8px;
 }
 .topic-group h2 a { color: inherit; text-decoration: none; }
-.topic-group h2 a:hover { color: var(--accent); }
 .topic-group > .dim { font-size: 16px; margin: 0 0 26px; max-width: 58ch; }
 
 .crumbs { font-size: 14px; color: var(--fg-dim); margin-bottom: 26px; }
 .crumbs a { color: var(--fg-dim); text-decoration: none; }
-.crumbs a:hover { color: var(--accent); }
 .crumbs span { margin: 0 6px; opacity: 0.5; }
 
 .article .meta a { color: var(--fg-dim); }
-.article .meta a:hover { color: var(--accent); }
 
 /* Sources. Every post carries one, and the tier says whether a claim comes
    from the thing itself or from an outlet reporting it. The build refuses to
@@ -854,7 +879,6 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
   font-variant-numeric: tabular-nums;
 }
 .sources li a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--line); }
-.sources li a:hover { color: var(--accent); border-color: var(--accent); }
 .src-meta { display: block; color: var(--fg-dim); font-size: 13px; margin-top: 3px; }
 
 .tier {
@@ -884,6 +908,5 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
 }
 .related .eyebrow { margin-bottom: 18px; }
 .related .eyebrow a { color: var(--accent); text-decoration: none; }
-.related .eyebrow a:hover { text-decoration: underline; }
 .related .post { padding: 22px 0; }
 .related .post h3 { font-size: clamp(17px, 2vw, 20px); }
