@@ -330,8 +330,9 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   position: relative;
   display: flex;
   flex-direction: column;
-  background: var(--card);
-  color: #000;
+  background: #f4f4f0;
+  color: #101010;
+  border-top: 6px solid var(--card);
   border-radius: var(--radius);
   padding: 18px;
   overflow: hidden;
@@ -345,10 +346,8 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
      colour it reads as a drawn white line rather than a lit edge, which is the
      difference between lacquer and plastic. */
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.45),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.08),
-    0 1px 0 rgba(0, 0, 0, 0.3),
-    0 18px 34px -18px rgba(0, 0, 0, 0.45);
+    0 1px 0 rgba(0, 0, 0, 0.4),
+    0 18px 34px -18px rgba(0, 0, 0, 0.6);
 }
 
 .card-head {
@@ -371,7 +370,8 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   font-weight: 600;
   padding: 7px 14px;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.12);
+  background: #101010;
+  color: #f4f4f0;
   white-space: nowrap;
 }
 
@@ -384,9 +384,9 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   letter-spacing: 0.02em;
   padding: 4px 9px;
   border-radius: 999px;
-  border: 1px solid rgba(0, 0, 0, 0.24);
+  border: 1px solid rgba(0, 0, 0, 0.26);
 }
-.tag.wip { background: #000; color: var(--card); border-color: #000; }
+.tag.wip { background: var(--card); border-color: rgba(0, 0, 0, 0.3); }
 
 .shot {
   position: relative;
@@ -399,7 +399,7 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   inset: 18px 0 0;
   border-radius: 12px;
   background: var(--card);
-  opacity: 0.08;
+  opacity: 0.05;
   pointer-events: none;
 }
 .shot img {
@@ -688,12 +688,10 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
   .card:hover {
     transform: translateY(-4px);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.5),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.08),
-      0 1px 0 rgba(0, 0, 0, 0.3),
-      0 26px 44px -18px rgba(0, 0, 0, 0.55);
+      0 1px 0 rgba(0, 0, 0, 0.4),
+      0 26px 44px -18px rgba(0, 0, 0, 0.65);
   }
-  .card:hover .go { background: #000; color: var(--card); }
+  .card:hover .go { background: var(--card); color: #000; }
   .post:hover { padding-left: 10px; }
   .post:hover h3 { color: var(--accent); }
   .foot-links a:hover,   .back:hover { color: var(--accent); }
