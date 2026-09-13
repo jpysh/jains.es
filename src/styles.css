@@ -512,7 +512,7 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
 
 /* ---------- footer ---------- */
 
-footer { border-top: 1px solid var(--line); padding-block: 48px 32px; }
+footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
 
 .foot-lead {
   font-family: var(--display);
@@ -526,25 +526,38 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 32px; }
 
 .foot-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
 
+/* Links and the mark share one row, so the footer ends in a single line
+   instead of stacking a nav above a wordmark above a legal note. */
+.foot-end {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+
 .foot-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 16px;
   font-size: 15px;
 }
 .foot-links a { color: var(--fg-dim); text-decoration: none; }
 
 .wordmark {
-  margin: 32px 0 0;
+  margin: 0;
+  flex-shrink: 0;
   color: var(--fg);
 }
 
 /* A footer wordmark is a sign-off, not a banner, at every width. The
    edge-to-edge overshoot this used to do on desktop made the footer 726px
    tall, most of it one word. */
-.wordmark .logo { width: clamp(108px, 30vw, 190px); }
+.wordmark .logo { width: clamp(84px, 22vw, 132px); }
 
-.legal { margin-top: 20px; font-size: 13px; line-height: 1.5; color: var(--fg-dim); }
+.legal { margin-top: 16px; font-size: 12.5px; line-height: 1.5; color: var(--fg-dim); }
 .legal a { color: var(--fg-dim); text-decoration: none; }
 
 /* ---------- article ---------- */
@@ -781,7 +794,6 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 32px; }
   .hero { min-height: 78vh; }
   .post { flex-direction: row; gap: 28px; align-items: baseline; }
 
-  .wordmark { margin-top: 44px; }
 }
 
 /* ---------- blog index, topic pages, sources ---------- */
