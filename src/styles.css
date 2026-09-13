@@ -331,7 +331,7 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   display: flex;
   flex-direction: column;
   background: var(--card);
-  color: #101010;
+  color: #000;
   border-radius: var(--radius);
   padding: 18px;
   overflow: hidden;
@@ -386,7 +386,7 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   border-radius: 999px;
   border: 1px solid rgba(0, 0, 0, 0.24);
 }
-.tag.wip { background: #101010; color: var(--card); border-color: #101010; }
+.tag.wip { background: #000; color: var(--card); border-color: #000; }
 
 .shot {
   position: relative;
@@ -693,7 +693,7 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
       0 1px 0 rgba(0, 0, 0, 0.3),
       0 26px 44px -18px rgba(0, 0, 0, 0.55);
   }
-  .card:hover .go { background: #101010; color: var(--card); }
+  .card:hover .go { background: #000; color: var(--card); }
   .post:hover { padding-left: 10px; }
   .post:hover h3 { color: var(--accent); }
   .foot-links a:hover,   .back:hover { color: var(--accent); }
