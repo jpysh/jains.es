@@ -19,17 +19,6 @@ function webglAvailable() {
  * it can actually be used. The headline is plain text and is the LCP element
  * either way — the canvas is never allowed to block it.
  */
-/**
- * The custom cursor replaces a UI affordance people rely on, so it is gated
- * on a fine pointer and on motion being allowed, and it removes itself the
- * moment anyone tabs or touches.
- */
-if (!reduceMotion && matchMedia('(pointer: fine)').matches) {
-  import('./cursor.js')
-    .then(({ initCursor }) => initCursor())
-    .catch(() => {});
-}
-
 const canvas = document.querySelector('.hero-canvas');
 if (canvas && !reduceMotion && webglAvailable()) {
   const start = () =>

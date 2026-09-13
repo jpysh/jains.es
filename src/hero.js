@@ -92,7 +92,7 @@ const FRAG = /* glsl */ `
     // lopsided at the start.
     float mask = mix(1.0, mix(0.16, 1.0, smoothstep(0.30, 0.66, vScreenX)), uMask);
 
-    gl_FragColor = vec4(col, alpha * (0.44 + vOrdered * 0.26) * mask);
+    gl_FragColor = vec4(col, alpha * (0.62 + vOrdered * 0.32) * mask);
   }
 `;
 
@@ -163,7 +163,7 @@ export function initHero(canvas, { count = 4200, accent = [0.776, 0.949, 0.306] 
       uMouse: { value: [0, 0, 0] },
       uScale: { value: 90 },
       uMask: { value: 0 },
-      uDim: { value: [0.42, 0.42, 0.40] },
+      uDim: { value: [0.56, 0.56, 0.53] },
       uAccent: { value: accent },
     },
   });
@@ -215,14 +215,15 @@ export function initHero(canvas, { count = 4200, accent = [0.776, 0.949, 0.306] 
   const targetMouse = [0, 0, 0];
   const mouse = [0, 0, 0];
 
-  // The lattice must finish forming while the hero is still visible. Mapping
-  // progress across the stage's full height meant it resolved exactly as the
-  // hero left the viewport, so the payoff was never on screen.
-  const TRAVEL = 0.45;
+  // The lattice must finish forming while the hero is still on screen. The
+  // stage is now three sections tall, so travel is measured against the
+  // viewport instead of the stage — otherwise the payoff would land somewhere
+  // around the services section, long after anyone stopped looking.
+  const stage = canvas.closest('.stage') || canvas.parentElement;
 
   function readScroll() {
-    const rect = canvas.parentElement.getBoundingClientRect();
-    const travel = (rect.height || 1) * TRAVEL;
+    const rect = stage.getBoundingClientRect();
+    const travel = (window.innerHeight || 1) * 0.85;
     targetProgress = Math.min(Math.max(-rect.top / travel, 0), 1);
   }
 

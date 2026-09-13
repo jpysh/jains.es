@@ -89,7 +89,7 @@ a { color: inherit; }
 
 img { max-width: 100%; display: block; }
 
-.wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: 24px; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: 18px; }
 
 em.s {
   font-family: var(--serif);
@@ -195,18 +195,33 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
 
 /* Full-bleed container for the particle canvas. The hero content sits on top
    in the normal column; the canvas is decorative and never takes a pointer. */
-.hero-stage {
+.stage {
   position: relative;
   isolation: isolate;
 }
 
-.hero-canvas {
+.stage-bg {
   position: absolute;
   inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* Fade the field out before it reaches the light band, so the last row of
+     particles does not cut hard against the off-white edge. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 99%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 99%);
+}
+
+.stage-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+}
+
+.hero-canvas {
   width: 100%;
   height: 100%;
   display: block;
-  z-index: -1;
   pointer-events: none;
   opacity: 0;
   transition: opacity 1.2s ease;
@@ -226,7 +241,7 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
 
 .hero {
   position: relative;
-  min-height: 78vh;
+  min-height: 68vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -256,10 +271,10 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
 
 .numbers {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 48px 24px;
+  grid-template-columns: 1fr;
+  gap: 40px;
   border-top: 1px solid var(--line);
-  padding-top: 64px;
+  padding-top: 48px;
 }
 
 .num strong {
@@ -290,7 +305,7 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   margin: 0 0 20px;
 }
 
-.services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.services { display: grid; grid-template-columns: 1fr; gap: 28px; }
 
 .service {
   border-top: 1px solid var(--line);
@@ -309,7 +324,7 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 22px;
 }
 
@@ -321,10 +336,9 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   background: var(--card);
   color: #101010;
   border-radius: var(--radius);
-  padding: 26px;
+  padding: 18px;
   overflow: hidden;
   text-decoration: none;
-  min-height: 380px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   /* Lacquer, not glass: a 1px inset highlight reads as a lit surface and costs
      nothing in legibility. A dark outer ring seats the card into the page
@@ -372,12 +386,12 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
 
 .card p { margin: 12px 0 0; font-size: 15px; line-height: 1.45; max-width: 40ch; }
 
-.tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 13px; }
 .tag {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  padding: 5px 11px;
+  padding: 4px 9px;
   border-radius: 999px;
   border: 1px solid rgba(0, 0, 0, 0.22);
 }
@@ -385,7 +399,7 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
 
 .shot {
   margin-top: auto;
-  padding-top: 24px;
+  padding-top: 18px;
 }
 .shot img {
   border-radius: 12px;
@@ -397,17 +411,17 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   filter: saturate(0.94);
   box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.35);
   width: 100%;
-  height: 230px;
+  height: clamp(142px, 26vw, 230px);
   object-fit: cover;
   object-position: top center;
 }
 
-.card.wide { grid-column: span 2; }
-.card.wide .shot img { height: 300px; }
+.card.wide { grid-column: span 1; }
+.card.wide .shot img { height: clamp(150px, 32vw, 300px); }
 
 /* ---------- testimonials ---------- */
 
-.quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.quotes { display: grid; grid-template-columns: 1fr; gap: 22px; }
 
 .quote {
   background: var(--bg-soft);
@@ -452,9 +466,10 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
 
 .post {
   display: flex;
-  align-items: baseline;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 28px;
+  gap: 8px;
   padding: 30px 0;
   border-bottom: 1px solid var(--line);
   text-decoration: none;
@@ -508,16 +523,13 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
 .foot-top a:hover { color: var(--accent); }
 
 .wordmark {
-  margin: 54px 0 0;
+  margin: 40px 0 0;
   color: var(--fg);
 }
 
-/* Overshoot the width and pull left so the j STEM lands on the column edge
-   and the final s lands on the right edge: 1/(1 - 0.02753) = 1.02832. */
-.wordmark .logo {
-  width: 102.832%;
-  margin-left: -2.831%;
-}
+/* In a phone column the overshoot is just a very large word, so the wordmark
+   is capped here and the edge-to-edge trick is added back at 901px. */
+.wordmark .logo { width: 54%; }
 
 .legal { margin-top: 30px; font-size: 13px; color: var(--fg-dim); }
 
@@ -676,103 +688,39 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
   to   { clip-path: inset(0 0 0 0); }
 }
 
-/* ---------- cursor ---------- */
-
-/* Only ever attached on a fine pointer with motion allowed; see cursor.js. */
-.has-cursor, .has-cursor a, .has-cursor button { cursor: none; }
-
-.cur {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 200;
-  pointer-events: none;
-  will-change: transform;
-}
-
-.cur-dot {
-  width: 6px;
-  height: 6px;
-  margin: -3px 0 0 -3px;
-  border-radius: 999px;
-  background: var(--accent);
-}
-
-.cur-ring {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  margin: -19px 0 0 -19px;
-  border: 1px solid rgba(244, 244, 240, 0.45);
-  border-radius: 999px;
-  transition: width 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
-              height 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
-              background-color 0.28s ease,
-              border-color 0.28s ease;
-}
-
-.cur-ring span {
-  font-family: var(--display);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: #0a0a0a;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  white-space: nowrap;
-}
-
-/* Over something actionable the ring fills and names the verb. */
-.cur-ring.is-label {
-  width: 74px;
-  height: 74px;
-  margin: -37px 0 0 -37px;
-  background: var(--accent);
-  border-color: var(--accent);
-}
-.cur-ring.is-label span { opacity: 1; transform: scale(1); }
-
-.cur-ring.is-link {
-  width: 54px;
-  height: 54px;
-  margin: -27px 0 0 -27px;
-  background: rgba(244, 244, 240, 0.10);
-  border-color: rgba(244, 244, 240, 0.7);
-}
-
 /* ---------- responsive ---------- */
 
-@media (max-width: 900px) {
-  .numbers { grid-template-columns: 1fr; gap: 40px; padding-top: 48px; }
-  .services, .quotes, .grid { grid-template-columns: 1fr; }
-  .card.wide { grid-column: span 1; }
+/* Mobile first: everything above is the phone layout, because that is where
+   almost all of the traffic is. These two blocks add what a bigger screen can
+   afford — multi-column grids, the wide card, the full-bleed wordmark. */
 
-  /* Nine cards is the proof the headline number claims, so none of them get
-     hidden. They get smaller instead: the screenshot and the tag row carry the
-     reduction, the title and description do not. */
-  .card.wide .shot img { height: 150px; }
-  .shot { padding-top: 18px; }
-  .tags { gap: 6px; margin-top: 13px; }
-  .tag { font-size: 11px; padding: 4px 9px; }
-  .hero { min-height: 68vh; }
-  .post { flex-direction: column; gap: 8px; align-items: flex-start; }
-
-  /* The footer wordmark overshoots its column so the letterforms land exactly
-     on the edges. That is a statement across a wide column; in a phone column
-     it is just a very large word, and the j gets clipped. Cap it here. */
-  .wordmark { margin-top: 40px; }
-  .wordmark .logo { width: 46%; margin-left: 0; }
+@media (min-width: 441px) {
+  .wrap { padding-inline: 24px; }
+  .nav { padding: 14px 24px; }
+  .card { padding: 20px; }
+  .card h3 { font-size: 25px; }
 }
 
-@media (max-width: 440px) {
-  .wrap { padding-inline: 18px; }
-  .nav { padding: 12px 18px; }
-  .card { padding: 18px; min-height: 0; }
-  .shot img { height: 142px; }
-  .card h3 { font-size: 22px; }
-  .wordmark .logo { width: 54%; }
+@media (min-width: 901px) {
+  .numbers { grid-template-columns: repeat(3, 1fr); gap: 28px; padding-top: 0; }
+  .services { grid-template-columns: repeat(3, 1fr); }
+  .quotes { grid-template-columns: repeat(3, 1fr); }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .card.wide { grid-column: span 2; }
+
+  .card { padding: 26px; min-height: 380px; }
+  .shot { padding-top: 24px; }
+  .tags { gap: 7px; margin-top: 16px; }
+  .tag { font-size: 12px; padding: 5px 11px; }
+
+  .hero { min-height: 78vh; }
+  .post { flex-direction: row; gap: 28px; align-items: baseline; }
+
+  /* Overshoot the width and pull left so the j STEM lands on the column edge
+     and the final s lands on the right edge: 1/(1 - 0.02753) = 1.02832. Only
+     worth doing where the column is wide enough to make it a statement. */
+  .wordmark { margin-top: 54px; }
+  .wordmark .logo { width: 102.832%; margin-left: -2.831%; }
 }
 
 /* ---------- blog index, topic pages, sources ---------- */

@@ -225,7 +225,7 @@ const postRows = (posts, { showTopic = false } = {}) =>
   `<div class="posts">\n` +
   posts
     .map(
-      (p) => `  <a data-cursor="post" class="post" href="${p.path}">
+      (p) => `  <a class="post" href="${p.path}">
     <h3>${esc(p.meta.title)}</h3>
     <span class="meta post-meta"><time datetime="${p.meta.date}">${longDate(p.meta.date)}</time>${
       showTopic

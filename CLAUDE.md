@@ -27,6 +27,16 @@ This file is only the things that are easy to get wrong and expensive to undo.
   served purely from asset storage and uses no request quota.
 - **Never set `workers_dev: true`.** It publishes an indexable duplicate origin.
 - **Never commit `dist/`.**
+- **Never reintroduce the custom cursor.** It was removed deliberately; replacing
+  the native pointer is an accessibility cost for a flourish most visitors never
+  see, and the traffic is overwhelmingly mobile.
+
+## Mobile first
+
+The stylesheet is mobile first: base rules are the phone layout, and two
+`min-width` blocks (441px, 901px) add what larger screens can afford. Write new
+rules the same way — put the phone case in the base rule, not in an override.
+Roughly 90% of the traffic is mobile.
 
 ## Adding a post
 
