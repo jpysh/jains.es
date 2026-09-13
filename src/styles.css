@@ -38,7 +38,6 @@
   --sect-bottom: clamp(34px, 5vw, 68px);
   --band-bg: #f4f4f0;
   --band-fg: #101010;
-  --band-soft: #181818;
 
   /* Reveal travel. Phone values first; larger screens get the longer throw. */
   --fade-y: 18px;
@@ -116,25 +115,18 @@ em.s {
 }
 .band-light .eyebrow { color: #5f5f58; }
 
-/* A second, quieter band. Writing needed to read as its own territory, but a
-   second off-white would compete with the work band and make the page a
-   stripe. A raised near-black with hairlines top and bottom separates it
-   without raising its voice. */
-.band-soft {
-  background: var(--band-soft);
-  border-top: 1px solid #2e2e2e;
-  border-bottom: 1px solid #2e2e2e;
-}
-
-/* The topic pills sat on --bg-soft, which is this band's own background, so
-   inside it they need to go the other way to stay legible as controls. */
-.band-soft .topic-links a,
-.band-soft .topic-nav a {
-  background: #0c0c0c;
-  border-color: #2c2c2c;
-}
 .band-light .title { color: var(--band-fg); }
 .band-light .dim { color: #4a4a45; }
+
+/* Text tuned for a near-black ground fails on the band: --fg-dim is 3.11:1
+   there. These are the same roles re-picked for off-white. */
+.band-light .rail { color: #6a6a62; }
+.band-light .meta,
+.band-light .post-topic { color: #57574f; }
+.band-light .posts { border-top-color: rgba(0, 0, 0, 0.14); }
+.band-light .post { border-bottom-color: rgba(0, 0, 0, 0.14); }
+.band-light .post h3 { color: var(--band-fg); }
+.band-light .more a { color: #2f5c00; }
 
 /* The lime accent is tuned for a near-black ground and goes acid on off-white,
    so inside the band it darkens rather than being used as-is. */
@@ -491,8 +483,6 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
 /* ---------- writing ---------- */
 
 .posts { border-top: 1px solid var(--line); }
-.band-soft .posts { border-top-color: #303030; }
-.band-soft .post { border-bottom-color: #303030; }
 
 .post {
   display: flex;
@@ -520,37 +510,32 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
 
 /* ---------- contact ---------- */
 
-.contact { text-align: center; }
-.contact h1,
-.contact h2 {
-  font-family: var(--display);
-  font-size: clamp(32px, 5.6vw, 66px);
-  line-height: 1.06;
-  letter-spacing: -0.04em;
-  font-weight: 600;
-  margin: 0 auto 22px;
-  max-width: 18ch;
-}
-.contact p { color: var(--fg-dim); max-width: 46ch; margin: 0 auto 38px; }
-.contact .hero-cta { justify-content: center; }
-
-
 /* ---------- footer ---------- */
 
-footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
+footer { border-top: 1px solid var(--line); padding-block: 48px 32px; }
 
-.foot-top {
+.foot-lead {
+  font-family: var(--display);
+  font-size: clamp(19px, 4.6vw, 26px);
+  line-height: 1.24;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  margin: 0 0 22px;
+  max-width: 20ch;
+}
+
+.foot-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+
+.foot-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 28px;
-  justify-content: space-between;
+  gap: 18px;
   font-size: 15px;
-  color: var(--fg-dim);
 }
-.foot-top a { color: var(--fg); text-decoration: none; }
+.foot-links a { color: var(--fg-dim); text-decoration: none; }
 
 .wordmark {
-  margin: 40px 0 0;
+  margin: 32px 0 0;
   color: var(--fg);
 }
 
@@ -560,7 +545,8 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
    column makes it a statement rather than just a big word. */
 .wordmark .logo { width: clamp(108px, 34vw, 210px); }
 
-.legal { margin-top: 30px; font-size: 13px; color: var(--fg-dim); }
+.legal { margin-top: 20px; font-size: 13px; line-height: 1.5; color: var(--fg-dim); }
+.legal a { color: var(--fg-dim); text-decoration: none; }
 
 /* ---------- article ---------- */
 
@@ -657,7 +643,7 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
 
     /* Headings resolve from light to bold as they enter. This is the variable
        font doing something a static font cannot, rather than a fade. */
-    .title, .contact h2, .lede {
+    .title, .lede {
       --wght: 300;
       font-variation-settings: "wght" var(--wght);
       animation: weigh linear both;
@@ -750,7 +736,7 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
   .card:hover .go { background: var(--band-bg); color: #101010; }
   .post:hover { padding-left: 10px; }
   .post:hover h3 { color: var(--accent); }
-  .foot-top a:hover { color: var(--accent); }
+  .foot-links a:hover, .legal a:hover { color: var(--accent); }
   .back:hover { color: var(--accent); }
   .topic-links a:hover,
   .topic-nav a:hover {

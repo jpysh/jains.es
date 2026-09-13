@@ -178,14 +178,21 @@ ${LOGO}
 `;
 
 const footer = `
-<footer>
+<footer id="contact">
   <div class="wrap">
-    <div class="foot-top">
-      <div><a href="/#work">Work</a> &nbsp;·&nbsp; <a href="/blog/">Writing</a> &nbsp;·&nbsp; <a href="/">Home</a> &nbsp;·&nbsp; <a href="https://github.com/jpysh" target="_blank" rel="noopener">GitHub</a></div>
-      <div><a href="https://wa.me/420777558262" target="_blank" rel="noopener">+420 777 558 262</a> &nbsp;·&nbsp; <a href="mailto:helloayursen@gmail.com">helloayursen@gmail.com</a></div>
+    <p class="foot-lead">One message, one reply from the person who'd do the work.</p>
+    <div class="foot-cta">
+      <a class="pill" href="https://wa.me/420777558262?text=Hi%20&mdash;%20I%20found%20jains.es%20and%20wanted%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">WhatsApp us</a>
+      <a class="pill ghost" href="mailto:helloayursen@gmail.com?subject=Project%20enquiry%20via%20jains.es">Email us</a>
     </div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="/#work">Work</a>
+      <a href="/blog/">Writing</a>
+      <a href="/">Home</a>
+      <a href="https://github.com/jpysh" target="_blank" rel="noopener">GitHub</a>
+    </nav>
     <div class="wordmark"><svg class="logo" role="img" aria-label="jains.es"><use href="#logo"/></svg></div>
-    <p class="legal">Jains AI and Digital Transformation Agency. Built and hosted on Cloudflare.</p>
+    <p class="legal">Jains AI and Digital Transformation Agency &nbsp;·&nbsp; <a href="https://wa.me/420777558262" target="_blank" rel="noopener">+420 777 558 262</a> &nbsp;·&nbsp; Built and hosted on Cloudflare.</p>
   </div>
 </footer>
 
