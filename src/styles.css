@@ -25,7 +25,7 @@
   --bg-soft: #141414;
   --fg: #f4f4f0;
   --fg-dim: #8b8b85;
-  --accent: #c6f24e;
+  --accent: #ebf400;
   --line: #242424;
   --radius: 20px;
   --maxw: 1180px;
@@ -36,8 +36,6 @@
      rather than a value per breakpoint. */
   --sect-top: clamp(56px, 9vw, 104px);
   --sect-bottom: clamp(34px, 5vw, 68px);
-  --band-bg: #f4f4f0;
-  --band-fg: #101010;
 
   /* Reveal travel. Phone values first; larger screens get the longer throw. */
   --fade-y: 18px;
@@ -102,36 +100,6 @@ em.s {
   color: var(--accent);
 }
 
-/* ---------- colour bands ---------- */
-
-.band { padding-block: var(--sect-top) var(--sect-bottom); }
-
-.band-light {
-  background: var(--band-bg);
-  color: var(--band-fg);
-  /* Deep cards near the band edge sit close to the page colour just beyond it,
-     which reads as the band leaking. Keep a floor of clearance. */
-  padding-bottom: max(var(--sect-bottom), 56px);
-}
-.band-light .eyebrow { color: #5f5f58; }
-
-.band-light .title { color: var(--band-fg); }
-.band-light .dim { color: #4a4a45; }
-
-/* Text tuned for a near-black ground fails on the band: --fg-dim is 3.11:1
-   there. These are the same roles re-picked for off-white. */
-.band-light .rail { color: #6a6a62; }
-.band-light .meta,
-.band-light .post-topic { color: #57574f; }
-.band-light .posts { border-top-color: rgba(0, 0, 0, 0.14); }
-.band-light .post { border-bottom-color: rgba(0, 0, 0, 0.14); }
-.band-light .post h3 { color: var(--band-fg); }
-.band-light .more a { color: #2f5c00; }
-
-/* The lime accent is tuned for a near-black ground and goes acid on off-white,
-   so inside the band it darkens rather than being used as-is. */
-.band-light em.s { color: #4f6b12; }
-
 /* ---------- nav ---------- */
 
 .nav {
@@ -189,6 +157,19 @@ em.s {
 /* ---------- sections ---------- */
 
 section { padding-block: var(--sect-top) var(--sect-bottom); }
+
+/* Every section now opens with an accent rule. With the colour bands gone this
+   is what marks a section start, and it does it consistently — the Writing
+   section reads as its own thing again without needing a background. */
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  margin-right: 10px;
+  vertical-align: 0.28em;
+  background: var(--accent);
+}
 
 .eyebrow {
   font-size: 13px;
@@ -350,7 +331,7 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   display: flex;
   flex-direction: column;
   background: var(--card);
-  color: var(--band-bg);
+  color: #101010;
   border-radius: var(--radius);
   padding: 18px;
   overflow: hidden;
@@ -364,8 +345,8 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
      colour it reads as a drawn white line rather than a lit edge, which is the
      difference between lacquer and plastic. */
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08),
     0 1px 0 rgba(0, 0, 0, 0.3),
     0 18px 34px -18px rgba(0, 0, 0, 0.45);
 }
@@ -390,7 +371,7 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   font-weight: 600;
   padding: 7px 14px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.12);
   white-space: nowrap;
 }
 
@@ -403,9 +384,9 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   letter-spacing: 0.02em;
   padding: 4px 9px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.24);
 }
-.tag.wip { background: var(--band-bg); color: #101010; border-color: var(--band-bg); }
+.tag.wip { background: #101010; color: var(--card); border-color: #101010; }
 
 .shot {
   position: relative;
@@ -426,7 +407,7 @@ section { padding-block: var(--sect-top) var(--sect-bottom); }
   /* Its own dark frame, so the screenshot never sits directly against the card
      colour. The slight desaturation stops two saturated systems arguing —
      nobody notices it, and every screenshot sits on every card. */
-  outline: 1px solid rgba(0, 0, 0, 0.35);
+  outline: 1px solid rgba(0, 0, 0, 0.22);
   outline-offset: -1px;
   filter: saturate(0.94);
   box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.35);
@@ -707,12 +688,12 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
   .card:hover {
     transform: translateY(-4px);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.26),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.08),
       0 1px 0 rgba(0, 0, 0, 0.3),
       0 26px 44px -18px rgba(0, 0, 0, 0.55);
   }
-  .card:hover .go { background: var(--band-bg); color: #101010; }
+  .card:hover .go { background: #101010; color: var(--card); }
   .post:hover { padding-left: 10px; }
   .post:hover h3 { color: var(--accent); }
   .foot-links a:hover,   .back:hover { color: var(--accent); }
@@ -777,7 +758,6 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
   color: var(--fg-dim);
   margin: 0 0 14px;
 }
-.band-light .rail { color: #6a6a62; }
 
 .topic-links {
   display: flex;

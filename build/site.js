@@ -180,7 +180,7 @@ ${LOGO}
 const footer = `
 <footer id="contact">
   <div class="wrap">
-    <p class="foot-lead">A reply within 24 hours, and a call with the person who will do the work.</p>
+    <p class="foot-lead">A reply within <em class="s">24 hours</em>, and a call with the person who will do the work.</p>
     <div class="foot-cta">
       <a class="pill" href="https://wa.me/420777558262?text=Hi%20&mdash;%20I%20found%20jains.es%20and%20wanted%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">WhatsApp us</a>
       <a class="pill ghost" href="mailto:helloayursen@gmail.com?subject=Project%20enquiry%20via%20jains.es">Email us</a>
