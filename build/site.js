@@ -221,13 +221,17 @@ const itemList = (posts) =>
 
 // --- page renderers ---------------------------------------------------------
 
-const postRows = (posts) =>
+const postRows = (posts, { showTopic = false } = {}) =>
   `<div class="posts">\n` +
   posts
     .map(
       (p) => `  <a data-cursor="post" class="post" href="${p.path}">
     <h3>${esc(p.meta.title)}</h3>
-    <span class="meta"><time datetime="${p.meta.date}">${longDate(p.meta.date)}</time></span>
+    <span class="meta post-meta"><time datetime="${p.meta.date}">${longDate(p.meta.date)}</time>${
+      showTopic
+        ? `<span class="dot" aria-hidden="true">·</span><span class="post-topic">${esc(CATEGORIES[p.meta.category].name)}</span>`
+        : ''
+    }</span>
   </a>`
     )
     .join('\n') +
@@ -372,6 +376,7 @@ function renderIndex(posts) {
   <h1 class="title">What's actually changing,<br>and what to do about it.</h1>
   <p class="lede dim">Analysis for people who run retail, talent and learning functions. Every claim carries its source.</p>
 
+  <span class="rail">Browse by topic</span>
   <nav class="topic-nav" aria-label="Topics">
 ${groups.map((g) => `    <a href="#${g.slug}">${esc(g.cat.name)} <span>${g.posts.length}</span></a>`).join('\n')}
   </nav>
@@ -498,11 +503,13 @@ function renderHomeBlock(posts) {
   const latest = posts.slice(0, 3);
   const topics = Object.entries(CATEGORIES).filter(([slug]) => posts.some((p) => p.meta.category === slug));
 
-  return `  <nav class="topic-links" aria-label="Topics">
+  return `  <span class="rail">Browse by topic</span>
+  <nav class="topic-links" aria-label="Topics">
 ${topics.map(([slug, cat]) => `    <a href="/blog/topic/${slug}/">${esc(cat.name)}</a>`).join('\n')}
   </nav>
 
-${postRows(latest)
+  <span class="rail">Latest articles</span>
+${postRows(latest, { showTopic: true })
   .split('\n')
   .map((l) => `  ${l}`)
   .join('\n')}

@@ -29,6 +29,15 @@
   --line: #242424;
   --radius: 20px;
   --maxw: 1180px;
+
+  /* Asymmetric on purpose: more air above a section than below it, so an
+     eyebrow and title group with the content they introduce instead of
+     floating equidistant between two sections. Fluid, so there is one rule
+     rather than a value per breakpoint. */
+  --sect-top: clamp(56px, 9vw, 104px);
+  --sect-bottom: clamp(34px, 5vw, 68px);
+  --band-bg: #f4f4f0;
+  --band-fg: #101010;
   --display: "Space Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --serif: "Iowan Old Style", Georgia, "Times New Roman", serif;
@@ -89,6 +98,22 @@ em.s {
   color: var(--accent);
 }
 
+/* ---------- colour bands ---------- */
+
+.band { padding-block: var(--sect-top) var(--sect-bottom); }
+
+.band-light {
+  background: var(--band-bg);
+  color: var(--band-fg);
+}
+.band-light .eyebrow { color: #5f5f58; }
+.band-light .title { color: var(--band-fg); }
+.band-light .dim { color: #4a4a45; }
+
+/* The lime accent is tuned for a near-black ground and goes acid on off-white,
+   so inside the band it darkens rather than being used as-is. */
+.band-light em.s { color: #4f6b12; }
+
 /* ---------- nav ---------- */
 
 .nav {
@@ -147,7 +172,7 @@ em.s {
 
 /* ---------- sections ---------- */
 
-section { padding-block: 110px; }
+section { padding-block: var(--sect-top) var(--sect-bottom); }
 
 .eyebrow {
   font-size: 13px;
@@ -296,13 +321,29 @@ section { padding-block: 110px; }
   background: var(--card);
   color: #101010;
   border-radius: var(--radius);
-  padding: 26px 26px 0;
+  padding: 26px;
   overflow: hidden;
   text-decoration: none;
-  min-height: 400px;
-  transition: transform 0.25s ease;
+  min-height: 380px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  /* Lacquer, not glass: a 1px inset highlight reads as a lit surface and costs
+     nothing in legibility. A dark outer ring seats the card into the page
+     instead of floating it. No coloured glow — nine hues bleeding onto the
+     ground makes the gutters look dirty. */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.07),
+    0 1px 0 rgba(0, 0, 0, 0.28),
+    0 18px 34px -18px rgba(0, 0, 0, 0.45);
 }
-.card:hover { transform: translateY(-4px); }
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.07),
+    0 1px 0 rgba(0, 0, 0, 0.28),
+    0 26px 44px -18px rgba(0, 0, 0, 0.5);
+}
 
 .card-head {
   display: flex;
@@ -344,19 +385,25 @@ section { padding-block: 110px; }
 
 .shot {
   margin-top: auto;
-  padding-top: 26px;
+  padding-top: 24px;
 }
 .shot img {
-  border-radius: 12px 12px 0 0;
-  box-shadow: 0 -2px 30px rgba(0, 0, 0, 0.22);
+  border-radius: 12px;
+  /* Its own dark frame, so the screenshot never sits directly against the card
+     colour. The slight desaturation stops two saturated systems arguing —
+     nobody notices it, and every screenshot sits on every card. */
+  outline: 1px solid rgba(0, 0, 0, 0.18);
+  outline-offset: -1px;
+  filter: saturate(0.94);
+  box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.35);
   width: 100%;
-  height: 250px;
+  height: 230px;
   object-fit: cover;
   object-position: top center;
 }
 
 .card.wide { grid-column: span 2; }
-.card.wide .shot img { height: 320px; }
+.card.wide .shot img { height: 300px; }
 
 /* ---------- testimonials ---------- */
 
@@ -701,43 +748,89 @@ footer { border-top: 1px solid var(--line); padding-block: 56px 40px; }
   .numbers { grid-template-columns: 1fr; gap: 40px; padding-top: 48px; }
   .services, .quotes, .grid { grid-template-columns: 1fr; }
   .card.wide { grid-column: span 1; }
-  .card.wide .shot img { height: 220px; }
-  section { padding-block: 76px; }
-  .hero { min-height: 72vh; }
+
+  /* Nine cards is the proof the headline number claims, so none of them get
+     hidden. They get smaller instead: the screenshot and the tag row carry the
+     reduction, the title and description do not. */
+  .card.wide .shot img { height: 150px; }
+  .shot { padding-top: 18px; }
+  .tags { gap: 6px; margin-top: 13px; }
+  .tag { font-size: 11px; padding: 4px 9px; }
+  .hero { min-height: 68vh; }
   .post { flex-direction: column; gap: 8px; align-items: flex-start; }
-  .form { grid-template-columns: 1fr; }
+
+  /* The footer wordmark overshoots its column so the letterforms land exactly
+     on the edges. That is a statement across a wide column; in a phone column
+     it is just a very large word, and the j gets clipped. Cap it here. */
+  .wordmark { margin-top: 40px; }
+  .wordmark .logo { width: 46%; margin-left: 0; }
 }
 
 @media (max-width: 440px) {
   .wrap { padding-inline: 18px; }
   .nav { padding: 12px 18px; }
-  .card { padding: 22px 22px 0; min-height: 320px; }
-  .shot img { height: 200px; }
+  .card { padding: 18px; min-height: 0; }
+  .shot img { height: 142px; }
+  .card h3 { font-size: 22px; }
+  .wordmark .logo { width: 54%; }
 }
 
 /* ---------- blog index, topic pages, sources ---------- */
 
-/* The homepage links out to the three topics; the index and topic pages carry
-   the same row style as the homepage list, so there is one way a post looks. */
+/* Three things were competing at the same visual weight: the section, the
+   topics and the posts. Each now has its own shape — topics are pills, posts
+   are ruled rows carrying a date and a topic tag, and a small label says which
+   is which. Nothing here relies on size alone to signal hierarchy. */
+
+.rail {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  margin: 0 0 14px;
+}
+.band-light .rail { color: #6a6a62; }
 
 .topic-links {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 0 0 34px;
+  margin: 0 0 42px;
 }
 .topic-links a,
 .topic-nav a {
   font-size: 14px;
-  color: var(--fg-dim);
+  font-weight: 500;
+  color: var(--fg);
   text-decoration: none;
-  padding: 8px 14px;
+  padding: 9px 16px;
+  background: var(--bg-soft);
   border: 1px solid var(--line);
   border-radius: 999px;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 .topic-links a:hover,
-.topic-nav a:hover { color: var(--accent); border-color: var(--accent); }
+.topic-nav a:hover {
+  color: #0a0a0a;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* The tag that marks a row as a post belonging to a topic. */
+.post-topic {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--fg-dim);
+  white-space: nowrap;
+}
+.post-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.post-meta .dot { color: var(--line); }
 
 .more { margin: 30px 0 0; font-size: 15px; }
 .more a { color: var(--accent); text-decoration: none; }
