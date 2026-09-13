@@ -539,11 +539,10 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 32px; }
   color: var(--fg);
 }
 
-/* A footer wordmark is a sign-off, not a banner. In a phone column the
-   edge-to-edge overshoot made it the loudest thing in the footer, so it is
-   sized as a mark here and the trick is added back at 901px where a wide
-   column makes it a statement rather than just a big word. */
-.wordmark .logo { width: clamp(108px, 34vw, 210px); }
+/* A footer wordmark is a sign-off, not a banner, at every width. The
+   edge-to-edge overshoot this used to do on desktop made the footer 726px
+   tall, most of it one word. */
+.wordmark .logo { width: clamp(108px, 30vw, 190px); }
 
 .legal { margin-top: 20px; font-size: 13px; line-height: 1.5; color: var(--fg-dim); }
 .legal a { color: var(--fg-dim); text-decoration: none; }
@@ -782,11 +781,7 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 32px; }
   .hero { min-height: 78vh; }
   .post { flex-direction: row; gap: 28px; align-items: baseline; }
 
-  /* Overshoot the width and pull left so the j STEM lands on the column edge
-     and the final s lands on the right edge: 1/(1 - 0.02753) = 1.02832. Only
-     worth doing where the column is wide enough to make it a statement. */
-  .wordmark { margin-top: 54px; }
-  .wordmark .logo { width: 102.832%; margin-left: -2.831%; }
+  .wordmark { margin-top: 44px; }
 }
 
 /* ---------- blog index, topic pages, sources ---------- */
