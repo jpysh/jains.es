@@ -526,39 +526,17 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
 
 .foot-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
 
-/* Links and the mark share one row, so the footer ends in a single line
-   instead of stacking a nav above a wordmark above a legal note. */
-.foot-end {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--line);
-  padding-top: 20px;
-}
-
+/* The footer ends on its links row. */
 .foot-links {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   font-size: 15px;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
 }
 .foot-links a { color: var(--fg-dim); text-decoration: none; }
 
-.wordmark {
-  margin: 0;
-  flex-shrink: 0;
-  color: var(--fg);
-}
-
-/* A footer wordmark is a sign-off, not a banner, at every width. The
-   edge-to-edge overshoot this used to do on desktop made the footer 726px
-   tall, most of it one word. */
-.wordmark .logo { width: clamp(84px, 22vw, 132px); }
-
-.legal { margin-top: 16px; font-size: 12.5px; line-height: 1.5; color: var(--fg-dim); }
-.legal a { color: var(--fg-dim); text-decoration: none; }
 
 /* ---------- article ---------- */
 
@@ -679,12 +657,6 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
       animation-range: entry 8% entry 94%;
     }
 
-    /* The footer wordmark draws itself left to right. */
-    .wordmark .logo {
-      animation: draw linear both;
-      animation-timeline: view();
-      animation-range: entry 5% entry 95%;
-    }
 
     .eyebrow, .service, .post, .quote {
       animation: fadeup linear both;
@@ -725,11 +697,6 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
   to   { clip-path: inset(0 0 0 0); transform: translateY(0); }
 }
 
-@keyframes draw {
-  from { clip-path: inset(0 100% 0 0); }
-  to   { clip-path: inset(0 0 0 0); }
-}
-
 /* ---------- hover ---------- */
 
 /* Only where a real pointer exists. On a touch screen :hover latches after a
@@ -748,8 +715,7 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
   .card:hover .go { background: var(--band-bg); color: #101010; }
   .post:hover { padding-left: 10px; }
   .post:hover h3 { color: var(--accent); }
-  .foot-links a:hover, .legal a:hover { color: var(--accent); }
-  .back:hover { color: var(--accent); }
+  .foot-links a:hover,   .back:hover { color: var(--accent); }
   .topic-links a:hover,
   .topic-nav a:hover {
     color: #0a0a0a;
@@ -768,7 +734,7 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
 
 /* Mobile first: everything above is the phone layout, because that is where
    almost all of the traffic is. These two blocks add what a bigger screen can
-   afford — multi-column grids, the wide card, the full-bleed wordmark. */
+   afford — the multi-column grids and the wide card. */
 
 @media (min-width: 441px) {
   .wrap { padding-inline: 24px; }
