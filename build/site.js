@@ -42,6 +42,10 @@ export const CATEGORIES = {
 
 const REPO = 'https://github.com/jpysh/jains.es';
 
+// CHANGE THIS to the real publication before the first send. It is the only
+// place the address appears: every footer on the site is generated from here.
+const SUBSTACK = 'https://jainses.substack.com';
+
 // A page says out loud how finished it is. That is what makes publishing rough
 // work honest rather than sloppy, and it is what licenses shipping daily.
 const STAGES = {
@@ -274,23 +278,35 @@ ${LOGO}
 
 <nav class="nav">
   <a class="mark" href="/" aria-label="jains.es — home"><svg class="logo" role="img" aria-label="jains.es"><use href="#logo"/></svg></a>
-  <a class="pill" href="/#contact">Start a project</a>
+  <a class="pill" href="/day/">The daily log</a>
 </nav>
 `;
 
-const footer = `
-<footer id="contact">
+const footerBlock = `
+<footer>
   <div class="wrap">
-    <p class="foot-lead">A reply within <em class="s">24 hours</em>, and a call with the person who will do the work.</p>
-    <div class="foot-cta">
-      <a class="pill" href="https://wa.me/420777558262?text=Hi%20&mdash;%20I%20found%20jains.es%20and%20wanted%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">WhatsApp us</a>
-      <a class="pill ghost" href="mailto:helloayursen@gmail.com?subject=Project%20enquiry%20via%20jains.es">Email us</a>
-    </div>
+    <!-- A plain GET form, not Substack's iframe embed. The embed is 96 KB of
+         HTML, 115 requests, 90 scripts, 5 cookies and calls to Sentry and
+         Cloudflare Insights — in a footer that is every page, against a 150 KB
+         budget, for readers on low-tier Android. Substack prefills its own
+         subscribe page from ?email=, so this costs one CSP line and no script. -->
+    <form class="sub" method="get" action="${SUBSTACK}/subscribe">
+      <label for="sub-email">One email each morning. What I learnt, what happened, what I got wrong.</label>
+      <div class="sub-row">
+        <input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="you@example.com" spellcheck="false">
+        <button class="pill" type="submit">Subscribe</button>
+      </div>
+      <p class="sub-note">Free. Unsubscribe in one click. <a href="/privacy/">What happens to your address</a>.</p>
+    </form>
+
     <nav class="foot-links" aria-label="Footer">
-      <a href="/#work">Work</a>
-      <a href="/blog/">Writing</a>
-      <a href="/">Home</a>
-      <a href="https://github.com/jpysh" target="_blank" rel="noopener">GitHub</a>
+      <a href="/day/">Daily</a>
+      <a href="/wiki/">Wiki</a>
+      <a href="/blog/">Archive</a>
+      <a href="/about/">About</a>
+      <a href="/work/">Work</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="${REPO}" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </div>
 </footer>
@@ -298,7 +314,11 @@ const footer = `
 <a class="to-top" href="#top" aria-label="Back to top">
   <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
+`;
 
+// Generated pages get the closing tags too. Hand-written pages close
+// themselves, so they are injected with footerBlock and never with this.
+const footer = `${footerBlock}
 </body>
 </html>
 `;
@@ -441,7 +461,7 @@ ${md.render(p.body).trim()}
 ${sources}
   <hr>
 
-  <p>We build AI products and digital transformation for SMBs and enterprise HR and tech teams — live in one to seven days, about two hours a week of your time, handed over in a repository you own. <a href="/#work">See the work</a> or <a href="/#contact">tell us what's stuck.</a></p>
+  <p class="dim">This is from the archive — earlier writing on retail, HR and learning technology. The site is now a daily log of <a href="/">learning to build language models from scratch</a>. The product work is at <a href="/work/">jains.es/work</a>.</p>
 </article>
 ${
   related.length
@@ -676,7 +696,7 @@ ${g.pages
   .map(
     (w) => `      <a class="post" href="${w.path}">
         <h3>${esc(w.meta.title)}</h3>
-        <span class="meta post-meta">${esc(w.meta.summary)}</span>
+        <span class="meta post-meta post-summary">${esc(w.meta.summary)}</span>
       </a>`
   )
   .join('\n')}
@@ -851,22 +871,25 @@ ${posts
 // index.html stays hand-written apart from this one region, so the three newest
 // posts are never stale and the topic links never point at an empty category.
 
-function renderHomeBlock(posts) {
-  const latest = posts.slice(0, 3);
-  const topics = Object.entries(CATEGORIES).filter(([slug]) => posts.some((p) => p.meta.category === slug));
+function renderHomeBlock(lessons) {
+  // Nothing rather than a placeholder. An empty promise on the page meant to
+  // build trust is worse than a shorter page, and the block fills itself on
+  // day one.
+  if (!lessons.length) return '  <p class="dim">Day one lands shortly. The <a href="/wiki/start-here/">start-here page</a> explains what this will be.</p>';
 
-  return `  <span class="rail">Browse by topic</span>
-  <nav class="topic-links" aria-label="Topics">
-${topics.map(([slug, cat]) => `    <a href="/blog/topic/${slug}/">${esc(cat.name)}</a>`).join('\n')}
-  </nav>
-
-  <span class="rail">Latest articles</span>
-${postRows(latest, { showTopic: true })
-  .split('\n')
-  .map((l) => `  ${l}`)
+  const latest = lessons.slice(0, 3);
+  return `  <div class="posts">
+${latest
+  .map(
+    (l) => `    <a class="post" href="${l.path}">
+      <h3><span class="day-n">Day ${l.meta.day}</span> ${esc(l.meta.title)}</h3>
+      <span class="meta post-meta"><time datetime="${l.meta.date}">${longDate(l.meta.date)}</time></span>
+    </a>`
+  )
   .join('\n')}
+  </div>
 
-  <p class="more"><a href="/blog/">All ${posts.length} article${posts.length === 1 ? '' : 's'} →</a></p>`;
+  <p class="more"><a href="/day/">All ${lessons.length} day${lessons.length === 1 ? '' : 's'} →</a></p>`;
 }
 
 // --- write ------------------------------------------------------------------
@@ -947,10 +970,21 @@ function main() {
   put('public/sitemap.xml', renderSitemap(posts, wiki, lessons));
   put('public/feed.xml', renderFeed(posts));
 
-  const block = renderHomeBlock(posts);
-  const re = /(<!-- generated:posts -->)[\s\S]*?( *<!-- \/generated:posts -->)/;
-  if (!re.test(homeSrc)) throw new Error('index.html is missing the <!-- generated:posts --> markers');
-  put('index.html', homeSrc.replace(re, `$1\n${block}\n$2`));
+  // Hand-written pages carry marked regions that this script owns. The footer
+  // is one of them, so the Substack address lives in exactly one constant and
+  // five pages cannot drift apart.
+  const marked = (src, name, block) => {
+    const re = new RegExp(`(<!-- generated:${name} -->)[\\s\\S]*?( *<!-- /generated:${name} -->)`);
+    if (!re.test(src)) throw new Error(`missing <!-- generated:${name} --> markers`);
+    return src.replace(re, `$1\n${block}\n$2`);
+  };
+
+  put('index.html', marked(marked(homeSrc, 'posts', renderHomeBlock(lessons)), 'footer', footerBlock));
+
+  for (const page of ['404.html', 'work/index.html', 'about/index.html', 'privacy/index.html']) {
+    const src = readFileSync(resolve(root, page), 'utf8');
+    put(page, marked(src, 'footer', footerBlock));
+  }
 
   prune();
 

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jains — AI &amp; Digital Transformation Agency</title>
-<meta name="description" content="We ship AI products and digital transformation in days, not quarters. Senior devs only agency for SMBs and enterprise HR and tech teams.">
+<title>Jains.es — building a language model from scratch, in public</title>
+<meta name="description" content="One person learning to build language models from the tokeniser up, publishing every day. Written for India and the Global South, where cost, language and access decide what you can actually run.">
 <link rel="canonical" href="https://jains.es/">
-<meta property="og:site_name" content="Jains">
+<meta property="og:site_name" content="Jains.es">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://jains.es/">
-<meta property="og:title" content="Jains — AI &amp; Digital Transformation Agency">
-<meta property="og:description" content="We ship AI products and digital transformation in days, not quarters.">
+<meta property="og:title" content="Building a language model from scratch, in public">
+<meta property="og:description" content="One person, one session a day, published as it happens — including the days it does not work.">
 <meta property="og:image" content="https://jains.es/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="alternate" type="application/rss+xml" title="Jains — Writing" href="https://jains.es/feed.xml">
@@ -21,285 +21,112 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Jains AI and Digital Transformation Agency",
+  "@type": "WebSite",
+  "name": "Jains.es",
   "url": "https://jains.es/",
-  "description": "AI products and digital transformation for SMBs and enterprise HR and tech teams.",
-  "email": "helloayursen@gmail.com",
-  "telephone": "+420777558262",
-  "areaServed": "Worldwide",
-  "image": "https://jains.es/assets/og.jpg",
-  "logo": {
-    "@type": "ImageObject",
-    "url": "https://jains.es/assets/logo.svg"
-  },
-  "sameAs": [
-    "https://github.com/jpysh"
-  ]
+  "description": "Learning to build language models from scratch, published daily.",
+  "inLanguage": "en",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jains.es",
+    "url": "https://jains.es/",
+    "email": "helloayursen@gmail.com",
+    "logo": { "@type": "ImageObject", "url": "https://jains.es/assets/logo.svg" },
+    "sameAs": ["https://github.com/jpysh"]
+  }
 }
 </script>
 </head>
 <body>
 <span id="top" tabindex="-1"></span>
-<a class="skip" href="#work">Skip to content</a>
+<a class="skip" href="#latest">Skip to content</a>
 
 <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute"><symbol id="logo" viewBox="-22.0 -722.0 3340.9 922.0"><path d="M-22.0 200.0V92.0H43.8Q72.0 92.0 72.0 62.0V-496.0H198.0V88.0Q198.0 139.0 168.0 169.5Q138.0 200.0 88.0 200.0Z"/><path d="M454.0 14.0Q401.0 14.0 359.0 -4.5Q317.0 -23.0 292.5 -58.5Q268.0 -94.0 268.0 -145.0Q268.0 -196.0 292.5 -230.5Q317.0 -265.0 360.5 -282.5Q404.0 -300.0 460.0 -300.0H596.0V-328.0Q596.0 -363.0 574.0 -385.5Q552.0 -408.0 504.0 -408.0Q457.0 -408.0 434.0 -386.5Q411.0 -365.0 404.0 -331.0L288.0 -370.0Q300.0 -408.0 326.5 -439.5Q353.0 -471.0 397.5 -490.5Q442.0 -510.0 506.0 -510.0Q604.0 -510.0 661.0 -461.0Q718.0 -412.0 718.0 -319.0V-134.0Q718.0 -104.0 746.0 -104.0H786.0V0.0H702.0Q665.0 0.0 641.0 -18.0Q617.0 -36.0 617.0 -66.0V-67.0H598.0Q594.0 -55.0 580.0 -35.5Q566.0 -16.0 536.0 -1.0Q506.0 14.0 454.0 14.0ZM476.0 -88.0Q529.0 -88.0 562.5 -117.5Q596.0 -147.0 596.0 -196.0V-206.0H469.0Q434.0 -206.0 414.0 -191.0Q394.0 -176.0 394.0 -149.0Q394.0 -122.0 415.0 -105.0Q436.0 -88.0 476.0 -88.0Z"/><path d="M840.0 0.0V-496.0H966.0V0.0Z"/><path d="M1068.0 0.0V-496.0H1192.0V-431.0H1210.0Q1222.0 -457.0 1255.0 -480.5Q1288.0 -504.0 1355.0 -504.0Q1413.0 -504.0 1456.5 -477.5Q1500.0 -451.0 1524.0 -404.5Q1548.0 -358.0 1548.0 -296.0V0.0H1422.0V-286.0Q1422.0 -342.0 1394.5 -370.0Q1367.0 -398.0 1316.0 -398.0Q1258.0 -398.0 1226.0 -359.5Q1194.0 -321.0 1194.0 -252.0V0.0Z"/><path d="M1852.0 14.0Q1755.0 14.0 1693.0 -28.0Q1631.0 -70.0 1618.0 -148.0L1734.0 -178.0Q1741.0 -143.0 1757.5 -123.0Q1774.0 -103.0 1798.5 -94.5Q1823.0 -86.0 1852.0 -86.0Q1896.0 -86.0 1917.0 -101.5Q1938.0 -117.0 1938.0 -140.0Q1938.0 -163.0 1918.0 -175.5Q1898.0 -188.0 1854.0 -196.0L1826.0 -201.0Q1774.0 -211.0 1731.0 -228.5Q1688.0 -246.0 1662.0 -277.0Q1636.0 -308.0 1636.0 -357.0Q1636.0 -431.0 1690.0 -470.5Q1744.0 -510.0 1832.0 -510.0Q1915.0 -510.0 1970.0 -473.0Q2025.0 -436.0 2042.0 -376.0L1925.0 -340.0Q1917.0 -378.0 1892.5 -394.0Q1868.0 -410.0 1832.0 -410.0Q1796.0 -410.0 1777.0 -397.5Q1758.0 -385.0 1758.0 -363.0Q1758.0 -339.0 1778.0 -327.5Q1798.0 -316.0 1832.0 -310.0L1860.0 -305.0Q1916.0 -295.0 1961.5 -278.5Q2007.0 -262.0 2033.5 -231.5Q2060.0 -201.0 2060.0 -149.0Q2060.0 -71.0 2003.5 -28.5Q1947.0 14.0 1852.0 14.0Z"/><path d="M2585.4 14.0Q2510.7 14.0 2454.9 -17.5Q2399.1 -49.0 2367.9 -106.1Q2336.8 -163.3 2336.8 -238.4V-250.4Q2336.8 -326.3 2367.8 -383.1Q2398.8 -439.9 2453.7 -471.4Q2508.7 -502.9 2579.8 -502.9Q2649.3 -502.9 2702.2 -473.2Q2755.1 -443.6 2785.1 -388.9Q2815.1 -334.3 2815.1 -259.7V-224.5H2416.5Q2419.2 -145.1 2466.9 -100.7Q2514.6 -56.2 2586.5 -56.2Q2650.2 -56.2 2684.0 -84.9Q2717.9 -113.6 2735.9 -153.7L2804.1 -121.0Q2789.4 -90.0 2762.9 -58.8Q2736.4 -27.6 2693.8 -6.8Q2651.2 14.0 2585.4 14.0ZM2417.5 -288.7H2734.7Q2730.7 -357.2 2688.5 -394.9Q2646.3 -432.7 2579.5 -432.7Q2512.9 -432.7 2470.1 -394.9Q2427.3 -357.2 2417.5 -288.7Z"/><path d="M3121.6 14.0Q3030.9 14.0 2968.6 -28.0Q2906.2 -70.0 2892.5 -161.5L2968.0 -178.0Q2975.8 -130.2 2997.9 -102.8Q3020.1 -75.3 3052.4 -63.6Q3084.7 -51.9 3121.6 -51.9Q3176.9 -51.9 3208.9 -73.8Q3240.9 -95.7 3240.9 -132.9Q3240.9 -170.8 3210.6 -186.5Q3180.3 -202.2 3127.1 -211.6L3086.3 -218.8Q3038.6 -227.3 2999.8 -244.1Q2961.1 -260.9 2938.3 -289.8Q2915.5 -318.7 2915.5 -362.7Q2915.5 -428.9 2966.3 -465.9Q3017.1 -502.9 3100.8 -502.9Q3183.8 -502.9 3235.6 -465.5Q3287.4 -428.2 3301.6 -360.4L3227.9 -341.4Q3218.5 -393.6 3184.8 -415.3Q3151.0 -437.0 3100.8 -437.0Q3051.3 -437.0 3022.4 -418.4Q2993.5 -399.9 2993.5 -364.4Q2993.5 -329.1 3020.6 -312.6Q3047.7 -296.1 3094.4 -288.0L3135.2 -280.9Q3187.0 -272.3 3228.6 -256.5Q3270.2 -240.7 3294.5 -212.0Q3318.9 -183.2 3318.9 -135.5Q3318.9 -63.9 3265.6 -24.9Q3212.3 14.0 3121.6 14.0Z"/><path d="M7.0 -634.0a88 88 0 1 0 176 0a88 88 0 1 0 -176 0Z"/><path d="M815.0 -634.0a88 88 0 1 0 176 0a88 88 0 1 0 -176 0Z"/><path d="M2082.0 -88.0a88 88 0 1 0 176 0a88 88 0 1 0 -176 0Z"/></symbol></svg>
 
 <nav class="nav">
   <a class="mark" href="/" aria-label="jains.es — home"><svg class="logo" role="img" aria-label="jains.es"><use href="#logo"/></svg></a>
-  <a class="pill" href="#contact">Start a project</a>
+  <a class="pill" href="/day/">The daily log</a>
 </nav>
 
 <div class="stage">
   <div class="stage-bg" aria-hidden="true"><div class="stage-sticky"><canvas class="hero-canvas"></canvas></div></div>
   <header class="hero wrap">
-    <h1>We ship AI products and Digital Transformation in <em class="s">days</em>, not <em class="s">quarters</em>.</h1>
-    <p>Senior devs only agency for SMBs and enterprise HR and tech teams. You bring the problem. We bring everything else.</p>
+    <h1>Building a language model from <em class="s">scratch</em>, in <em class="s">public</em>.</h1>
+    <p>One session a day, from the tokeniser up. Everything gets published — the code, the sources, the working, and the days it does not work. I am not a researcher. That is the point.</p>
     <div class="hero-cta">
-      <a class="pill" href="#contact">Start a project</a>
-      <a class="pill ghost" href="#work">See the work</a>
+      <a class="pill" href="/wiki/start-here/">Start here</a>
+      <a class="pill ghost" href="/day/">The daily log</a>
     </div>
   </header>
 
 <section class="wrap" style="padding-top:0">
   <div class="numbers">
-    <div class="num reveal"><strong>9</strong><span>products designed, built and shipped under our own name</span></div>
-    <div class="num reveal"><strong>1–7 days</strong><span>from first call to something live you can click</span></div>
-    <div class="num reveal"><strong>~2 hrs</strong><span>of your team's time per week. That's the whole ask.</span></div>
+    <div class="num reveal"><strong>Daily</strong><span>one study session, one artefact, published the same morning</span></div>
+    <div class="num reveal"><strong>Free</strong><span>every tool used here runs on a laptop or a free tier. No rented GPU</span></div>
+    <div class="num reveal"><strong>Sourced</strong><span>every number carries a dated link. The build refuses a page without one</span></div>
   </div>
 </section>
 
 <section class="wrap">
-  <p class="eyebrow">What we do</p>
-  <h2 class="lede dim">Most AI projects die in the deck. Ours go live in the first week.</h2>
-  <div class="services" style="margin-top:56px">
-    <div class="service reveal">
-      <h3>AI products</h3>
-      <p>Assistants, search, document and CV processing, recommendation, automation. Built on your data, running in production — not a pilot that quietly expires.</p>
-    </div>
-    <div class="service reveal">
-      <h3>Digital transformation</h3>
-      <p>The unglamorous half: the spreadsheet that runs your company, the process nobody documented, the tool your team works around. Replaced with something they'll actually use.</p>
-    </div>
-    <div class="service reveal">
-      <h3>Ship-in-a-week builds</h3>
-      <p>Storefront, job board, booking system, internal tool. Live on your domain in days, handed over with the keys. No retainer required.</p>
-    </div>
-  </div>
+  <p class="eyebrow">What this is</p>
+  <h2 class="lede dim">Most explanations are written by people who already understood. They skip the part where you were confused.</h2>
+  <p>I spent years as a product manager. I knew what these systems did at the level a product manager knows it, and I had never written a training loop. So I am writing one, in the open, and writing down what I work out on the day I work it out — while still confused, which is a short window and worth using.</p>
+  <p>The angle is cost, language and access, because that is what decides what you can actually run if you are in Lagos, Nairobi, Mumbai or Dhaka. An Indian user pays several times more than an English speaker to say the same sentence to the same model. That is day one, and it needs no GPU and no maths to show.</p>
 </section>
 
-</div>
-
-<section class="wrap" id="work">
-  <p class="eyebrow">Selected work</p>
-  <h2 class="title">Nine products. Built, shipped and run<br>by the same people who'd build yours.</h2>
-
-  <div class="grid">
-
-    <a class="card wide reveal" style="--card:#029151" href="https://excelmindsjobs.com" target="_blank" rel="noopener">
-      <div class="card-head">
-        <h3>Excelminds Jobs</h3>
-        <span class="go">Visit ↗</span>
-      </div>
-      <p>A job board and candidate pipeline built for a recruiter operating in Nigeria — listings, applications and screening in one place, replacing a WhatsApp-and-spreadsheet process end to end.</p>
-      <div class="tags">
-        <span class="tag">HR tech</span>
-        <span class="tag">Job board</span>
-        <span class="tag">Candidate pipeline</span>
-      </div>
-      <div class="shot"><img src="/assets/projects/excelminds.jpg" alt="Excelminds Jobs screenshot" loading="lazy" width="1280" height="800"></div>
-    </a>
-
-    <a class="card reveal" style="--card:#F18FFF" href="https://guldaarbazaar.com" target="_blank" rel="noopener">
-      <div class="card-head">
-        <h3>Guldaar Bazaar</h3>
-        <span class="go">Visit ↗</span>
-      </div>
-      <p>South Asian clothing and jewellery, sold into Europe. Full storefront, catalogue and checkout — from empty domain to taking orders.</p>
-      <div class="tags">
-        <span class="tag">E-commerce</span>
-        <span class="tag">Cross-border</span>
-      </div>
-      <div class="shot"><img src="/assets/projects/guldaarbazaar.jpg" alt="Guldaar Bazaar screenshot" loading="lazy" width="1280" height="800"></div>
-    </a>
-
-    <a class="card reveal" style="--card:#FD5E11" href="https://guldaarbasera.com" target="_blank" rel="noopener">
-      <div class="card-head">
-        <h3>Guldaar Basera</h3>
-        <span class="go">Visit ↗</span>
-      </div>
-      <p>A Himalayan homestay in Ranikhet. Site, story and direct booking — built so the owners never pay a platform commission again.</p>
-      <div class="tags">
-        <span class="tag">Hospitality</span>
-        <span class="tag">Direct booking</span>
-      </div>
-      <div class="shot"><img src="/assets/projects/guldaarbasera.jpg" alt="Guldaar Basera screenshot" loading="lazy" width="1280" height="800"></div>
-    </a>
-
-    <a class="card reveal" style="--card:#029151" href="https://aido.jains.es" target="_blank" rel="noopener">
-      <div class="card-head">
-        <h3>Aido</h3>
-        <span class="go">Visit ↗</span>
-      </div>
-      <p>An enterprise software delivery front end — service catalogue, engagement model and intake, structured the way a tech buyer actually evaluates a vendor.</p>
-      <div class="tags">
-        <span class="tag">Enterprise</span>
-        <span class="tag">Product site</span>
-      </div>
-      <div class="shot"><img src="/assets/projects/aido.jpg" alt="Aido screenshot" loading="lazy" width="1280" height="800"></div>
-    </a>
-
-    <a class="card reveal" style="--card:#F18FFF" href="https://ggp.jains.es" target="_blank" rel="noopener">
-      <div class="card-head">
-        <h3>GGP</h3>
-        <span class="go">Visit ↗</span>
-      </div>
-      <p>Strategic research consulting, positioned and packaged. Turns an advisory practice into something a client can read, price and say yes to.</p>
-      <div class="tags">
-        <span class="tag">Consulting</span>
-        <span class="tag">Positioning</span>
-      </div>
-      <div class="shot"><img src="/assets/projects/ggp.jpg" alt="GGP screenshot" loading="lazy" width="1280" height="800"></div>
-    </a>
-
-    <a class="card reveal" style="--card:#FD5E11" href="https://olive.jains.es" target="_blank" rel="noopener">
-      <div class="card-head">
-        <h3>OliveU India</h3>
-        <span class="go">Visit ↗</span>
-      </div>
-      <p>Extra virgin olive oil brought to the Indian market. Brand, product story and commerce, built for a category the buyer doesn't know yet.</p>
-      <div class="tags">
-        <span class="tag">D2C</span>
-        <span class="tag">Brand</span>
-      </div>
-      <div class="shot"><img src="/assets/projects/olive.jpg" alt="OliveU India screenshot" loading="lazy" width="1280" height="800"></div>
-    </a>
-
-    <a class="card reveal" style="--card:#029151" href="https://guldaarwords.jains.es" target="_blank" rel="noopener">
-      <div class="card-head">
-        <h3>Guldaarwords</h3>
-        <span class="go">Play ↗</span>
-      </div>
-      <p>A daily word game with timed laps and scoring. Built to find out how far a browser game gets with no app store, no install and no budget.</p>
-      <div class="tags">
-        <span class="tag">Game</span>
-        <span class="tag">Browser</span>
-      </div>
-      <div class="shot"><img src="/assets/projects/guldaarwords.jpg" alt="Guldaarwords screenshot" loading="lazy" width="1280" height="800"></div>
-    </a>
-
-    <a class="card reveal" style="--card:#F18FFF" href="https://theconsciouscoco.org" target="_blank" rel="noopener">
-      <div class="card-head">
-        <h3>The Conscious Coco</h3>
-        <span class="go">Visit ↗</span>
-      </div>
-      <p>Ten codes for the conscious consumer — a long-form manifesto built to be read to the end, then shared. Editorial design, no template.</p>
-      <div class="tags">
-        <span class="tag">Editorial</span>
-        <span class="tag">Non-profit</span>
-      </div>
-      <div class="shot"><img src="/assets/projects/consciouscoco.jpg" alt="The Conscious Coco screenshot" loading="lazy" width="1280" height="800"></div>
-    </a>
-
-  </div>
-
-</section>
-
-<section class="wrap" id="open-source">
-  <p class="eyebrow">Open source</p>
-  <h2 class="title">One of the nine<br>is public.</h2>
-  <p class="lede dim">Built because small clinics shouldn't pay per-seat fees to book a treatment room. Fork it, run it, no contact with us required.</p>
-
-  <div class="grid" style="margin-top:56px">
-    <a class="card wide reveal" style="--card:#FD5E11" href="https://github.com/jpysh/ayurcalm-scheduler" target="_blank" rel="noopener">
-      <div class="card-head">
-        <h3>AyurCalm Scheduler</h3>
-        <span class="go">GitHub ↗</span>
-      </div>
-      <p>A self-hosted appointment and therapy scheduler for massage, therapy and Ayurveda centres. MIT-licensed TypeScript, running on a clinic's own infrastructure.</p>
-      <div class="tags">
-        <span class="tag">MIT licence</span>
-        <span class="tag">TypeScript</span>
-        <span class="tag">Self-hosted</span>
-      </div>
-      <div class="shot"><img src="/assets/projects/ayurcalm.jpg" alt="AyurCalm Scheduler dashboard" loading="lazy" width="1280" height="800"></div>
-    </a>
-  </div>
-</section>
-
-<section class="wrap">
-  <p class="eyebrow">What clients say</p>
-  <h2 class="title">The people who hired us,<br>in their words.</h2>
-
-  <div class="quotes">
-    <div class="quote reveal">
-      <blockquote>&ldquo;We had been talking about doing this for a year. It was live in a week, and I barely had to be in the room.&rdquo;</blockquote>
-      <div class="who">
-        <div class="avatar">DK</div>
-        <div><b>Dr. Kamlesh</b><span>ExcelMinds</span></div>
-      </div>
-    </div>
-    <div class="quote reveal">
-      <blockquote>&ldquo;Guests book with me directly now. No platform sits in the middle taking a cut of every stay.&rdquo;</blockquote>
-      <div class="who">
-        <div class="avatar">AK</div>
-        <div><b>Alka Kaushik</b><span>Guldaar Basera</span></div>
-      </div>
-    </div>
-    <div class="quote reveal">
-      <blockquote>&ldquo;The first version answered the question we actually had, not the one that looked good in a proposal.&rdquo;</blockquote>
-      <div class="who">
-        <div class="avatar">HS</div>
-        <div><b>Hugo Sanchez</b><span>Amazon</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="wrap" id="writing">
-  <p class="eyebrow">Writing</p>
-  <h2 class="title">What we've learned<br>shipping this fast.</h2>
+<section class="wrap" id="latest">
+  <p class="eyebrow">Latest</p>
+  <h2 class="title">What happened<br>this week.</h2>
 
   <!-- generated:posts -->
-  <span class="rail">Browse by topic</span>
-  <nav class="topic-links" aria-label="Topics">
-    <a href="/blog/topic/retail-tech/">Retail and commerce tech</a>
-    <a href="/blog/topic/hrtech/">Work and talent tech</a>
-    <a href="/blog/topic/edtech/">Learning and training tech</a>
-  </nav>
-
-  <span class="rail">Latest articles</span>
-  <div class="posts">
-    <a class="post" href="/blog/ads-inside-chatgpt/">
-      <h3>Conversational AI just got a rate card</h3>
-      <span class="meta post-meta"><time datetime="2026-09-11">11 September 2026</time><span class="dot" aria-hidden="true">·</span><span class="post-topic">Retail and commerce tech</span></span>
-    </a>
-    <a class="post" href="/blog/h1b-grace-period/">
-      <h3>DHS wants to end the 60-day H-1B grace period. Model what that does to your terminations.</h3>
-      <span class="meta post-meta"><time datetime="2026-09-11">11 September 2026</time><span class="dot" aria-hidden="true">·</span><span class="post-topic">Work and talent tech</span></span>
-    </a>
-    <a class="post" href="/blog/nine-products-one-year/">
-      <h3>Nine products, one year, one team: the stack</h3>
-      <span class="meta post-meta"><time datetime="2026-09-11">11 September 2026</time><span class="dot" aria-hidden="true">·</span><span class="post-topic">Retail and commerce tech</span></span>
-    </a>
-  </div>
-
-  <p class="more"><a href="/blog/">All 23 articles →</a></p>
+  <p class="dim">Day one lands shortly. The <a href="/wiki/start-here/">start-here page</a> explains what this will be.</p>
   <!-- /generated:posts -->
 </section>
 
+<section class="wrap">
+  <p class="eyebrow">Also here</p>
+  <div class="posts">
+    <a class="post" href="/wiki/">
+      <h3>The wiki</h3>
+      <span class="meta post-meta post-summary">Everything worked out so far, each page marked with how finished it is</span>
+    </a>
+    <a class="post" href="/blog/">
+      <h3>The archive</h3>
+      <span class="meta post-meta post-summary">23 earlier posts on retail, HR and learning technology</span>
+    </a>
+    <a class="post" href="/work/">
+      <h3>The agency</h3>
+      <span class="meta post-meta post-summary">Nine products built and shipped. Still open for work</span>
+    </a>
+  </div>
+</section>
 
-<footer id="contact">
+<!-- generated:footer -->
+
+<footer>
   <div class="wrap">
-    <p class="foot-lead">A reply within <em class="s">24 hours</em>, and a call with the person who will do the work.</p>
-    <div class="foot-cta">
-      <a class="pill" href="https://wa.me/420777558262?text=Hi%20&mdash;%20I%20found%20jains.es%20and%20wanted%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">WhatsApp us</a>
-      <a class="pill ghost" href="mailto:helloayursen@gmail.com?subject=Project%20enquiry%20via%20jains.es">Email us</a>
-    </div>
+    <!-- A plain GET form, not Substack's iframe embed. The embed is 96 KB of
+         HTML, 115 requests, 90 scripts, 5 cookies and calls to Sentry and
+         Cloudflare Insights — in a footer that is every page, against a 150 KB
+         budget, for readers on low-tier Android. Substack prefills its own
+         subscribe page from ?email=, so this costs one CSP line and no script. -->
+    <form class="sub" method="get" action="https://jainses.substack.com/subscribe">
+      <label for="sub-email">One email each morning. What I learnt, what happened, what I got wrong.</label>
+      <div class="sub-row">
+        <input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="you@example.com" spellcheck="false">
+        <button class="pill" type="submit">Subscribe</button>
+      </div>
+      <p class="sub-note">Free. Unsubscribe in one click. <a href="/privacy/">What happens to your address</a>.</p>
+    </form>
+
     <nav class="foot-links" aria-label="Footer">
-      <a href="#work">Work</a>
-      <a href="/blog/">Writing</a>
-      <a href="https://github.com/jpysh" target="_blank" rel="noopener">GitHub</a>
+      <a href="/day/">Daily</a>
+      <a href="/wiki/">Wiki</a>
+      <a href="/blog/">Archive</a>
+      <a href="/about/">About</a>
+      <a href="/work/">Work</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="https://github.com/jpysh/jains.es" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </div>
 </footer>
@@ -307,6 +134,8 @@
 <a class="to-top" href="#top" aria-label="Back to top">
   <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
+
+<!-- /generated:footer -->
 
 </body>
 </html>

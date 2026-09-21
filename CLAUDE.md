@@ -54,6 +54,10 @@ The contact half of the old rule still stands, immediately above.
 
 ## The subscribe form
 
+- **One constant owns the address.** `SUBSTACK` at the top of `build/site.js`.
+  Every footer on the site is generated from it, including the ones inside the
+  hand-written pages, which carry `<!-- generated:footer -->` markers. Never
+  paste the URL into a page.
 - **It is a plain `<form method="get">` pointing at Substack**, with one
   `type="email"` input. Substack prefills its own subscribe page from the
   `?email=` query parameter — verified live, not assumed.
@@ -102,6 +106,20 @@ Categories are fixed: `retail-tech`, `hrtech`, `edtech`. They apply to
 `content/posts/` only. Lessons and wiki pages are separate page types with
 their own front matter, not a fourth category. Adding a fourth category means a
 new topic page, a new URL, and a decision — ask before doing it.
+
+## The pages, and who owns them
+
+| Page | File | Footer |
+|---|---|---|
+| `/` | `index.html` | generated into the marker |
+| `/work/` | `work/index.html` | generated into the marker |
+| `/about/` | `about/index.html` | generated into the marker |
+| `/privacy/` | `privacy/index.html` | generated into the marker |
+| 404 | `404.html` | generated into the marker |
+
+`#contact` lives on `/work/` only — the global footer is the newsletter now, so
+it must not answer to that anchor. The agency's WhatsApp and mailto route stays
+on `/work/` where "Start a project" can reach it.
 
 ## The three page types
 
