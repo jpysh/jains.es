@@ -1,116 +1,87 @@
 # Simulation report — unattended run, days 1 and 2
 
-Run on 2026-09-21 on branch `sim/day1-2`. Nothing was sent, published or
-merged. Day 2 carries tomorrow's date in its front matter only.
+Branch `sim/day1-2`, run 2026-09-21, 21:55 to 22:20 CEST. Nothing sent,
+published, deployed or merged. Day 2 carries 2026-09-22 in its front matter
+only.
 
-*Sections 1 and 3 to 8 are written at the end of the run. Section 2 fills in
-as each day is measured.*
+---
+
+## 1. VERDICT
+
+**No.** Day 2's edition tells a Liberian arrest story that "is the first real
+test of what the new Act covers", and the source it cites says nothing of the
+kind — one invented certainty in a five-item news section is enough to lose
+the readers who check, and those are the only readers worth having.
+
+Two things nonetheless worked well enough to say in three words each. The
+accretion test: **passed**. The fresh-context auditor: **indispensable**.
 
 ---
 
 ## 2. MEASUREMENTS
 
-### Day 1 — 2026-09-21
+| Measure | Target | Day 1 | Day 2 | |
+|---|---|---|---|---|
+| Edition word count | 900–1,100 | **884** | **929** | fixed by change 4 |
+| Subject line | ≤ 43 chars | **27** | **25** | both fine |
+| Claims in §2, §3, §6, §7 with no dated link | 0 | **4** | **0** | fixed by change 1 |
+| Claims in §2, §3, §6, §7 their source does not support | 0 | **0** | **3** | **new failure mode** |
+| Items from the SWEEP clearing the bar | — | **8** of 60 | **3** of 60 | day 2's store did not advance |
+| Items from DISCOVERY | ≤ 10 | **6** | **2** | |
+| Distinct countries across discovery items | ≥ 3 | **4** | **3** | counting multi-country items |
+| Any country appearing more than twice | 0 | **0** | **0** | cap holds |
+| Sentences over 25 words | 0 | **4** | **7** | **got worse** |
+| Emoji | 0 | **0** | **0** | |
+| Wiki pages created / updated | ≥ 1 updated | **1 / 1** | **1 / 1** | |
+| Wiki page reading as a dated log entry | 0 | **0** | **0** | |
+| `npm run check` | exit 0 | **0** | **0** | |
+| `npm run build` | exit 0 | **0** | **0** | |
 
-| Measure | Target | Day 1 | |
-|---|---|---|---|
-| Edition word count | 900–1,100 | **884** | 16 under the floor |
-| Subject line | ≤ 43 chars | **27** | `Your language costs 8x more` |
-| Claims in §2, §3, §6, §7 with no dated link | 0 | **4** | listed below |
-| Items from the SWEEP clearing the bar | — | **8** of 60 returned | 2 of the 8 are `brandpress`, i.e. paid placement |
-| Items from DISCOVERY | ≤ 10 | **6** | 5 unreachable by any feed |
-| Distinct countries across discovery items | ≥ 3 | **4** | India, Philippines, Kenya, plus one multi-country item |
-| Any country appearing more than twice | 0 | **0** | India 2, Kenya 2 |
-| Sentences over 25 words | 0 | **4** | one further hit is the masthead, a measurement artefact |
-| Emoji | 0 | **0** | pass |
-| Wiki pages created / updated | — | **1 created, 1 updated** | created `tokenisation-and-the-cost-of-your-language`, updated `start-here` |
-| Wiki page reading as a dated log entry | 0 | **0** | the new page opens on a sentence and a bill, not on a date |
-| `npm run check` | exit 0 | **exit 0** | |
-| `npm run build` | exit 0 | **exit 0** | |
+Day 1's four unsourced claims were all in §3 The intersection, which carried
+zero links against a prompt requiring "full tiers". The worst was
+`content/days/2026-09-21.md:86` — "a corpus decision somebody else made in
+2022" — a year that appears in no source read that day.
 
-**The four unsourced claims, all in §3 The intersection, which carries zero
-links:**
-
-1. "Send the English to a model's API and you are billed for a certain number
-   of tokens. Send the official Hindi and you are billed for several times
-   that." — restates the 8.0x with no link.
-2. "The tokeniser cut the Hindi into more, smaller pieces, because it had seen
-   less Hindi when it was built." — the mechanism claim, no link.
-3. "This is why the 90% figure and the 8.0x figure belong in the same
-   paragraph." — both figures are sourced in §2 and neither is re-linked here.
-4. **"It is paying a premium for a corpus decision somebody else made in
-   2022."** — the worst line in the edition. The year 2022 appears in no
-   source read today. It was invented to sound concrete.
-
-The prompt is explicit that §3 carries "full tiers. Dated, resolvable,
-opened." The section carries none.
+**Read the top two rows together.** Change 1 closed the hole it aimed at, and
+day 2 promptly opened a different one: instead of inventing facts, day 2
+over-claims from real ones. "Up to 89%" became "89%". "TechCrunch names no
+date" became "no launch date has been announced". Requiring a link next to a
+figure does not require the sentence to stop where the source stops.
 
 ---
 
-## 2a. AUDIT OF DAY 1, FRESH CONTEXT
+## 3. THE FIVE WORST THINGS
 
-A subagent was given the three file paths and the audit instruction, and
-nothing about what the run intended. Its findings, verbatim:
+1. **`content/days/2026-09-22.md:43` — "This is the first real test of what
+   the new Act covers."** The AllAfrica piece says the arrest came less than a
+   month after the Act was signed. It rules out no earlier case. *Prompt
+   problem, and one my own change did not catch: change 1 governs §3, this is
+   in §2.*
 
-> ## Citations verified — all clean
->
-> | Source line | Exists | Dated | Supports claim |
-> |---|---|---|---|
-> | arXiv 2607.24276 (27 Jul 2026) | yes | yes | yes — 8.0x, 13.0x Malayalam, 12% context, 73%, r=0.89, 14 languages, 6 tokenisers, "used by GPT-3.5 and GPT-4" all verbatim in the abstract |
-> | Gates Foundation (14 Sep 2026) | yes | yes | yes — "at least US$1 billion over the next two years", 40/40/10/10 split, "More than 90% of the data used to train early large language models came from English-language sources" |
-> | Semafor (21 Sep 2026) | yes | yes | yes — 900m / ~60% / 170m, and both GSMA and the Partnership for Digital Access in Africa named |
-> | TechCrunch (21 Sep 2026) | yes | yes | yes — Muse named; notice text quoted exactly |
-> | Broadcast Media Africa (9 Sep 2026) | yes | yes | yes — NFP-T2, standalone Data Centre licence, 30 days |
-> | Techpoint Africa (9 Sep 2026) | yes | yes | yes — service-based allocation, direct CA application, existing codes keep old terms |
-> | Southeast Asia Infrastructure (11 Sep 2026) | yes | yes | yes — 34.4bn, 13.5/21 split, 50MW→400MW by 2030→1.5GW by 2033, 40% renewable, Clark-Bataan |
->
-> No claim is contradicted by its source. Nothing predates a source it cites.
->
-> ## Findings
->
-> **1. `tiktoken` front-matter source carries a date the page does not.**
-> `content/wiki/tokenisation-and-the-cost-of-your-language.md:12` —
-> `primary | OpenAI | 2022-12-01 | tiktoken | https://github.com/openai/tiktoken`
-> I opened the repo. It shows no release date, no initial-commit date, no date of any kind. WRITING.md is explicit: "If a source cannot be dated, cite it as an inline link in the prose, where no date is claimed, and leave it out of the front matter." The `2022-12-01` is asserted, not readable from the URL. This is the one hard front-matter defect.
->
-> **2. A date-shaped claim with no source at all.**
-> `content/days/2026-09-21.md:86` — "It is paying a premium for a corpus decision somebody else made in 2022."
-> No source anywhere in the edition dates `cl100k_base` to 2022. The paper does not date it. This is the WRITING.md case of a number with no traceable source. It is also the same unverified 2022 as finding 1, so the two stand or fall together.
->
-> **3. A "commonly repeated" figure with no source.**
-> `content/wiki/tokenisation-and-the-cost-of-your-language.md:112-113` — "Commonly repeated guidance puts the Indic penalty near 4x."
-> Nothing is cited. The edition's version (`:105`, "my curriculum told me to expect a roughly 4x difference") is fine — it names its provenance. The wiki version launders the same number into an unattributed consensus claim.
->
-> **4. Front-matter source supporting no claim on the page.**
-> `content/days/2026-09-21.md:12` lists the Philippines masterplan as a source. The Philippines appears nowhere in the edition body. The source was carried over from the session's discovery table (`AI101/sessions/2026-09-21.md:262`) and the grouping line at `:280` promised it; the edition dropped the item but kept the citation.
->
-> **5. Date attached to an event rather than to the report of it.**
-> `content/days/2026-09-21.md:61-62` — "Customers using Meta's Muse agent on Amazon.com saw a notice on 21 September".
-> TechCrunch is dated 21 September and attributes the discovery of the message to GeekWire. It does not date the notice itself. The article supports "reported on 21 September", not "saw a notice on 21 September".
->
-> **6. Dead internal link.**
-> `content/wiki/tokenisation-and-the-cost-of-your-language.md:65` — "See [what a merge is](/wiki/what-a-merge-is/)". No `content/wiki/what-a-merge-is.md` exists. This is a body link, so unlike `prereqs`/`related` the build will not drop it; it ships as a 404.
->
-> ## Tier check — correct throughout
->
-> Every tier describes the URL, not the organisation behind the data. The one that could easily have gone wrong did not: the GSMA/PDAA report is `reported | Semafor`, publisher the outlet, because the URL is the news article. Gates Foundation is `primary` on the foundation's own release. arXiv is `primary` on the paper itself. No inversions.
->
-> ## Two URLs I could not open
->
-> Both returned HTTP 403 (bot-blocked; absence not established):
-> - `https://techobserver.in/news/egov/indiaai-mission-sovereign-ai-models-indian-languages-321425/` — session `:266`. The session already flags it as undated and excludes it from the edition, so nothing published depends on it.
-> - `https://www.ohchr.org/en/human-rights/universal-declaration/translations` — a comment in the session's code block at `:50`. Not a front-matter source.
->
-> ## Minor, not defects
->
-> - Session `:264` dates the Kenya short-code item `2026-09-08` (effective date) while the edition front matter uses `2026-09-09` (publication date). The front matter is the correct one under the rule; the session is working material.
-> - The edition's "A newer tokeniser cuts that cost by 73%" (`:31`) compresses a result the paper states for multilingual tokenisers as a class, of which XLM-R is one and is not "newer". The wiki's phrasing at `:72-74` is the accurate one. Not a citation failure, a headline compression.
->
-> Nothing fixed, as instructed.
+2. **`content/days/2026-09-21.md:86` — "a corpus decision somebody else made
+   in 2022."** Invented to sound concrete. Found independently by the run's own
+   measurement and by the day 1 auditor. *Prompt problem. Fixed at source.*
 
-The auditor independently found the invented 2022, which the run's own
-measurement had also caught, and five defects the run had missed. The
-auditor is the most valuable step in the pipeline by a wide margin.
+3. **`content/wiki/tokenisation-and-the-cost-of-your-language.md:13` —
+   `primary | OpenAI | 2022-12-01 | tiktoken | github.com/openai/tiktoken`.**
+   The repo carries no date. Flagged by the day 1 auditor, fixed in
+   `newsletter.md` by change 3, and **still present on day 2**, because the
+   wiki step reads `.claude/commands/wiki.md`, which change 3 never touched.
+   The day 2 auditor: "The two files disagree about the same source."
+   *Mechanism problem. Not fixed. See section 5.*
+
+4. **`content/days/2026-09-22.md:141` — "89%. The reduction ... that a modified
+   byte-pair encoding achieves."** The abstract says "by up to 89%", and names
+   the metric as the Gini coefficient of per-language token costs. The wiki
+   page got this right on the same source; the edition did not. *Prompt
+   problem, unfixed — see section 5.*
+
+5. **Seven sentences over 25 words on day 2, against four on day 1.** The
+   style lock is explicit and nothing enforces it. Worse, change 4 pushed
+   against it: a word-count floor with no sentence-length check rewards
+   longer sentences. *Mechanism problem. Should be a `lint.js` rule, not a
+   line in a prompt that has said it twice already.*
+
 
 ---
 
@@ -255,9 +226,297 @@ would have excluded the lead story is a broken rule.
   judgement about how much a seedling page may assert. Human problem.
   Nothing changed.
 
+### Did the changes change day 2? Side by side.
+
+**Change 1 — §3 sourcing. Worked.**
+
+| | |
+|---|---|
+| Day 1 `content/days/2026-09-21.md`, §3 | zero links; "It is paying a premium for a corpus decision somebody else made in 2022." |
+| Day 2 `content/days/2026-09-22.md:76` | "Indian languages cost an average of 8.0 times what English costs under `cl100k_base`, measured across fourteen languages ([arXiv 2607.24276, 27 July 2026](https://arxiv.org/abs/2607.24276))" |
+
+Two dated links in a section that had none, and no invented detail. But see
+the next line.
+
+**Change 1, the part that did not work.** The rule was written into §3's
+description only. Day 2's invented certainty moved to §2:
+`content/days/2026-09-22.md:43`, "This is the first real test of what the new
+Act covers." The fix was section-shaped and the failure is not.
+
+**Change 3 — front matter. Worked in the edition, did not reach the wiki.**
+
+| | |
+|---|---|
+| Day 1 wiki `:12` | `primary \| OpenAI \| 2022-12-01 \| tiktoken \| https://github.com/openai/tiktoken` |
+| Day 2 edition `:135` | `([tiktoken, on GitHub](https://github.com/openai/tiktoken))` — inline, no date, absent from front matter |
+| Day 2 wiki `:13` | unchanged. Still `2022-12-01`. |
+
+The edition obeys the rule; the wiki page carries the defect into its second
+day. **The loop worked exactly as far as the file I edited and not one line
+further.** That is the single most useful sentence in this report.
+
+**Change 4 — word count. Worked, with a cost.** 884 → 929, inside the band.
+The cost is row "sentences over 25 words": 4 → 7. Nothing measured sentence
+length, so the cheapest way to add forty words was longer ones.
+
+**Change 5 — discovery window. Worked, and visibly.** Day 2's session file
+`AI101/sessions/2026-09-22.md` names three items dropped *by the new rule*
+with reasons, including arXiv 2508.04796, which was routed to the wiki rather
+than to the news section — the exact distinction the rule exists to draw.
+
+**Change 2 — dead links. Worked, immediately, and is the only change that
+cannot be forgotten.** It failed the build on the real day 1 defect within
+seconds of being written, and passed on day 2 once `what-a-merge-is` existed.
+
+### The accretion test (phase 5b)
+
+**Passed.** `/wiki` on day 2 updated
+`content/wiki/tokenisation-and-the-cost-of-your-language.md` **in place**:
+`modified: 2026-09-22` added, the mechanism section rewritten from an
+assertion into the algorithm plus the "unmerged, not absent" framing, one open
+question marked settled with a note on why it got through, and the auditor's
+"commonly repeated guidance" laundering replaced with a plain statement that
+only one of the two figures has a source. It also created one new page,
+`what-a-merge-is`, which day 1's page now links to.
+
+One page deepened, one added, nothing dated in a title. The design holds.
+
 ---
 
-## 2b. AUDIT OF DAY 2, FRESH CONTEXT
+## 5. NEEDS A HUMAN
+
+1. **The wiki step has no prompt file, so prompt fixes cannot reach it.**
+   `AI101/prompts/` holds `daily-research.md` and `newsletter.md`, and the
+   wiki step's instructions live in `.claude/commands/wiki.md`, which is
+   outside what this run was allowed to edit. This is exactly why finding 3
+   above survived into day 2. **Decision needed:** create
+   `AI101/prompts/wiki.md` and have `/wiki` follow it the way `/day` follows
+   `daily-research.md`, or accept that wiki writing is governed only by the
+   command file.
+
+2. **Sentence length should be a `lint.js` rule, not a prompt line.** It is
+   already stated in `CLAUDE.md`, `WRITING.md`, `PLAN.md` §6, both prompts and
+   the five locks. It was broken seven times on day 2. A rule stated six times
+   and enforced zero times is not a rule. **Decision needed:** what the rule
+   does with a quotation, a table row and a code comment, each of which can
+   legitimately exceed 25 words.
+
+3. **`LEARNED.md` is 31 lines long with zero entries in it.** `/day` refuses
+   to run "if it is over 20 lines"; the file's own explanatory header is 31
+   lines before a single correction is added. Read literally, `/day` can never
+   run. **Decision needed:** count entries below the
+   `<!-- entries below, newest last -->` marker, not lines in the file, and
+   say so in `.claude/commands/day.md`. This run did not touch it because the
+   20-line threshold is a designed control.
+
+4. **Whether an edition headline may compress a paper's qualifier.** The
+   "up to 89%" case, and the "73%" attributed to corpus width where the paper
+   says tokeniser design. Both are editorial judgements with no mechanical
+   test, which is why they were sorted as human problems and left alone.
+
+5. **The *Made / making* section has been skipped two days running**, for the
+   reason `SOURCES.md` already gives: no feed covers it. **Decision needed:**
+   pick the feeds or cut the section. Taste is not the agent's to pick, and a
+   slot skipped daily is how a template rots.
+
+6. **The sweep's `brandpress` problem.** Two of day 1's eight qualifying sweep
+   items were Techpoint Africa `brandpress` — paid placement carried in the
+   same feed as reporting. Nothing in the pipeline distinguishes them.
+   **Decision needed:** a tier for vendor-supplied copy, or a rule that
+   `/brandpress/` in a URL disqualifies the item outright.
+
+---
+
+## 6. THE TWO NEWS PASSES, SCORED SEPARATELY
+
+| | Day 1 | Day 2 |
+|---|---|---|
+| Sweep items returned | 60 | 60 (same store) |
+| Sweep items clearing the bar | 8 | 3 |
+| Discovery items clearing the bar | 6 | 2 |
+| Discovery items no feed could reach | 5 | 2 |
+
+**The lead item came from discovery on both days.** Day 1's was arXiv
+2607.24276, the paper measuring the 8.0x tokeniser tax, which anchored the
+edition, the wiki page and the video script. It is the strongest thing either
+pass produced in two days, and no feed in the 25-feed list could have
+surfaced it. Day 2's lead was the NCC deadline moving from 7 September to
+6 October — a Nigerian reader has eleven days left to act on it, and the
+sweep had nothing comparable.
+
+**Discovery found what the sweep could not, on both days.** Day 1: a preprint,
+two regulator notices, a national masterplan and a primary press release. Day
+2: a regulator's deadline change and a securities-board consultation paper.
+Zero of those twelve came through a feed. **The pass earns its cost and should
+not be cut to three items.**
+
+Two qualifications, because the numbers flatter it:
+
+- **Day 2's yield was two, against day 1's six.** A second consecutive day
+  searching the same regulators returns the same notices. The decline is not
+  the tightened window — all three items dropped on day 2 would have failed
+  day 1's stricter 24-hour rule as well.
+- **The 24-hour brief was unsatisfiable and had to be changed.** Four of day
+  1's six discovery items were older than 24 hours, including the lead. A rule
+  that would have excluded the best item of the run is a broken rule, which is
+  what change 5 addressed.
+
+**Recommendation:** keep discovery at ten, and rotate the target list rather
+than the item count. The failure mode observed is repetition of sources, not
+oversupply of items.
+
+---
+
+## 7. COST
+
+Wall clock, measured from commit timestamps. Not estimated.
+
+| Phase | Ended | Elapsed |
+|---|---|---|
+| Setup — reading, branch, sweep | 21:58 | ~3 min |
+| 1. Day 1 session, edition, wiki | 22:01:12 | ~3 min |
+| 2. Day 1 measurements | 22:01:43 | 31 s |
+| 3. Day 1 audit, fresh context | 22:03:51 | 2 min 08 s |
+| 4. Adapt, five changes | 22:05:21 | 1 min 30 s |
+| 5. Day 2 session, edition, wiki | 22:10:19 | 4 min 58 s |
+| 6. Day 2 audit, fresh context | 22:13 | ~2 min 20 s |
+| 7. Report | 22:20 | ~7 min |
+| **Total** | | **~25 minutes** |
+
+Tokens, measured where a tool reports them:
+
+| | Tokens |
+|---|---|
+| Day 1 auditor subagent | 83,782 |
+| Day 2 auditor subagent | 85,755 |
+| Main session context at end of phase 6 | 207,706 of 1,000,000 |
+| Claude Pro 5-hour window consumed | 44% |
+| Claude Pro weekly window, all models | 83% |
+
+**Per-phase token spend cannot be measured and is therefore not reported.** No
+tool in this session exposes tokens consumed per phase, only cumulative
+context and plan-window percentages. Reporting a split would be an estimate,
+which the brief forbids.
+
+The one hard number against the plan's budget: **two audit passes cost
+169,537 tokens**, and the audits were the highest-value step in the run. The
+budget conversation should start there, not with the news passes.
+
+The run took 25 minutes of the five hours allowed. The remaining time was not
+filled, per rail 6.
+
+---
+
+## 8. THE GAP
+
+**Nothing in the pipeline ever observes a reader.**
+
+`PLAN.md` §0 ends: "Goal | Readers read, share, engage". Three of the six
+control-surface inputs in `WORKFLOW.md` are the human's own judgement, two are
+the agent's own output, and one is a feed list. `SOURCES.md` defines a
+`signal` role — "Watch for what the audience is confused about. Feeds topic
+choice" — and no command reads it. It goes further: "Zero-result searches on
+our own site also land here once search is live. Those outrank everything else
+in this section — they are our readers' actual questions, in their own words."
+No step ingests them.
+
+Every edition ends "What did I lose you on? Reply to this email." Nothing
+reads the replies. There is no step between a reply arriving and a topic being
+chosen.
+
+So all three learning loops learn from the system's own output. `/day` reads
+`LEARNED.md`, which the pipeline wrote. `/sunday` reads the outcomes, which
+the human wrote. `/altitude` reads the prompts against a month of output the
+pipeline produced. The loops are closed, and they are closed around the
+author. A pipeline that grades only its own work drifts toward what it finds
+easy to produce, which over twelve weeks is a tokenisation wiki nobody asked
+for.
+
+`WORKFLOW.md` is right that there must be no fourth loop reviewing the review
+loop. But this is not that. This is the first loop that would carry
+information from outside the system, and it is the one that is missing.
+
+**The smallest version that would work:** a `signal` block in the day 1
+session file, five lines, read from newsletter replies and, once search ships,
+zero-result queries. It would cost nothing per day and it would be the only
+input in the whole design that the author did not write.
+
+*Second, concretely missing and much smaller:* `PLAN.md` §0 promises a chain
+of four outputs — "a wiki page, becomes a video, becomes a newsletter, becomes
+a LinkedIn post". `/day` writes the video script, `/wiki` the page,
+`/newsletter` the edition. **No command produces the LinkedIn post**, and the
+newsletter prompt's eight sections do not include it.
+
+---
+
+## APPENDIX A — AUDIT OF DAY 1, FRESH CONTEXT
+
+A subagent was given the three file paths and the audit instruction, and
+nothing about what the run intended. Its findings, verbatim:
+
+> ## Citations verified — all clean
+>
+> | Source line | Exists | Dated | Supports claim |
+> |---|---|---|---|
+> | arXiv 2607.24276 (27 Jul 2026) | yes | yes | yes — 8.0x, 13.0x Malayalam, 12% context, 73%, r=0.89, 14 languages, 6 tokenisers, "used by GPT-3.5 and GPT-4" all verbatim in the abstract |
+> | Gates Foundation (14 Sep 2026) | yes | yes | yes — "at least US$1 billion over the next two years", 40/40/10/10 split, "More than 90% of the data used to train early large language models came from English-language sources" |
+> | Semafor (21 Sep 2026) | yes | yes | yes — 900m / ~60% / 170m, and both GSMA and the Partnership for Digital Access in Africa named |
+> | TechCrunch (21 Sep 2026) | yes | yes | yes — Muse named; notice text quoted exactly |
+> | Broadcast Media Africa (9 Sep 2026) | yes | yes | yes — NFP-T2, standalone Data Centre licence, 30 days |
+> | Techpoint Africa (9 Sep 2026) | yes | yes | yes — service-based allocation, direct CA application, existing codes keep old terms |
+> | Southeast Asia Infrastructure (11 Sep 2026) | yes | yes | yes — 34.4bn, 13.5/21 split, 50MW→400MW by 2030→1.5GW by 2033, 40% renewable, Clark-Bataan |
+>
+> No claim is contradicted by its source. Nothing predates a source it cites.
+>
+> ## Findings
+>
+> **1. `tiktoken` front-matter source carries a date the page does not.**
+> `content/wiki/tokenisation-and-the-cost-of-your-language.md:12` —
+> `primary | OpenAI | 2022-12-01 | tiktoken | https://github.com/openai/tiktoken`
+> I opened the repo. It shows no release date, no initial-commit date, no date of any kind. WRITING.md is explicit: "If a source cannot be dated, cite it as an inline link in the prose, where no date is claimed, and leave it out of the front matter." The `2022-12-01` is asserted, not readable from the URL. This is the one hard front-matter defect.
+>
+> **2. A date-shaped claim with no source at all.**
+> `content/days/2026-09-21.md:86` — "It is paying a premium for a corpus decision somebody else made in 2022."
+> No source anywhere in the edition dates `cl100k_base` to 2022. The paper does not date it. This is the WRITING.md case of a number with no traceable source. It is also the same unverified 2022 as finding 1, so the two stand or fall together.
+>
+> **3. A "commonly repeated" figure with no source.**
+> `content/wiki/tokenisation-and-the-cost-of-your-language.md:112-113` — "Commonly repeated guidance puts the Indic penalty near 4x."
+> Nothing is cited. The edition's version (`:105`, "my curriculum told me to expect a roughly 4x difference") is fine — it names its provenance. The wiki version launders the same number into an unattributed consensus claim.
+>
+> **4. Front-matter source supporting no claim on the page.**
+> `content/days/2026-09-21.md:12` lists the Philippines masterplan as a source. The Philippines appears nowhere in the edition body. The source was carried over from the session's discovery table (`AI101/sessions/2026-09-21.md:262`) and the grouping line at `:280` promised it; the edition dropped the item but kept the citation.
+>
+> **5. Date attached to an event rather than to the report of it.**
+> `content/days/2026-09-21.md:61-62` — "Customers using Meta's Muse agent on Amazon.com saw a notice on 21 September".
+> TechCrunch is dated 21 September and attributes the discovery of the message to GeekWire. It does not date the notice itself. The article supports "reported on 21 September", not "saw a notice on 21 September".
+>
+> **6. Dead internal link.**
+> `content/wiki/tokenisation-and-the-cost-of-your-language.md:65` — "See [what a merge is](/wiki/what-a-merge-is/)". No `content/wiki/what-a-merge-is.md` exists. This is a body link, so unlike `prereqs`/`related` the build will not drop it; it ships as a 404.
+>
+> ## Tier check — correct throughout
+>
+> Every tier describes the URL, not the organisation behind the data. The one that could easily have gone wrong did not: the GSMA/PDAA report is `reported | Semafor`, publisher the outlet, because the URL is the news article. Gates Foundation is `primary` on the foundation's own release. arXiv is `primary` on the paper itself. No inversions.
+>
+> ## Two URLs I could not open
+>
+> Both returned HTTP 403 (bot-blocked; absence not established):
+> - `https://techobserver.in/news/egov/indiaai-mission-sovereign-ai-models-indian-languages-321425/` — session `:266`. The session already flags it as undated and excludes it from the edition, so nothing published depends on it.
+> - `https://www.ohchr.org/en/human-rights/universal-declaration/translations` — a comment in the session's code block at `:50`. Not a front-matter source.
+>
+> ## Minor, not defects
+>
+> - Session `:264` dates the Kenya short-code item `2026-09-08` (effective date) while the edition front matter uses `2026-09-09` (publication date). The front matter is the correct one under the rule; the session is working material.
+> - The edition's "A newer tokeniser cuts that cost by 73%" (`:31`) compresses a result the paper states for multilingual tokenisers as a class, of which XLM-R is one and is not "newer". The wiki's phrasing at `:72-74` is the accurate one. Not a citation failure, a headline compression.
+>
+> Nothing fixed, as instructed.
+
+The auditor independently found the invented 2022, which the run's own
+measurement had also caught, and five defects the run had missed. The
+auditor is the most valuable step in the pipeline by a wide margin.
+
+---
+
+## APPENDIX B — AUDIT OF DAY 2, FRESH CONTEXT
 
 A second subagent, no shared context with the first, given four file paths and
 the same instruction. Findings verbatim:
