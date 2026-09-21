@@ -88,6 +88,26 @@ curl -o /dev/null -w '%{http_code}\n' https://jains.es/README.md   # 404 is corr
 Only `dist/` is uploaded, and `dist/` is build output, so nothing in this
 repository is served.
 
+## Licence, and translating
+
+Code is **MIT**. Writing is **[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)**.
+See [LICENSE](LICENSE).
+
+**Translation is explicitly welcome.** Much of the intended audience reads
+English as a second or third language, and a good Hindi, Tamil, Bengali,
+Swahili or Yoruba version of a page is worth more to that reader than the
+original. Credit and a link back is the whole requirement. If a page is marked
+`stage: seedling`, carry that marker across — it says the page is rough and
+probably wrong in places, and a translation should say so too.
+
+## Questions, corrections, arguments
+
+[Discussions](https://github.com/jpysh/jains.es/discussions) is open. Every
+page on the site also has an **Edit this page** link that opens its source file
+here. Corrections are the most useful thing anyone can send, and they get an
+explanation rather than a silent edit — what was wrong, how it got through,
+how it was caught.
+
 ## Zero JavaScript where it counts
 
 Wiki pages, editions, `/about/` and `/privacy/` ship no executable script —

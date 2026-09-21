@@ -98,6 +98,78 @@ mess, not a cleaned version of it.
 
 ---
 
+## The review prompt
+
+Run this **in the same session**, after the block above has finished. It is
+deliberately separate: a context that has just produced something is the worst
+judge of it, and asking both questions at once gets you a defence rather than
+a review.
+
+```
+Now review what you just produced against what it was supposed to be. Do
+not fix anything. Do not defend anything you wrote.
+
+Read AI101/PLAN.md sections 0, 5, 6 and 7, and the five locks in
+AI101/WORKFLOW.md. Those are the goal. What is on the branch is the
+result. Score the result against the goal, and quote evidence from the
+actual files for every judgement.
+
+THE EDITION — content/days/*.md
+  1. Word count against the 900-1,100 ceiling, and subject line against
+     43 characters. Numbers, not impressions.
+  2. Every claim in sections 2, 3, 6 and 7: does it carry a dated,
+     resolvable link? List any that do not.
+  3. Global South relevance: does each news item lead with what a reader
+     in Lagos, Nairobi, Mumbai or Dhaka pays or does differently, or does
+     it lead with a valuation? Quote the ones that lead wrong.
+  4. Register: would a 17-year-old and a 68-year-old both finish it?
+     Point at any sentence over 25 words, any idiom, any emoji.
+  5. Is section 5 four bullets that link out, or has it become a lecture?
+
+THE WIKI — content/wiki/*.md
+  6. Did day 2 UPDATE a page day 1 created, or did it add another one?
+     Name the files. This is the single most important question here:
+     pages accreting rather than accumulating is the whole design.
+  7. Does any page read like a dated log entry rather than a topic? Quote
+     the opening line if so.
+  8. Does every page open with something concrete rather than a
+     definition? Quote any that opens with a definition.
+  9. Are prereqs and related pointing at slugs that exist?
+
+THE LOOP
+  10. The correction seeded into LEARNED.md before day 2 — quote the day
+      1 output it was about, and the day 2 output that should show it
+      applied. Did it actually change anything? If not, say so; that is
+      the finding that matters most.
+  11. Is LEARNED.md still under 20 lines? Could /sunday place every entry
+      in it, or is there one you would not know where to promote?
+
+THE PREMISE
+  12. Read every line written as if I am the author. Does any of it imply
+      research standing I do not have? Quote it. This is the one error
+      the premise cannot survive.
+  13. Is beat 4 — the part I am least sure about — actually uncertain, or
+      has it been written as false modesty about something the text is
+      confident about elsewhere?
+
+THEN, in order:
+  a. The three worst things about the output, worst first, with the file
+     and line.
+  b. For each: is that a prompt problem, a mechanism problem, or a
+     me problem? Prompt problems get a LEARNED.md line. Mechanism
+     problems get a lint rule or a hook. Me problems get nothing, and
+     say so.
+  c. One sentence: would you have sent that edition to a real list?
+  d. What the goal says should happen that the pipeline has no step for
+     at all. This is the gap I cannot see from inside it.
+
+Be specific and be unkind. A review that says it mostly went well is
+worth nothing to me. If something genuinely passed, say so in three
+words and move on.
+```
+
+---
+
 ## What to look at afterwards
 
 ```bash

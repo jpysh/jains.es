@@ -48,9 +48,9 @@ const CLUSTERS = [
 
 const REPO = 'https://github.com/jpysh/jains.es';
 
-// CHANGE THIS to the real publication before the first send. It is the only
-// place the address appears: every footer on the site is generated from here.
-const SUBSTACK = 'https://jainses.substack.com';
+// The only place the address appears: every footer on the site is generated
+// from here, including the ones inside the hand-written pages.
+const SUBSTACK = 'https://jainsnews.substack.com';
 
 // A page says out loud how finished it is. That is what makes publishing rough
 // work honest rather than sloppy, and it is what licenses shipping daily.
