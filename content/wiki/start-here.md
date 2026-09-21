@@ -2,6 +2,7 @@
 title: Start here
 stage: seedling
 created: 2026-09-21
+modified: 2026-09-21
 summary: What this wiki is, who is writing it, and how to read a page that says it is probably wrong.
 tags: meta, orientation
 sources:
@@ -54,8 +55,13 @@ version.
 
 ## Where to go next
 
-There is not much here yet. The wiki fills up one day at a time, and the
-[daily log](/day/) is the front of it — that is where each session lands first,
+Start with [tokenisation and the cost of your language](/wiki/tokenisation-and-the-cost-of-your-language/).
+It is the first topic page here, it needs no maths, and it answers a question
+with a number: why the same sentence costs about eight times more in Hindi
+than in English when you call a model's API.
+
+Beyond that there is not much here yet. The wiki fills up one day at a time,
+and the [daily log](/day/) is the front of it — that is where each session lands first,
 including the sessions that did not work.
 
 The curriculum for the next twelve weeks is in the repository, and so is
