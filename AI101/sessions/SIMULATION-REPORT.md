@@ -254,3 +254,68 @@ would have excluded the lead story is a broken rule.
   The fix is to cite the curriculum or cut it, and which of the two is a
   judgement about how much a seedling page may assert. Human problem.
   Nothing changed.
+
+---
+
+## 2b. AUDIT OF DAY 2, FRESH CONTEXT
+
+A second subagent, no shared context with the first, given four file paths and
+the same instruction. Findings verbatim:
+
+> Every URL in all four files was opened. **All nine distinct URLs exist, are dated, and load.** Front-matter dates match the dates on the pages in every case but one. Nothing cites a source published after it. Every headline statistic (8.0x, 13.0x, 12%, r = 0.89, 73%, 89%, "more than 90%", $899, 7 Sept → 6 Oct, 10 posts) is present verbatim or near-verbatim at the cited URL.
+>
+> Six findings, strongest first.
+>
+> ### 1. Unsupported claim — "first real test" (edition)
+>
+> Claim, `content/days/2026-09-22.md:43-44`:
+> > "This is the first real test of what the new Act covers."
+>
+> The article does not say this. It says only that the arrest came "less than a month after President Joseph Nyuma Boakai signed the Cybercrime Act into law" [...] "First" is the author's addition. No other case is ruled out by the source.
+>
+> ### 2. Dated front-matter entry for an undated source (wiki)
+>
+> `content/wiki/tokenisation-and-the-cost-of-your-language.md:13`:
+> > `- primary | OpenAI | 2022-12-01 | tiktoken | https://github.com/openai/tiktoken`
+>
+> The GitHub repo page carries no visible publication or creation date. WRITING.md is explicit [...] The edition handles the same source correctly — `content/days/2026-09-22.md:135` links tiktoken inline in prose with no date and keeps it out of the front matter. **The two files disagree about the same source.**
+>
+> ### 3. A ceiling reported as an achievement (edition)
+>
+> > "**89%.** The reduction in tokenisation inequality that a modified byte-pair encoding achieves against classical BPE"
+>
+> Source (arXiv 2508.04796 abstract, verbatim): "reduces tokenization inequality -- operationalized by the Gini coefficient of per-language token costs -- **by up to 89%** relative to Classical BPE"
+>
+> "up to" is dropped, turning a best case into a reported result. [...] `content/wiki/what-a-merge-is.md:95-97` gets this right [...] So the edition is the weaker of the two on the same source.
+>
+> ### 4. Absence of mention treated as absence of announcement (edition)
+>
+> > "No launch date has been announced for India or any African market."
+>
+> The TechCrunch piece [...] does not mention India or Africa at all. Silence in one article does not establish that no date has been announced anywhere. What the source supports is "TechCrunch names no date for India or any African market."
+>
+> ### 5. A definition attributed to a page that does not contain it (edition and wiki)
+>
+> > "The paper defines fertility, so the comparison has a convention and I was not free to pick."
+>
+> The cited URL is the arXiv abstract page. Its abstract uses the term [...] but does not define it. The definition is in the full text, which is not the cited URL. [...] Note the tension this creates [...] One open question is declared settled by reading the paper; the other is declared open because the paper has not been read. Both rest on the same PDF.
+>
+> ### 6. Originating outlet not named in the publisher field (edition)
+>
+> AllAfrica is a syndicator. The piece is bylined **The Liberian Investigator (Monrovia)**. The tier `reported` correctly describes the URL, so this is not a tier inversion — but WRITING.md asks for "a named outlet reporting a fact first," and AllAfrica did not report it first.
+>
+> ### Tier check — all correct
+>
+> No inversion of the kind WRITING.md warns about. The Gates Foundation 90% figure is the trap case — the data is the foundation's, the URL is the foundation's, so `primary` is right [...] Correct.
+>
+> ### Chronology — clean
+>
+> [All four files clean.]
+>
+> ### Not a finding, but worth the reader's notice
+>
+> > "Swap in a tokeniser built on a wider corpus and the average Indic penalty falls by 73%"
+>
+> The paper attributes the 73% to multilingual tokenisers (XLM-R, o200k_base) and to "tokenizer design," not specifically to corpus width. Corpus width is the edition's supplied mechanism. The number is right; the causal gloss is one step beyond the abstract.
+>
+> **Summary:** two claims stated as fact that their source does not support (#1, #4), one statistic that loses its "up to" qualifier (#3), one definition attributed to a page that does not contain it (#5), one front-matter date asserted for an undated source against an explicit WRITING.md rule (#2), one syndicator credited over the originating outlet (#6). No tier errors, no chronology errors, no dead links, no fabricated numbers.
