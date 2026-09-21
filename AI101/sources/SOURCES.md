@@ -33,11 +33,44 @@ primary | MLX examples | https://github.com/ml-explore/mlx-examples
 
 ## news
 
+Read by `AI101/tools/news-sweep.sh` from NetNewsWire's local store, not fetched.
+Adding a feed **in the NetNewsWire app** puts it here via iCloud; this block is
+the record, not the configuration. `feedID` in the store is the feed URL, so the
+two map one to one.
+
 ```
-<!-- PIYUSH: paste your AI-news sources here, one per line, same format.
-     The ones you already read daily. Anything with an RSS feed is better
-     than anything without one. -->
+reported | TechCrunch                  | https://techcrunch.com/feed/
+reported | Krebs on Security           | https://krebsonsecurity.com/feed/
+reported | Semafor                     | https://semafor.com/rss.xml
+reported | TechCabal                   | https://techcabal.com/feed/
+reported | Techpoint Africa            | https://techpoint.africa/feed/
+reported | Disrupt Africa              | https://disruptafrica.com/feed/
+reported | AllAfrica                   | https://allafrica.com/tools/headlines/rdf/latest/headlines.rdf
 ```
+
+**Wanted, and not yet in NetNewsWire.** Add these in the app, AI folder — this
+is the single blocker on the scout doing useful work:
+
+```
+primary  | Simon Willison              | https://simonwillison.net/atom/everything/
+primary  | Hugging Face blog           | https://huggingface.co/blog/feed.xml
+reported | Import AI (Jack Clark)      | https://importai.substack.com/feed
+reported | The Batch, DeepLearning.AI  | https://www.deeplearning.ai/the-batch/feed/
+reported | Ars Technica AI             | https://feeds.arstechnica.com/arstechnica/technology-lab
+```
+
+**Delete in the app:** the `site:X.com/sama` Google News search. X blocks
+crawlers, so it returns nothing and costs a fetch every sweep.
+
+**Still needed from you:** two or three feeds for the newsletter's
+*Made / making* section — art, craft, design, music, writing. Nothing in the
+current 25 feeds covers it, and it is the section no competitor writes. Taste
+is not mine to pick.
+
+Note: the local store carries feeds absent from `subscriptions.opml`
+(kottke, Daring Fireball, scripting.com, manton.org). The OPML is an iCloud
+export and lags the app. The sweep reads the store, so it sees them anyway.
+
 
 ## signal
 
