@@ -32,10 +32,16 @@ Not negotiable, whatever else is tuned:
 Write today's Jollof Bytes.
 
 Read, in this order:
-  content/lessons/{DATE}.md          today's session and its news items
-  the last five newsletters          voice continuity; do not repeat an
+  AI101/prompts/LEARNED.md           what this pipeline already got wrong
+  AI101/sessions/{DATE}.md           today's session, its news items, its
+                                     OUTCOME line and its wiki targets
+  the last five files in content/days/   voice continuity; do not repeat an
                                      explanation already given
-  AI101/sources/SOURCES.md           what is in scope
+  content/wiki/                      every page and its slug, so section 2
+                                     and section 5 can link to them
+
+Write it to content/days/{DATE}.md. That file is the published edition at
+/day/{N}/ and the text pasted into Substack. One artefact, two places.
 
 Eight sections, in this order. Word counts are ceilings, not targets.
 
@@ -60,10 +66,12 @@ Eight sections, in this order. Word counts are ceilings, not targets.
    against them. Commentary, and labelled as commentary. Skip it on a day
    with nothing honest to say rather than filling the slot.
 
-5. WHAT I LEARNED YESTERDAY  (3-4 bullets, ~120 words)
-   From today's lesson file. One bullet is what I got wrong or am least
-   sure about. Bullets, not a lecture — the teaching lives on the site and
-   in the video.
+5. WHAT I LEARNED TODAY  (3-4 bullets, ~120 words)
+   From today's session file, written after the 06:15 block, so it is
+   today and not yesterday. One bullet is what I got wrong or am least
+   sure about. Bullets, not a lecture — the teaching lives on the wiki
+   page and in the video, and this section links to the wiki page rather
+   than repeating it.
 
 6. USEFUL  (~80 words)
    One tool, prompt or term explained plainly, OR one opportunity a reader
@@ -76,6 +84,12 @@ Eight sections, in this order. Word counts are ceilings, not targets.
 8. SIGN-OFF
    One line. One question, and an invitation to reply. For the first 30
    days the question is: "What did I lose you on?"
+
+Linking:
+  Every concept named in any section that has a wiki page links to it on
+  first mention. A concept named three times across three editions and
+  still with no page is a wiki page waiting to be written — say so in the
+  handover line rather than explaining it a fourth time.
 
 Sourcing bar by section:
   2, 6, 7   full BLOGGING.md tiers. Dated, resolvable, opened.
@@ -131,6 +145,16 @@ symptom of generation. **The defence against slop is provenance, not stylistic
 contortion.**
 
 ---
+
+## Where it goes
+
+`content/days/<date>.md` is the edition. The build renders it at `/day/<n>/`
+and the same text is pasted into Substack. Published on the site first, so the
+canonical version is the one you own.
+
+The edition is **not** a second copy of the lesson. It carries the news, the
+intersection, the making section and four bullets of learning that link out.
+Anyone who wants the topic in depth follows the link to the wiki.
 
 ## Send timing
 
