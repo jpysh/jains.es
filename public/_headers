@@ -10,10 +10,14 @@
 #   - fonts are self-hosted (/assets/fonts/*.woff2), so font-src stays 'self'.
 #   - no iframes, no external images, no Worker/blob/eval in the bundle. OGL uses WebGL,
 #     which CSP does not gate.
+#   - form-action allows *.substack.com because the footer subscribe form is a plain
+#     GET form posting there. That is the ONLY relaxation the newsletter needs. Do not
+#     widen script-src, connect-src or frame-src for it: Substack's iframe embed would
+#     need frame-src and costs 96 KB of HTML, 90 scripts and 5 cookies on every page.
 # Re-check this file if the build starts emitting an inline <script> or pulling a third-party
 # asset — the symptom is a silent console block, not a visible error.
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://*.substack.com; upgrade-insecure-requests
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY

@@ -26,7 +26,7 @@ That is the failure mode here, and it is expensive in a specific way. The eviden
 
 ## The same evidence is already being demanded elsewhere
 
-The strongest argument for continuing is not European. HR Dive reported on 23 June 2026 that Judge Rita Lin declined to dismiss FEHA claims against Workday's AI screening tools, allowing them to proceed even for non-California plaintiffs on the basis that the tools were designed, developed, maintained and controlled in California. We wrote about [what that ruling means for vendor selection](/blog/workday-ai-hiring-ruling-california/) separately.
+The strongest argument for continuing is not European. HR Dive reported on 23 June 2026 that Judge Rita Lin declined to dismiss FEHA claims against Workday's AI screening tools, allowing them to proceed even for non-California plaintiffs on the basis that the tools were designed, developed, maintained and controlled in California. We wrote about [what that ruling means for vendor selection](/wiki/workday-ai-hiring-ruling-california/) separately.
 
 The point for this post: litigation of that kind runs on documentation. What did the tool do to this applicant, on what inputs, reviewed by whom, against what tested alternative. That is close to the same file the AI Act's Annex III obligations describe. Building it once serves both, and one of the two is live now rather than in December 2027.
 

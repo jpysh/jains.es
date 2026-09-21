@@ -42,6 +42,6 @@ If deal count stays flat while totals fall, the market is producing the same num
 
 Plan for it rather than against it. Keep your learning record extractable, keep contract terms shorter than your confidence in the vendor, and treat any single-vendor dependency on assessment or credential data as a risk that needs an owner. If you are running a pilot with a venture-backed platform this half, decide now what happens to that data if the company is bought before the pilot ends. The answer takes an afternoon to negotiate before you sign and is unavailable afterwards.
 
-The falling total does not mean fewer vendors will contact you. [Reach Capital's $265m fund](/blog/reach-capital-fund-what-it-signals/) is aimed at pre-seed and Series A companies in exactly this category, which means the pipeline of very small vendors pitching learning products is being refilled while the money per company falls.
+The falling total does not mean fewer vendors will contact you. [Reach Capital's $265m fund](/wiki/reach-capital-fund-what-it-signals/) is aimed at pre-seed and Series A companies in exactly this category, which means the pipeline of very small vendors pitching learning products is being refilled while the money per company falls.
 
 The related question is what kind of vendor will be pitching you as this plays out, which is a different story with a different set of numbers behind it.

@@ -42,4 +42,4 @@ The predictable way this goes wrong is that someone in L&D spends a quarter buil
 
 So before the outreach, get a named operational sponsor who will commit headcount or hours. If nobody will, the funding is not useful to you and the honest answer is to leave it. That conversation takes a week. The relationship-building takes a quarter.
 
-One more thing worth checking while you are in the numbers. Sector-targeted public money is aimed at shortages that already exist in a labour market. It is not aimed at the gap between what your people were trained for and what their job turned into over the last eighteen months, which is a different problem with no grant attached to it and is documented in [our piece on learning debt](/blog/learning-debt/).
+One more thing worth checking while you are in the numbers. Sector-targeted public money is aimed at shortages that already exist in a labour market. It is not aimed at the gap between what your people were trained for and what their job turned into over the last eighteen months, which is a different problem with no grant attached to it and is documented in [our piece on learning debt](/wiki/learning-debt/).

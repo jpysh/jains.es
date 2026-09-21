@@ -27,7 +27,7 @@ That is consistent with what content pricing has been doing for several years. C
 
 **Check whether your seats transfer.** If you have committed spend and the vendor's roadmap moves value to a new product line, a credit or conversion right protects you. Without one, you have prepaid for the old thing while the new thing carries a separate price.
 
-**Ask who holds the mastery data.** An agentic tutor that adapts until mastery generates a far richer record than a completion log: what a learner struggled with, how many attempts, where they plateaued. That is the most valuable learning data your organisation will ever hold about its own capability, and it will be generated inside a vendor's system. Establish now, in writing, that you can extract it at field level. This is the same portability question that applies to any venture-backed learning platform, which [we covered alongside the H1 funding figures](/blog/edtech-funding-fell-what-it-means/).
+**Ask who holds the mastery data.** An agentic tutor that adapts until mastery generates a far richer record than a completion log: what a learner struggled with, how many attempts, where they plateaued. That is the most valuable learning data your organisation will ever hold about its own capability, and it will be generated inside a vendor's system. Establish now, in writing, that you can extract it at field level. This is the same portability question that applies to any venture-backed learning platform, which [we covered alongside the H1 funding figures](/wiki/edtech-funding-fell-what-it-means/).
 
 ## Where the roadmaps are going
 

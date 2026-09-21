@@ -79,6 +79,45 @@ Note: the local store carries feeds absent from `subscriptions.opml`
 export and lags the app. The sweep reads the store, so it sees them anyway.
 
 
+## discovery
+
+Not a feed list. This is the standing brief for the web pass in
+`prompts/daily-research.md` section 8b — the one that finds what a feed list
+structurally cannot, because a feed list only records what we already knew to
+follow.
+
+```
+window     last 24 hours
+scope      technology, business, economy, finance
+audience   technology or business background, India / Africa / Global South
+ceiling    10 items. A ceiling, not a target
+spread     max 2 per country
+order      by what a reader can act on, hardest first
+each item  what happened · the date · one number · a dated link opened and
+           confirmed · why it matters to someone living there
+exclude    terrorism, killings, religion, oil, corruption-as-scandal —
+           as a FRAME, not a keyword ban. A payments fraud that changes how
+           a regulator treats digital lending is a technology story
+blocked    Reuters, FT, AP. They block the crawler. Re-source or drop
+```
+
+Descended from the "Jollof Bytes" news prompt, kept verbatim in
+[`../prompts/newsletter-reference-jollof.md`](../prompts/newsletter-reference-jollof.md).
+Three things changed from it and the reasons are worth keeping:
+
+1. **Africa-only became India, Africa and the Global South.** The audience
+   widened; the brief had not.
+2. **Population ranking became relevance ranking.** Ordering by country size
+   produces the same order every single day — India, Indonesia, Pakistan,
+   Nigeria, Brazil — which buries the best story on a day when it is Kenyan.
+   The two-per-country cap already delivers the spread that ranking was for.
+   To revert, change `order` above to `by country population, largest first`.
+3. **"Summarise in a 9-year-old journalist style" is gone.** The intent —
+   plain words, no unexplained jargon — is already the house style and is
+   better served by it. Written literally it condescends to a 68-year-old
+   professional reading in their third language, which is a large part of who
+   this is for.
+
 ## signal
 
 ```

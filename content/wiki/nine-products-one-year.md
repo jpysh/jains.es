@@ -40,7 +40,7 @@ AI accelerates the work far more than it appears in the work. Across these nine 
 
 What it did not do was make decisions that require knowing a customer. Which product leads the homepage, what objection to answer first, whether a price reads as premium or suspicious in a given market — every one of those came from a person, and every time we let the model have an opinion on them the result was fluent and wrong.
 
-AI appears *inside* the product only where it survives a simple test: does it do something the user could not do faster themselves? In the job board it extracts decision fields from CVs — genuinely faster. The screening score we built in the same project failed that test and was deleted. We wrote about that in [what an AI pilot actually costs](/blog/what-an-ai-pilot-costs/).
+AI appears *inside* the product only where it survives a simple test: does it do something the user could not do faster themselves? In the job board it extracts decision fields from CVs — genuinely faster. The screening score we built in the same project failed that test and was deleted. We wrote about that in [what an AI pilot actually costs](/wiki/what-an-ai-pilot-costs/).
 
 ## Rule five: no dependency we can't replace in an afternoon
 

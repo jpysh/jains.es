@@ -46,8 +46,8 @@ Not negotiable, whatever else is tuned:
 ```mermaid
 flowchart TD
     subgraph SRC["Sources"]
-        NNW[("NetNewsWire SQLite<br/>local, free, dated")]
-        WEB["Web: arXiv, HF, vendors<br/>what the sweep cannot reach"]
+        NNW[("8a SWEEP — NetNewsWire SQLite<br/>local, free, dated<br/>what we knew to follow")]
+        WEB["8b DISCOVERY — web pass<br/>up to 10, max 2 per country<br/>what we did not know to follow"]
         CUR["CURRICULUM.md"]
         VIS["VISION.md — horizon line only"]
         LRN["prompts/LEARNED.md<br/>what we already got wrong"]
@@ -88,6 +88,34 @@ flowchart TD
     ED --> SUB["paste into Substack"]
     REC --> YT["YouTube, by hand"]
 ```
+
+---
+
+## The news comes from two passes
+
+They do different jobs and the difference is the whole point.
+
+| | What it is | What it can find |
+|---|---|---|
+| **8a Sweep** | `tools/news-sweep.sh` reads NetNewsWire's local SQLite | Only what the feed list already knew to follow. Free, offline, dated |
+| **8b Discovery** | A web pass, up to 10 stories, max 2 per country | What no feed was watching. The most expensive line after the auditor |
+
+A feed list is a record of what was already being followed, so on its own it
+can only confirm. Discovery goes and looks, which is where a story nobody
+expected comes from — and it is what stops the edition sounding like
+twenty-five feeds read aloud.
+
+The brief is in [`sources/SOURCES.md`](sources/SOURCES.md) under `discovery`,
+in one place, so changing what gets looked for is one edit.
+
+**The control, if it gets expensive:** if discovery only ever re-finds what the
+sweep already had, it is costing fetches for nothing. Cut it to three items
+aimed at what a feed genuinely cannot reach — a regulator's filing, a central
+bank release, a company's own announcement, a paper. `/sunday` has the
+evidence to decide that; do not guess it in advance.
+
+**Ten is a ceiling, not a target.** The edition needs five. A padded tenth item
+is the one that costs a reader's trust, and that is not recoverable.
 
 ---
 

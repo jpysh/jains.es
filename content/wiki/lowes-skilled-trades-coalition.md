@@ -42,6 +42,6 @@ Get a named owner for the recognition decision. In most organisations trades hir
 
 Then tell your hiring managers what the answer is. A recognition policy nobody communicates produces the worst version of this: inconsistent treatment of candidates holding the same credential, which is both an operational mess and, where it varies by who screened the application, an exposure you do not want.
 
-Coalition credentials are not the only external money moving into this. [Federal workforce funding has become sector-targeted](/blog/where-the-workforce-training-money-went/), and construction and skilled trades are named in it, so some of the training you are budgeting for may already have a funded route.
+Coalition credentials are not the only external money moving into this. [Federal workforce funding has become sector-targeted](/wiki/where-the-workforce-training-money-went/), and construction and skilled trades are named in it, so some of the training you are budgeting for may already have a funded route.
 
 One caution about the number. A million tradespeople by 2035 is a target, and targets of that shape are routinely missed. Base your decision on whether the benchmarks are useful to you, not on whether the headline figure is achieved. A credential adopted by seventy-five large employers changes your hiring market even if the coalition reaches a quarter of its goal.

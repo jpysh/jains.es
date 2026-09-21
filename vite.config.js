@@ -12,6 +12,9 @@ import { globSync } from 'node:fs';
 const pages = [
   'index.html',
   '404.html',
+  'work/index.html',
+  'about/index.html',
+  'privacy/index.html',
   ...globSync('{wiki,day,curriculum}/**/index.html', { cwd: import.meta.dirname }),
 ];
 

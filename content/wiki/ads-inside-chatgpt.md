@@ -41,6 +41,6 @@ A reasonable shape for the test:
 
 ## What this says about where discovery is going
 
-Amazon selling inventory inside a competitor's assistant is the notable structural detail. Amazon also made [Alexa+ free to Prime members](/blog/alexa-plus-loyalty-economics/), which is a bet on owning the assistant relationship. Doing both means the company is not assuming its own assistant wins, and is monetising the shift either way.
+Amazon selling inventory inside a competitor's assistant is the notable structural detail. Amazon also made [Alexa+ free to Prime members](/wiki/alexa-plus-loyalty-economics/), which is a bet on owning the assistant relationship. Doing both means the company is not assuming its own assistant wins, and is monetising the shift either way.
 
 Retailers cannot do both. Most will not own an assistant, which means the practical planning assumption is that some share of discovery happens inside a third party's interface, and your options there are advertising and being retrievable. The advertising side now has a price. The retrievable side is a product data problem that nobody will sell you, and it is the one to start on if you only have capacity for one.

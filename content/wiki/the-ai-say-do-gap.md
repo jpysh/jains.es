@@ -36,7 +36,7 @@ That is a sequencing rule, and it inverts the usual order. Most AI communication
 
 The test for any draft announcement, all-hands slide or earnings line: can a named employee open something today that does what this sentence claims? If not, the sentence is a forecast. Forecasts are fine in a strategy document that employees do not read as a promise about next month, and they are expensive in an all-hands.
 
-This also disciplines the upward communication. An AI programme reporting adoption percentages to a board, with nothing an employee can point at, is generating the visionary profile deliberately. We wrote about [the rework hiding inside AI productivity claims](/blog/half-of-ai-time-is-rework/) — the same gap between the claim and the experience shows up there, in the numbers rather than in the announcements.
+This also disciplines the upward communication. An AI programme reporting adoption percentages to a board, with nothing an employee can point at, is generating the visionary profile deliberately. We wrote about [the rework hiding inside AI productivity claims](/wiki/half-of-ai-time-is-rework/) — the same gap between the claim and the experience shows up there, in the numbers rather than in the announcements.
 
 ## What HR and internal communications should change
 

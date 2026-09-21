@@ -48,4 +48,4 @@ That work is unglamorous and it has a useful side effect. Teams that complete th
 
 The thing to avoid is treating this as a legal review of the pricing engine. The engine is the part you already understand. The exposure is in the offers, the vendors, the retention flows and the app, and those have four different owners who have never been in the same room about it.
 
-The cost of getting the disclosure question wrong is not only regulatory. [Ulta's licence plate reader deployment](/blog/ulta-licence-plate-readers/) shows how fast a data practice nobody had explained becomes a brand problem, at a scale of deployment far too small to have earned anything back.
+The cost of getting the disclosure question wrong is not only regulatory. [Ulta's licence plate reader deployment](/wiki/ulta-licence-plate-readers/) shows how fast a data practice nobody had explained becomes a brand problem, at a scale of deployment far too small to have earned anything back.

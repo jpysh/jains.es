@@ -88,22 +88,46 @@ The stylesheet is mobile first: base rules are the phone layout, and two
 rules the same way — put the phone case in the base rule, not in an override.
 Roughly 90% of the traffic is mobile.
 
-## Adding a post
+## The pages, and who owns them
+
+| Page | File | Footer |
+|---|---|---|
+| `/` | `index.html` | generated into the marker |
+| `/work/` | `work/index.html` | generated into the marker |
+| `/about/` | `about/index.html` | generated into the marker |
+| `/privacy/` | `privacy/index.html` | generated into the marker |
+| 404 | `404.html` | generated into the marker |
+
+`#contact` lives on `/work/` only — the global footer is the newsletter now,
+so it must not answer to that anchor. The agency's WhatsApp and mailto route
+stays on `/work/`, where "Start a project" can reach it.
+
+## Two surfaces
+
+| Surface | Source | What it is | Half-life |
+|---|---|---|---|
+| `/day/<n>/` | `content/days/<date>.md` | The edition. News, the intersection, what I got wrong | A day |
+| `/wiki/<slug>/` | `content/wiki/<slug>.md` | The topic. Deep dive, accretes as the learning does | Years |
+
+`/curriculum/` is generated from `AI101/CURRICULUM.md` so a reader can see what
+is coming without opening GitHub. It renders that file as written and does not
+parse its tables — they are hand-edited, and coupling the build to their shape
+would break the page every time a week is reworded.
+
+**There is no blog.** The 23 archive posts became wiki pages at
+`stage: evergreen`, keeping their slugs. `CATEGORIES` and the topic pages are
+gone; the three categories are now tags.
 
 ```bash
-npm run post "The title"   # scaffolds content/posts/the-title.md, dated today
-npm run build              # validates, generates, builds
+npm run build   # validates, generates, builds. Must exit 0
+npm run check   # proves the build still refuses bad input
 ```
 
-The build **fails** on an unknown category, a malformed date, a duplicate slug,
-or a source missing its tier. That is deliberate — fix the post, don't work
-around the check. It is also the strongest control on the site: it blocks an
-unsourced claim from ever reaching a page.
-
-Categories are fixed: `retail-tech`, `hrtech`, `edtech`. They apply to
-`content/posts/` only. Lessons and wiki pages are separate page types with
-their own front matter, not a fourth category. Adding a fourth category means a
-new topic page, a new URL, and a decision — ask before doing it.
+The build **fails** on an unknown stage, a malformed date, a duplicate day
+number, an evergreen page with no sources, a page with no tags, or a source
+missing its tier. That is deliberate — fix the page, don't work around the
+check. It is the strongest control on the site: it blocks an unsourced claim
+from reaching a page.
 
 ## Front matter
 

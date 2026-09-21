@@ -51,6 +51,6 @@ Decide whether you are filing, and if so who drafts it: counsel, your immigratio
 
 **Tell the people who set dates.** Whoever builds your restructuring timelines needs to know that one input has consequences it did not have before. That is a briefing, not a policy change, and it can happen now.
 
-The same proposal reads differently if you are hiring into a shortage rather than restructuring out of one. Employers competing for [data centre and infrastructure skills](/blog/data-centre-talent-shortage/) are drawing from a pool where visa status is already a live constraint on who will accept an offer.
+The same proposal reads differently if you are hiring into a shortage rather than restructuring out of one. Employers competing for [data centre and infrastructure skills](/wiki/data-centre-talent-shortage/) are drawing from a pool where visa status is already a live constraint on who will accept an offer.
 
 None of this requires the rule to be finalised. Most of it is worth doing regardless, because it surfaces how little most HR functions know about a population they are already responsible for.

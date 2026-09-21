@@ -48,6 +48,6 @@ For an employer outside the data centre sector, the same logic runs in reverse a
 
 The obvious response to a 46-point regional spread is to move the work to a cheaper region. For genuinely remote work that can be right. For the roles under discussion here it is not available, because the equipment is where the building is.
 
-The other supply-side variable is who is allowed to stay. [DHS's proposal to end the 60-day H-1B grace period](/blog/h1b-grace-period/) would change the risk an international candidate carries in accepting a role, in a market where those candidates are already being competed over.
+The other supply-side variable is who is allowed to stay. [DHS's proposal to end the 60-day H-1B grace period](/wiki/h1b-grace-period/) would change the risk an international candidate carries in accepting a role, in a market where those candidates are already being competed over.
 
 The second tempting move is to wait for the shortage to correct. Kelly's numbers describe demand running through 2028 against a pool that takes years to expand, since you cannot train a high-voltage electrician in a quarter. Waiting means paying the 2028 rate for someone you could have retained at this year's rate with a conversation.

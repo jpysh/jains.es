@@ -38,6 +38,6 @@ Security posture is the legitimate concern, and it is checkable rather than a ma
 
 ## The three-year read
 
-Fifty new companies from one fund, against an overall category total that fell 26% in the first half of 2026 according to HolonIQ's July figures, which [we looked at separately](/blog/edtech-funding-fell-what-it-means/). More vendors, less money each, therefore more failures and more acquisitions. As a buyer, that means running short pilots with clean exits should be your normal operating mode for the next three years rather than an exception you handle case by case.
+Fifty new companies from one fund, against an overall category total that fell 26% in the first half of 2026 according to HolonIQ's July figures, which [we looked at separately](/wiki/edtech-funding-fell-what-it-means/). More vendors, less money each, therefore more failures and more acquisitions. As a buyer, that means running short pilots with clean exits should be your normal operating mode for the next three years rather than an exception you handle case by case.
 
 Do that and early-stage vendors become cheap to try. Fail to do it and every one of them becomes a negotiation you conduct under pressure from someone who has already fallen in love with the product.

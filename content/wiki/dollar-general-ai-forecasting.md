@@ -38,6 +38,6 @@ If you are already committed to a build, write down the switching trigger now an
 
 And if you are buying, budget the data consolidation as the project and the platform as a line item within it. A retailer with 21,000 stores can absorb a long configuration phase. A mid-size operator discovering its lead-time data is unreliable in month four of a fixed-price implementation cannot.
 
-The same dependency shows up on the customer-facing side. [Home Depot's store-level assistant](/blog/home-depot-magic-apron-every-store/) only works because it is wired to inventory a customer can check against the shelf, which turns every data gap into something a shopper discovers out loud.
+The same dependency shows up on the customer-facing side. [Home Depot's store-level assistant](/wiki/home-depot-magic-apron-every-store/) only works because it is wired to inventory a customer can check against the shelf, which turns every data gap into something a shopper discovers out loud.
 
 The broader pattern here is the same one that shows up whenever a large operator publishes an AI decision. The interesting part is almost never the model. It is which parts of the operation the company decided were not worth owning.

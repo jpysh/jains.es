@@ -1039,9 +1039,65 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
   font-variant-numeric: tabular-nums;
 }
 
-/* The wiki index shows a summary under each title rather than a date, so the
-   nowrap that suits a date would truncate it. */
-.wiki-summary,
-.blog-index .posts .post-meta:not(:has(time)) {
-  white-space: normal;
+/* A card showing a summary instead of a date must wrap. `.post .meta` sets
+   nowrap, which is right for a date and truncates a sentence, so the summary
+   carries its own class rather than relying on a selector that has to
+   out-specify the rule above it. */
+.post .post-summary { white-space: normal; }
+
+/* ---------------------------------------------------------------------------
+   Footer subscribe form
+
+   A plain GET form to Substack, not Substack's iframe. It is in the footer of
+   every page, so it must cost nothing: no script, no third-party frame, no
+   cookie. Mobile first, and the control heights are 48px because this is a
+   form a thumb has to hit.
+   --------------------------------------------------------------------------- */
+
+.sub { margin: 0 0 40px; max-width: 34rem; }
+
+.sub label {
+  display: block;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--fg);
+  margin-bottom: 14px;
+}
+
+/* Column on a phone so neither control is squeezed; a row once there is width. */
+.sub-row { display: flex; flex-direction: column; gap: 10px; }
+
+.sub input {
+  flex: 1;
+  min-height: 48px;
+  padding: 0 16px;
+  font: inherit;
+  font-size: 16px; /* under 16px iOS zooms the page on focus */
+  color: var(--fg);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.sub input::placeholder { color: var(--fg-dim); }
+.sub input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-color: transparent;
+}
+
+.sub button {
+  min-height: 48px;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  white-space: nowrap;
+}
+
+.sub-note { margin: 12px 0 0; font-size: 14px; color: var(--fg-dim); }
+.sub-note a { color: var(--fg-dim); text-decoration: underline; }
+.sub-note a:hover { color: var(--fg); }
+
+@media (min-width: 441px) {
+  .sub-row { flex-direction: row; align-items: center; }
+  .sub input { min-width: 0; }
 }
