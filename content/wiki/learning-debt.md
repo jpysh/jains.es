@@ -1,10 +1,9 @@
 ---
 title: 29% of workers delivered work they could not explain
-description: TalentLMS surveyed 1,200 US employees and found nearly a third had submitted work they could not account for. That is an audit and handover problem, not a training statistic.
-ogTitle: 29% delivered work they could not explain
-ogDescription: TalentLMS found AI is converting visible skills gaps into invisible ones. What to add to your review process.
-date: 2026-07-30
-category: edtech
+summary: TalentLMS surveyed 1,200 US employees and found nearly a third had submitted work they could not account for. That is an audit and handover problem, not a training statistic.
+stage: evergreen
+created: 2026-07-30
+tags: learning, training
 sources:
   - reported | HR Dive (Laurel Kalser) | 2026-07-16 | AI may conceal growing 'learning debt' for fast-changing roles | https://www.hrdive.com/news/ai-may-conceal-growing-learning-debt-for-fast-changing-roles/825396/
 ---
@@ -53,4 +52,4 @@ It does not justify restricting AI use, monitoring tools, or requiring disclosur
 
 It also does not justify a new training programme as the first move. You cannot write curriculum for a gap you have not located, and the located gaps are sitting inside work that already shipped. Find them first.
 
-There is a second problem sitting next to this one. Where companies are training on AI at all, the training tends to stop at basic literacy and prompting, which is a level below where the performance difference actually appears. That is covered in [our piece on why AI training stops at literacy](/blog/ai-training-stops-at-literacy/), and the two compound: people are using AI for work they were not trained for, with AI skills that were not trained to the level the work requires.
+There is a second problem sitting next to this one. Where companies are training on AI at all, the training tends to stop at basic literacy and prompting, which is a level below where the performance difference actually appears. That is covered in [our piece on why AI training stops at literacy](/wiki/ai-training-stops-at-literacy/), and the two compound: people are using AI for work they were not trained for, with AI skills that were not trained to the level the work requires.

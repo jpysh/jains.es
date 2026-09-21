@@ -1,10 +1,9 @@
 ---
 title: Conversational AI just got a rate card
-description: Amazon's DSP can now place ads inside ChatGPT, sold on CPC and CPM. The first priced, measurable inventory in an AI assistant, and a reason to test small now.
-ogTitle: Conversational AI just got a rate card
-ogDescription: Amazon is selling ad placements inside ChatGPT on CPC and CPM. Test small, learn the attribution.
-date: 2026-09-11
-category: retail-tech
+summary: Amazon's DSP can now place ads inside ChatGPT, sold on CPC and CPM. The first priced, measurable inventory in an AI assistant, and a reason to test small now.
+stage: evergreen
+created: 2026-09-11
+tags: retail, commerce
 sources:
   - reported | Retail Dive (Peter Adams) | 2026-09-11 | Amazon pilots ad services in ChatGPT: What marketers need to know | https://www.retaildive.com/news/amazon-pilots-ad-services-chatgpt-what-marketers-need-to-know/830068/
 ---
@@ -42,6 +41,6 @@ A reasonable shape for the test:
 
 ## What this says about where discovery is going
 
-Amazon selling inventory inside a competitor's assistant is the notable structural detail. Amazon also made [Alexa+ free to Prime members](/blog/alexa-plus-loyalty-economics/), which is a bet on owning the assistant relationship. Doing both means the company is not assuming its own assistant wins, and is monetising the shift either way.
+Amazon selling inventory inside a competitor's assistant is the notable structural detail. Amazon also made [Alexa+ free to Prime members](/wiki/alexa-plus-loyalty-economics/), which is a bet on owning the assistant relationship. Doing both means the company is not assuming its own assistant wins, and is monetising the shift either way.
 
 Retailers cannot do both. Most will not own an assistant, which means the practical planning assumption is that some share of discovery happens inside a third party's interface, and your options there are advertising and being retrievable. The advertising side now has a price. The retrievable side is a product data problem that nobody will sell you, and it is the one to start on if you only have capacity for one.

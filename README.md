@@ -1,117 +1,96 @@
 # jains.es
 
-Marketing site for Jains — AI &amp; Digital Transformation Agency.
+A daily learning publication. One person building language models from
+scratch and publishing every session — written for India, the Global South,
+and anyone reading English as a second or third language.
 
-One page plus three blog articles. Hand-written HTML and CSS, built with Vite and
-deployed to Cloudflare Workers Static Assets from this repository.
+Hand-written HTML and CSS, built with Vite, deployed to Cloudflare Workers
+Static Assets. No framework, no database, no server.
+
+- **[CLAUDE.md](CLAUDE.md)** — the things that are expensive to get wrong
+- **[WRITING.md](WRITING.md)** — front matter, source tiers, how pages accrete
+- **[AI101/WORKFLOW.md](AI101/WORKFLOW.md)** — the daily pipeline, with diagrams
+- **[AI101/PLAN.md](AI101/PLAN.md)** — why any of this is shaped as it is
+
+## Two surfaces
+
+```
+content/days/<date>.md   ->  /day/<n>/       the edition. Dated, a day old
+content/wiki/<slug>.md   ->  /wiki/<slug>/   the topic. Accretes, outlives
+```
+
+`/curriculum/` is generated from `AI101/CURRICULUM.md`. `/`, `/about/`,
+`/privacy/` and `/work/` are hand-written.
+
+`AI101/sessions/<date>.md` is the third file of a day and is **not a page**:
+the plan, the beats, the script, and the two sections only the human fills.
+Committed because the method is part of what is published.
 
 ## Layout
 
 ```
-index.html                 the one-pager          }  hand-written
-404.html                   not-found page         }  Vite entry points
-content/posts/<slug>.md    one article each, Markdown + front matter
-blog/                      GENERATED — post pages, the index, topic pages
+content/
+  days/<date>.md           one edition per day
+  wiki/<slug>.md           one page per topic
+AI101/
+  PLAN.md  CURRICULUM.md  RUNBOOK.md  WORKFLOW.md  VISION.md
+  prompts/                 daily-research, newsletter, LEARNED
+  sources/                 SOURCES.md, subscriptions.opml
+  sessions/<date>.md       the daily working file
+  tools/news-sweep.sh      reads NetNewsWire's local store
 build/
-  site.js                  generates blog/, sitemap.xml, feed.xml, the
-                           homepage post list; validates every post
-  new-post.js              npm run post "Title"
+  site.js                  generates every page, validates, refuses bad input
+  check.sh                 proves the validation still fires
 src/
-  main.js                  entry; imports the CSS, lazy-loads the rest
-  styles.css               all styling for every page
-  hero.js                  the particle field (OGL), loaded after first paint
-public/                    copied verbatim into dist/
-  assets/fonts/*.woff2     Space Grotesk + Inter, variable, subset
-  assets/favicon.svg       tab icon (the j and its dot)
-  assets/logo.svg          standalone wordmark, for use outside the site
-  assets/og.jpg            link-preview image (1200x630)
-  assets/projects/*.jpg    project screenshots
-  robots.txt               static
-  sitemap.xml, feed.xml    GENERATED
-tools/make-logo.py         regenerates the wordmark and favicon
-vite.config.js             index.html, 404.html, and every generated blog page
-wrangler.jsonc             Cloudflare Workers config (serves dist/)
+  main.js                  entry for the pages that carry script
+  styles.css               all styling
+  hero.js                  the homepage particle field, after first paint
+public/                    copied verbatim; _headers holds the CSP
+.claude/commands/          /day /newsletter /wiki /audit /sunday /altitude
 ```
 
-The logo is an inline `<symbol>` in each page, referenced twice by `<use>`.
-Regenerate it with `python3 tools/make-logo.py` from a directory containing
-`sg.ttf` (Space Grotesk variable), then paste the symbol into the pages.
+`wiki/`, `day/`, `curriculum/`, `sitemap.xml` and `feed.xml` are **generated
+and gitignored**. Edit the Markdown in `content/`.
 
-## Editing
-
-- **Copy, projects, testimonials** — `index.html`. Project cards are plain `<a class="card">`
-  blocks; the pastel colour is the inline `--card` custom property.
-- **Styling** — `src/styles.css`. Colours are CSS custom properties at the top of the file.
-- **New blog post** — see [BLOGGING.md](BLOGGING.md) for the full workflow. The short version is one command, one file:
-
-  ```bash
-  npm run post "The title of the post"
-  ```
-
-  That scaffolds `content/posts/the-title-of-the-post.md` with today's date and empty
-  front matter. Write it, then `npm run build`. The post page, the blog index, the topic
-  page, `sitemap.xml`, `feed.xml` and the homepage list all update themselves — there is
-  nothing else to edit, and the filename is the URL, so don't rename it after it is live.
-
-  The build **fails** on an unknown category, a malformed date, a duplicate slug, or a
-  source missing its tier, rather than shipping a post that would quietly fall out of its
-  topic page. Categories are `retail-tech` (Retail and commerce tech), `hrtech` (Work and
-  talent tech) and `edtech` (Learning and training tech).
-
-  Sources are one per line in the front matter, `tier | publisher | date | title | url`,
-  where tier is `primary` (the regulator, vendor, paper or survey itself) or `reported`
-  (a named outlet reporting a fact first). They render as a numbered, tagged list at the
-  foot of the post and as `citation` in its schema.
-
-- **Generated files** — anything under `blog/`, plus `public/sitemap.xml` and
-  `public/feed.xml`, is written by `build/site.js` and gitignored. So is the block between
-  `<!-- generated:posts -->` and `<!-- /generated:posts -->` in `index.html`. Editing any of
-  them by hand lasts until the next build.
-
-Preview locally:
+## Daily
 
 ```bash
-npm install && npm run dev
+/day            # 06:00  research, session plan, script. Opens a PR
+/newsletter     # 09:20  writes content/days/<date>.md
+/wiki           # 10:05  folds the session into its topic pages
+/audit          #        fresh context, opens every citation
+/sunday         # weekly sweeps corrections into the prompts
+/altitude       # monthly deletes the rules that never fired
 ```
 
-## Deploying
-
-The site is live at <https://jains.es>, served by Cloudflare Workers Static Assets.
-Both `jains.es` and `www.jains.es` are attached as custom domains in `wrangler.jsonc`,
-so wrangler creates and manages their DNS records — don't edit those records by hand.
-
-Cloudflare Workers Builds is connected to `jpysh/jains.es`: **pushing to `main`
-deploys the site**, usually within a minute. The build command must be
-`npm ci && npm run build`; Cloudflare then runs `npx wrangler deploy`, which
-reads `wrangler.jsonc` and uploads `dist/`.
-
-A failing build leaves the previous version live, so a broken commit takes the
-deploy down, not the site.
-
-To deploy by hand instead (a local change you have not committed, or a rollback):
+## Build and deploy
 
 ```bash
-npx wrangler deploy
+npm install
+npm run dev       # local preview
+npm run check     # proves the build refuses bad input
+npm run build     # validates, generates, builds to dist/
 ```
 
-### What is not served
+The build **fails** on an unknown stage, a malformed date, a duplicate day
+number, an evergreen page with no sources, a page with no tags, or a source
+missing its tier. That is the point: it blocks an unsourced claim from
+reaching a page.
 
-Only `dist/` is uploaded, and `dist/` contains nothing but build output, so the
-repository's own files are never exposed. Verify after changing the build:
+Pushing to `main` deploys via Cloudflare Workers Builds, usually within a
+minute. A failing build leaves the previous version live, so a broken commit
+takes the deploy down and not the site.
 
 ```bash
-curl -o /dev/null -w '%{http_code}\n' https://jains.es/README.md
+curl -o /dev/null -w '%{http_code}\n' https://jains.es/README.md   # 404 is correct
 ```
 
-404 is correct.
+Only `dist/` is uploaded, and `dist/` is build output, so nothing in this
+repository is served.
 
-## Notes
+## Zero JavaScript where it counts
 
-- There is deliberately **no form anywhere on the site**. The contact form was built and
-  removed (c0f88b3); contact is a WhatsApp link and a mailto. Don't reintroduce one.
-
-- Testimonial names, companies and quotes are real and approved by the people named.
-  The avatars are initials until we have photographs. Roles are omitted rather than
-  guessed — add one only when the person has confirmed it.
-- Project screenshots are regenerated by hand, not automatically. To refresh one, screenshot the
-  live site at 1280x800 and save it over the matching file in `public/assets/projects/`.
+Wiki pages, editions, `/about/` and `/privacy/` ship no executable script —
+only `ld+json`, which is data. Low-tier Android is roughly 9× slower than a
+development machine, so script costs main-thread time as well as bytes on
+exactly the device most of this audience holds.

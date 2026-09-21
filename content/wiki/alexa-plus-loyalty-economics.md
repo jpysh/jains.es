@@ -1,10 +1,9 @@
 ---
 title: Amazon put a number on Alexa+ as a loyalty mechanic
-description: Amazon says shoppers who tried Alexa+ joined Prime at a nearly 25% higher rate. That makes an AI assistant a membership lever, not a CX experiment.
-ogTitle: Amazon put a number on Alexa+ as a loyalty mechanic
-ogDescription: A nearly 25% higher Prime signup rate among Alexa+ triallists. What that means for your programme.
-date: 2026-09-08
-category: retail-tech
+summary: Amazon says shoppers who tried Alexa+ joined Prime at a nearly 25% higher rate. That makes an AI assistant a membership lever, not a CX experiment.
+stage: evergreen
+created: 2026-09-08
+tags: retail, commerce
 sources:
   - reported | Retail Dive (Bryan Wassel) | 2026-09-04 | Amazon Prime members now get free Alexa+ access | https://www.retaildive.com/news/amazon-adds-perks-prime-free-alexa-access/829610/
 ---
@@ -38,6 +37,6 @@ Each of those depends on account-linked data that a non-member does not have, wh
 
 Pick the single highest-volume account-linked question your service team answers and cost what it would take to answer it conversationally for members only. Reordering and delivery status are usually the two candidates. The test is not whether customers enjoy the interaction. It is whether the members who use it renew at a higher rate than matched members who do not, which means setting up the measurement before you launch rather than reconstructing it afterwards.
 
-Then decide your position on what happens outside your own channels. Amazon is building the assistant customers use, and separately [selling advertising inside ChatGPT](/blog/ads-inside-chatgpt/), which is a bet on both sides of the same shift in where discovery starts. Most retailers will not own an assistant. They will need their product and account data to be reachable by somebody else's, and that is a different engineering conversation from building a chatbot.
+Then decide your position on what happens outside your own channels. Amazon is building the assistant customers use, and separately [selling advertising inside ChatGPT](/wiki/ads-inside-chatgpt/), which is a bet on both sides of the same shift in where discovery starts. Most retailers will not own an assistant. They will need their product and account data to be reachable by somebody else's, and that is a different engineering conversation from building a chatbot.
 
 The trap is building an assistant because a competitor announced one, then measuring it on usage. Usage will look fine. Alexa+ is interesting because Amazon reported a membership outcome, and membership outcomes are the only reason a retail assistant justifies its cost.

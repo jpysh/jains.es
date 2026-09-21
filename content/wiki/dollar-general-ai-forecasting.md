@@ -1,10 +1,9 @@
 ---
 title: Dollar General bought its forecasting engine instead of building it
-description: AI forecasting and replenishment across 21,000 stores and 34 DCs, from Relex rather than in-house. A useful benchmark for anyone costing a build.
-ogTitle: Dollar General bought its forecasting engine instead of building it
-ogDescription: 21,000 stores, 34 DCs, a vendor platform. What that says about your in-house forecasting plan.
-date: 2026-09-07
-category: retail-tech
+summary: AI forecasting and replenishment across 21,000 stores and 34 DCs, from Relex rather than in-house. A useful benchmark for anyone costing a build.
+stage: evergreen
+created: 2026-09-07
+tags: retail, commerce
 sources:
   - reported | Retail Dive (Kelly Stroh) | 2026-09-04 | Dollar General deploys AI across distribution centers, stores | https://www.retaildive.com/news/dollar-general-ai-distribution-centers-stores/829201/
 ---
@@ -39,6 +38,6 @@ If you are already committed to a build, write down the switching trigger now an
 
 And if you are buying, budget the data consolidation as the project and the platform as a line item within it. A retailer with 21,000 stores can absorb a long configuration phase. A mid-size operator discovering its lead-time data is unreliable in month four of a fixed-price implementation cannot.
 
-The same dependency shows up on the customer-facing side. [Home Depot's store-level assistant](/blog/home-depot-magic-apron-every-store/) only works because it is wired to inventory a customer can check against the shelf, which turns every data gap into something a shopper discovers out loud.
+The same dependency shows up on the customer-facing side. [Home Depot's store-level assistant](/wiki/home-depot-magic-apron-every-store/) only works because it is wired to inventory a customer can check against the shelf, which turns every data gap into something a shopper discovers out loud.
 
 The broader pattern here is the same one that shows up whenever a large operator publishes an AI decision. The interesting part is almost never the model. It is which parts of the operation the company decided were not worth owning.

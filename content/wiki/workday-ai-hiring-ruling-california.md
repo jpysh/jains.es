@@ -1,10 +1,9 @@
 ---
 title: The home state of your screening vendor may be your compliance jurisdiction
-description: A California judge let FEHA claims against Workday's AI screening tools proceed for non-California plaintiffs, because the tools were built in California.
-ogTitle: When your vendor's state law becomes yours
-ogDescription: A California ruling ties AI screening liability to where the tool was built, not where you hire.
-date: 2026-07-07
-category: hrtech
+summary: A California judge let FEHA claims against Workday's AI screening tools proceed for non-California plaintiffs, because the tools were built in California.
+stage: evergreen
+created: 2026-07-07
+tags: work, hiring
 sources:
   - reported | HR Dive (Emilie Shumway) | 2026-06-23 | Workday can't shake California AI discrimination claims | https://www.hrdive.com/news/workday-california-AI-bias-lawsuit-feha/823555/
 ---
@@ -41,7 +40,7 @@ This is not legal advice and it is not a template. It is the set of questions wo
 
 ## The design choice that reduces the exposure
 
-We have written before about [what an AI pilot actually costs](/blog/what-an-ai-pilot-costs/), including the screening features we built and then deleted. The relevant one here: we replaced a candidate scoring model with plain extraction. Instead of ranking applicants, the system pulls out the five fields the recruiter always checks and lays them in a row. The AI reads, the human decides, and there is a person attached to every rejection.
+We have written before about [what an AI pilot actually costs](/wiki/what-an-ai-pilot-costs/), including the screening features we built and then deleted. The relevant one here: we replaced a candidate scoring model with plain extraction. Instead of ranking applicants, the system pulls out the five fields the recruiter always checks and lays them in a row. The AI reads, the human decides, and there is a person attached to every rejection.
 
 That change was made for adoption reasons — recruiters did not trust a score with no reasoning — but it changes the legal posture too. A tool that summarises information a human then acts on is a different thing from a tool that filters a pool before any human sees it. The first produces a record of a human decision. The second produces a record of an automated one, and under the theory now proceeding in California, someone may eventually ask you to defend it under a statute chosen by your vendor's address.
 

@@ -1,10 +1,9 @@
 ---
 title: Public training money is now sector-targeted. Find out if yours is on the list.
-description: The US Department of Labor awarded nearly $162m through five cooperative agreements aimed at named sectors, from AI to shipbuilding. Employers can offset upskilling costs through the recipients.
-ogTitle: Public training money is now sector-targeted
-ogDescription: Nearly $162m from DOL went to named sectors through named intermediaries. Check whether yours is one of them.
-date: 2026-07-23
-category: edtech
+summary: The US Department of Labor awarded nearly $162m through five cooperative agreements aimed at named sectors, from AI to shipbuilding. Employers can offset upskilling costs through the recipients.
+stage: evergreen
+created: 2026-07-23
+tags: learning, training
 sources:
   - reported | HR Dive (Lara Ewen) | 2026-07-14 | Latest workforce development funds target specific industries — like nuclear energy and AI | https://www.hrdive.com/news/latest-workforce-development-funds-target-specific-industries/825159/
 ---
@@ -43,4 +42,4 @@ The predictable way this goes wrong is that someone in L&D spends a quarter buil
 
 So before the outreach, get a named operational sponsor who will commit headcount or hours. If nobody will, the funding is not useful to you and the honest answer is to leave it. That conversation takes a week. The relationship-building takes a quarter.
 
-One more thing worth checking while you are in the numbers. Sector-targeted public money is aimed at shortages that already exist in a labour market. It is not aimed at the gap between what your people were trained for and what their job turned into over the last eighteen months, which is a different problem with no grant attached to it and is documented in [our piece on learning debt](/blog/learning-debt/).
+One more thing worth checking while you are in the numbers. Sector-targeted public money is aimed at shortages that already exist in a labour market. It is not aimed at the gap between what your people were trained for and what their job turned into over the last eighteen months, which is a different problem with no grant attached to it and is documented in [our piece on learning debt](/wiki/learning-debt/).

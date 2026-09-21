@@ -1,10 +1,9 @@
 ---
 title: Announcing AI ambition costs more trust than saying nothing
-description: An analysis of 500,000+ Glassdoor reviews found high-talk, low-execution employers drew 27.5% negative reviews against 7.2% for quiet adopters.
-ogTitle: Announcing AI ambition costs more trust than silence
-ogDescription: Glassdoor review data puts a number on the AI say-do gap, and it is not flattering to the loudest employers.
-date: 2026-09-10
-category: hrtech
+summary: An analysis of 500,000+ Glassdoor reviews found high-talk, low-execution employers drew 27.5% negative reviews against 7.2% for quiet adopters.
+stage: evergreen
+created: 2026-09-10
+tags: work, hiring
 sources:
   - reported | HR Dive (Lara Ewen) | 2026-09-08 | Employers that only 'talk the talk' on AI may jeopardize worker trust | https://www.hrdive.com/news/employers-that-only-talk-the-talk-on-ai-may-jeopardize-worker-trust/829804/
 ---
@@ -37,7 +36,7 @@ That is a sequencing rule, and it inverts the usual order. Most AI communication
 
 The test for any draft announcement, all-hands slide or earnings line: can a named employee open something today that does what this sentence claims? If not, the sentence is a forecast. Forecasts are fine in a strategy document that employees do not read as a promise about next month, and they are expensive in an all-hands.
 
-This also disciplines the upward communication. An AI programme reporting adoption percentages to a board, with nothing an employee can point at, is generating the visionary profile deliberately. We wrote about [the rework hiding inside AI productivity claims](/blog/half-of-ai-time-is-rework/) — the same gap between the claim and the experience shows up there, in the numbers rather than in the announcements.
+This also disciplines the upward communication. An AI programme reporting adoption percentages to a board, with nothing an employee can point at, is generating the visionary profile deliberately. We wrote about [the rework hiding inside AI productivity claims](/wiki/half-of-ai-time-is-rework/) — the same gap between the claim and the experience shows up there, in the numbers rather than in the announcements.
 
 ## What HR and internal communications should change
 

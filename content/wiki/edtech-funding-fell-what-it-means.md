@@ -1,10 +1,9 @@
 ---
 title: Edtech funding fell 26% and deal count held. That changes your renewals.
-description: HolonIQ reported $1bn of edtech venture funding in H1 2026, down 26%, with deal volume flat. Smaller cheques mean thinner runway at your learning vendors.
-ogTitle: Edtech funding fell 26%, deal count held
-ogDescription: Flat deal volume on a smaller pot means thinner runway at your learning vendors. What to ask before you renew.
-date: 2026-07-16
-category: edtech
+summary: HolonIQ reported $1bn of edtech venture funding in H1 2026, down 26%, with deal volume flat. Smaller cheques mean thinner runway at your learning vendors.
+stage: evergreen
+created: 2026-07-16
+tags: learning, training
 sources:
   - primary | HolonIQ | 2026-07-14 | $1B in EdTech Venture Capital for 1H. Funding falls short of last year's midpoint. Asia & MENA buck the trend. | https://www.holoniq.com/notes/1b-in-edtech-venture-capital-to-date-funding-falls-short-of-last-years-midpoint-asia-mena-buck-the-trend
 ---
@@ -43,6 +42,6 @@ If deal count stays flat while totals fall, the market is producing the same num
 
 Plan for it rather than against it. Keep your learning record extractable, keep contract terms shorter than your confidence in the vendor, and treat any single-vendor dependency on assessment or credential data as a risk that needs an owner. If you are running a pilot with a venture-backed platform this half, decide now what happens to that data if the company is bought before the pilot ends. The answer takes an afternoon to negotiate before you sign and is unavailable afterwards.
 
-The falling total does not mean fewer vendors will contact you. [Reach Capital's $265m fund](/blog/reach-capital-fund-what-it-signals/) is aimed at pre-seed and Series A companies in exactly this category, which means the pipeline of very small vendors pitching learning products is being refilled while the money per company falls.
+The falling total does not mean fewer vendors will contact you. [Reach Capital's $265m fund](/wiki/reach-capital-fund-what-it-signals/) is aimed at pre-seed and Series A companies in exactly this category, which means the pipeline of very small vendors pitching learning products is being refilled while the money per company falls.
 
 The related question is what kind of vendor will be pitching you as this plays out, which is a different story with a different set of numbers behind it.

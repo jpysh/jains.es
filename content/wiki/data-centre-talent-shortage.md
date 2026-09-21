@@ -1,10 +1,9 @@
 ---
 title: You are now bidding against hyperscalers for electricians
-description: Kelly reports 650,000 expected data centre roles and a $178,000 midpoint for operators. Employers outside tech are competing for that talent without knowing it.
-ogTitle: You are now bidding against hyperscalers for electricians
-ogDescription: Data centre pay bands have moved. Facilities and electrical comp benchmarks have not.
-date: 2026-09-05
-category: hrtech
+summary: Kelly reports 650,000 expected data centre roles and a $178,000 midpoint for operators. Employers outside tech are competing for that talent without knowing it.
+stage: evergreen
+created: 2026-09-05
+tags: work, hiring
 sources:
   - reported | HR Dive (Laurel Kalser) | 2026-09-03 | Data center employers face acute shortage of skilled workers, report finds | https://www.hrdive.com/news/data-center-employers-face-acute-shortage-of-skilled-workers/829537/
 ---
@@ -49,6 +48,6 @@ For an employer outside the data centre sector, the same logic runs in reverse a
 
 The obvious response to a 46-point regional spread is to move the work to a cheaper region. For genuinely remote work that can be right. For the roles under discussion here it is not available, because the equipment is where the building is.
 
-The other supply-side variable is who is allowed to stay. [DHS's proposal to end the 60-day H-1B grace period](/blog/h1b-grace-period/) would change the risk an international candidate carries in accepting a role, in a market where those candidates are already being competed over.
+The other supply-side variable is who is allowed to stay. [DHS's proposal to end the 60-day H-1B grace period](/wiki/h1b-grace-period/) would change the risk an international candidate carries in accepting a role, in a market where those candidates are already being competed over.
 
 The second tempting move is to wait for the shortage to correct. Kelly's numbers describe demand running through 2028 against a pool that takes years to expand, since you cannot train a high-voltage electrician in a quarter. Waiting means paying the 2028 rate for someone you could have retained at this year's rate with a conversation.

@@ -1,10 +1,9 @@
 ---
 title: 'Nine products, one year, one team: the stack'
-description: Nine products shipped in a year by one team. The six decisions made once and never revisited, and the open-source one you can run yourself.
-ogTitle: 'Nine products, one year, one team: the stack'
-ogDescription: The six decisions behind nine shipped products, and the open-source one you can run yourself.
-date: 2026-09-11
-category: retail-tech
+summary: Nine products shipped in a year by one team. The six decisions made once and never revisited, and the open-source one you can run yourself.
+stage: evergreen
+created: 2026-09-11
+tags: retail, commerce
 sources:
   - primary | Jains | 2026-09-11 | AyurCalm Scheduler — MIT-licensed appointment scheduler | https://github.com/jpysh/ayurcalm-scheduler
 ---
@@ -41,7 +40,7 @@ AI accelerates the work far more than it appears in the work. Across these nine 
 
 What it did not do was make decisions that require knowing a customer. Which product leads the homepage, what objection to answer first, whether a price reads as premium or suspicious in a given market — every one of those came from a person, and every time we let the model have an opinion on them the result was fluent and wrong.
 
-AI appears *inside* the product only where it survives a simple test: does it do something the user could not do faster themselves? In the job board it extracts decision fields from CVs — genuinely faster. The screening score we built in the same project failed that test and was deleted. We wrote about that in [what an AI pilot actually costs](/blog/what-an-ai-pilot-costs/).
+AI appears *inside* the product only where it survives a simple test: does it do something the user could not do faster themselves? In the job board it extracts decision fields from CVs — genuinely faster. The screening score we built in the same project failed that test and was deleted. We wrote about that in [what an AI pilot actually costs](/wiki/what-an-ai-pilot-costs/).
 
 ## Rule five: no dependency we can't replace in an afternoon
 

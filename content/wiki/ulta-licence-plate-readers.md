@@ -1,10 +1,9 @@
 ---
 title: Ulta's plate readers cost more in brand damage than they could have saved
-description: Ulta confirmed Flock licence plate readers at under 1% of its stores. The backlash landed on a footprint far too small to be paying for itself.
-ogTitle: Ulta's plate readers cost more in brand damage than they could save
-ogDescription: A sub-1% surveillance pilot is not contained. Get the customer-comms position signed off first.
-date: 2026-09-09
-category: retail-tech
+summary: Ulta confirmed Flock licence plate readers at under 1% of its stores. The backlash landed on a footprint far too small to be paying for itself.
+stage: evergreen
+created: 2026-09-09
+tags: retail, commerce
 sources:
   - reported | Retail Dive (Dani James) | 2026-09-04 | Ulta's use of Flock technology causes upset online | https://www.retaildive.com/news/ulta-flock-technology-backlash/829623/
 ---
@@ -39,6 +38,6 @@ Before hardware is installed anywhere:
 
 Organised retail crime is a genuine cost and beauty is one of the categories hit hardest. Nobody in loss prevention is choosing surveillance for entertainment. The problem with the Ulta sequence is that it spent the brand cost without having established the operational benefit, because a sub-1% deployment cannot establish one yet.
 
-The version that works, if any version does, requires both halves quantified before launch: the shrink reduction you expect from the specific stores, and the customer-communications position you are prepared to defend publicly. That second half is the same discipline the [FTC's personalized pricing proposal](/blog/ftc-personalized-pricing/) is pushing onto pricing teams: be able to say plainly what you do with customer data before someone else characterises it for you. Loss prevention leaders who bring only the first number to the committee are the reason the second one gets decided by an activist campaign.
+The version that works, if any version does, requires both halves quantified before launch: the shrink reduction you expect from the specific stores, and the customer-communications position you are prepared to defend publicly. That second half is the same discipline the [FTC's personalized pricing proposal](/wiki/ftc-personalized-pricing/) is pushing onto pricing teams: be able to say plainly what you do with customer data before someone else characterises it for you. Loss prevention leaders who bring only the first number to the committee are the reason the second one gets decided by an activist campaign.
 
 For anyone reviewing a surveillance proposal in the next quarter, the practical filter is this. Ask whether you would launch it with a press release. If the plan depends on nobody noticing, the plan has already failed, because a retailer with 1,500 stores does not get to deploy anything unnoticed.

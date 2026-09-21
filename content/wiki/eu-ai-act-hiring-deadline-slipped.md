@@ -1,10 +1,9 @@
 ---
 title: The EU AI Act hiring deadline moved to December 2027. Keep building anyway.
-description: Annex III high-risk employment obligations were due on 2 August 2026. The Commission timeline now shows 2 December 2027 — a 16-month delay, not an exemption.
-ogTitle: The EU AI Act hiring deadline moved to 2027
-ogDescription: High-risk employment rules now apply from 2 December 2027. That is a delay, not a reprieve.
-date: 2026-08-05
-category: hrtech
+summary: Annex III high-risk employment obligations were due on 2 August 2026. The Commission timeline now shows 2 December 2027 — a 16-month delay, not an exemption.
+stage: evergreen
+created: 2026-08-05
+tags: work, hiring
 sources:
   - primary | European Parliament | 2026-03-18 | MEPs support postponement of certain rules on artificial intelligence | https://www.europarl.europa.eu/news/en/press-room/20260316IPR38219/meps-support-postponement-of-certain-rules-on-artificial-intelligence
 ---
@@ -27,7 +26,7 @@ That is the failure mode here, and it is expensive in a specific way. The eviden
 
 ## The same evidence is already being demanded elsewhere
 
-The strongest argument for continuing is not European. HR Dive reported on 23 June 2026 that Judge Rita Lin declined to dismiss FEHA claims against Workday's AI screening tools, allowing them to proceed even for non-California plaintiffs on the basis that the tools were designed, developed, maintained and controlled in California. We wrote about [what that ruling means for vendor selection](/blog/workday-ai-hiring-ruling-california/) separately.
+The strongest argument for continuing is not European. HR Dive reported on 23 June 2026 that Judge Rita Lin declined to dismiss FEHA claims against Workday's AI screening tools, allowing them to proceed even for non-California plaintiffs on the basis that the tools were designed, developed, maintained and controlled in California. We wrote about [what that ruling means for vendor selection](/wiki/workday-ai-hiring-ruling-california/) separately.
 
 The point for this post: litigation of that kind runs on documentation. What did the tool do to this applicant, on what inputs, reviewed by whom, against what tested alternative. That is close to the same file the AI Act's Annex III obligations describe. Building it once serves both, and one of the two is live now rather than in December 2027.
 

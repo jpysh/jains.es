@@ -1,10 +1,9 @@
 ---
 title: Your AI training is one level below where the performance difference is
-description: The Conference Board found 55% of workers use AI regularly but only one in three had employer training, concentrated on literacy and basic prompting. Directing agents is where the gap shows.
-ogTitle: AI training stops one level too low
-ogDescription: The Conference Board found workers who direct AI agents outperform those who only prompt. Most curricula teach prompting.
-date: 2026-08-18
-category: edtech
+summary: The Conference Board found 55% of workers use AI regularly but only one in three had employer training, concentrated on literacy and basic prompting. Directing agents is where the gap shows.
+stage: evergreen
+created: 2026-08-18
+tags: learning, training
 sources:
   - reported | HR Dive (Kathryn Moody) | 2026-07-31 | Employers may not be training workers well enough for widespread AI disruption | https://www.hrdive.com/news/employers-may-not-be-training-workers-well-enough-for-widespread-ai-disrupt/826672/
 ---
@@ -29,7 +28,7 @@ That is why the performance gap exists, and it is also why a prompting course do
 
 **Scoping and permissions.** What the agent is allowed to read, write, send and delete. Most organisations treat this as an IT configuration question. It is a judgement your staff make several times a day, and they are making it now without having been taught anything about it.
 
-**Review at handover.** When an agent produces something a person signs their name to, the signer needs a habit for establishing they can account for it. This connects directly to a separate finding that 29% of workers have delivered work they could not explain, covered in [our piece on learning debt](/blog/learning-debt/). The same training investment addresses both.
+**Review at handover.** When an agent produces something a person signs their name to, the signer needs a habit for establishing they can account for it. This connects directly to a separate finding that 29% of workers have delivered work they could not explain, covered in [our piece on learning debt](/wiki/learning-debt/). The same training investment addresses both.
 
 ## The part that decides whether any of it works
 

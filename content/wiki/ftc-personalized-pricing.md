@@ -1,10 +1,9 @@
 ---
 title: The FTC's personalized pricing statement is a disclosure rule in disguise
-description: The FTC says it cannot ban individualised pricing, but hiding how personal data sets a price may breach Section 5. What retail pricing teams should audit now.
-ogTitle: The FTC's personalized pricing statement is really about disclosure
-ogDescription: The exposure is not the pricing. It is failing to tell customers how their data sets it.
-date: 2026-09-03
-category: retail-tech
+summary: The FTC says it cannot ban individualised pricing, but hiding how personal data sets a price may breach Section 5. What retail pricing teams should audit now.
+stage: evergreen
+created: 2026-09-03
+tags: retail, commerce
 sources:
   - primary | Federal Trade Commission | 2026-08-19 | FTC Seeks Comment on Enforcement Policy Statement Regarding Personalized Pricing | https://www.ftc.gov/news-events/news/press-releases/2026/08/ftc-seeks-comment-enforcement-policy-statement-regarding-personalized-pricing
   - primary | Federal Trade Commission | 2026-09-03 | FTC Extends Public Comment on Proposed Policy Statement Regarding Personalized Pricing | https://www.ftc.gov/news-events/news/press-releases/2026/09/ftc-extends-public-comment-proposed-policy-statement-regarding-personalized-pricing
@@ -49,4 +48,4 @@ That work is unglamorous and it has a useful side effect. Teams that complete th
 
 The thing to avoid is treating this as a legal review of the pricing engine. The engine is the part you already understand. The exposure is in the offers, the vendors, the retention flows and the app, and those have four different owners who have never been in the same room about it.
 
-The cost of getting the disclosure question wrong is not only regulatory. [Ulta's licence plate reader deployment](/blog/ulta-licence-plate-readers/) shows how fast a data practice nobody had explained becomes a brand problem, at a scale of deployment far too small to have earned anything back.
+The cost of getting the disclosure question wrong is not only regulatory. [Ulta's licence plate reader deployment](/wiki/ulta-licence-plate-readers/) shows how fast a data practice nobody had explained becomes a brand problem, at a scale of deployment far too small to have earned anything back.

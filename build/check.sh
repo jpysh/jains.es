@@ -4,7 +4,7 @@
 set -uo pipefail
 cd "$(dirname "$0")/.."
 TMP_W=content/wiki/.check.md
-TMP_L=content/lessons/.check.md
+TMP_L=content/days/.check.md
 fails=0
 
 try() { # name, file, content, expected-substring
@@ -16,32 +16,31 @@ try() { # name, file, content, expected-substring
   else echo "ok: $1"; fi
 }
 
-mkdir -p content/wiki content/lessons
+mkdir -p content/wiki content/days
 
 try "wiki: unknown stage" "$TMP_W" \
 '---
 title: X
-type: concept
 stage: sprouting
 created: 2026-01-01
 summary: s
+tags: meta
 ---
 body' "unknown stage"
 
 try "wiki: evergreen with no sources" "$TMP_W" \
 '---
 title: X
-type: concept
 stage: evergreen
 created: 2026-01-01
 summary: s
+tags: meta
 ---
 body' "no sources"
 
 try "wiki: a YAML list where a comma string belongs" "$TMP_W" \
 '---
 title: X
-type: concept
 stage: seedling
 created: 2026-01-01
 summary: s
@@ -51,7 +50,16 @@ tags:
 ---
 body' "cannot parse front matter line"
 
-try "lesson: day is not a number" "$TMP_L" \
+try "wiki: no tags, so no cluster to file it under" "$TMP_W" \
+'---
+title: X
+stage: seedling
+created: 2026-01-01
+summary: s
+---
+body' "no tags"
+
+try "edition: day is not a number" "$TMP_L" \
 '---
 title: X
 day: one

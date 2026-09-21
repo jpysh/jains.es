@@ -1,10 +1,9 @@
 ---
 title: Home Depot pointed its AI assistant at customers, and at its own inventory data
-description: Magic Apron now covers 2,000+ US stores with aisle-level location and real-time stock. A customer-facing assistant publishes your inventory accuracy to everyone.
-ogTitle: Home Depot's AI assistant now exposes its inventory accuracy
-ogDescription: Aisle-level answers in 2,000+ stores. The prerequisite was data hygiene, not a model.
-date: 2026-09-02
-category: retail-tech
+summary: Magic Apron now covers 2,000+ US stores with aisle-level location and real-time stock. A customer-facing assistant publishes your inventory accuracy to everyone.
+stage: evergreen
+created: 2026-09-02
+tags: retail, commerce
 sources:
   - reported | Retail Dive (Tatiana Walk-Morris) | 2026-09-01 | The Home Depot extends AI assistance in local stores | https://www.retaildive.com/news/the-home-depot-extends-ai-assistance-stores/829240/
 ---
@@ -37,7 +36,7 @@ This is the part that tends to be underbudgeted. The model is a procurement deci
 
 Point the assistant at your staff first, and instrument it. Not because associate tools are more valuable, but because they generate the accuracy data you need in order to know whether a customer-facing version is safe to ship. Six weeks of associate lookups will tell you, per store, how often the record and the shelf disagree. That number decides whether you are building a product or publishing a defect.
 
-Then pick the narrowest customer-facing question you can answer reliably. "Is this in stock at this store" is harder than it sounds and more valuable than a general chat interface. If your accuracy will not support it, fixing the data is the project, and the assistant is what you do afterwards. That is the same conclusion [Dollar General reached from the supply side](/blog/dollar-general-ai-forecasting/), where the consolidation of ordering and lead-time data was the work and the platform sat inside it.
+Then pick the narrowest customer-facing question you can answer reliably. "Is this in stock at this store" is harder than it sounds and more valuable than a general chat interface. If your accuracy will not support it, fixing the data is the project, and the assistant is what you do afterwards. That is the same conclusion [Dollar General reached from the supply side](/wiki/dollar-general-ai-forecasting/), where the consolidation of ordering and lead-time data was the work and the platform sat inside it.
 
 Home Depot's advantage here is a category where customers already arrive with a specific part in mind and a store format big enough that finding it is a genuine problem worth solving. Retailers with smaller footprints should be honest that aisle-level navigation solves less, and that the inventory accuracy work is the same size either way.
 

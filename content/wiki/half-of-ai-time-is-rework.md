@@ -1,10 +1,9 @@
 ---
 title: Net off the rework before you present the AI savings
-description: BambooHR found workers spend about 1.5 hours a day on AI, nearly half of it fixing errors and refining prompts — roughly 20 days a year of rework.
-ogTitle: Net off the rework before you present the AI savings
-ogDescription: BambooHR puts nearly half of employee AI time into troubleshooting. Most business cases count the gross.
-date: 2026-09-04
-category: hrtech
+summary: BambooHR found workers spend about 1.5 hours a day on AI, nearly half of it fixing errors and refining prompts — roughly 20 days a year of rework.
+stage: evergreen
+created: 2026-09-04
+tags: work, hiring
 sources:
   - reported | HR Dive (Ryan Golden) | 2026-09-02 | Almost half the time spent on AI is on fixing its output, BambooHR says | https://www.hrdive.com/news/almost-half-the-time-workers-spend-on-ai-is-spent-fixing-its-output/829404/
 ---
@@ -25,7 +24,7 @@ Twenty days a year of troubleshooting and prompt refinement is not an inherent p
 
 Where that time goes is predictable. People re-prompt because the first output missed context the model was never given. They check outputs because they have no way to know which ones are reliable. They rewrite because the format was wrong. Every one of those is a design problem with an owner, and none of them is solved by more enthusiasm or another training session on prompting.
 
-The cheapest fix is narrowing the job. A tool pointed at one task, with the context already loaded and the output shaped for what happens next, does not need to be re-prompted. We have written about [what an AI pilot actually costs](/blog/what-an-ai-pilot-costs/), including the pattern that made the biggest difference in our own hiring work: we stopped asking the model to produce a judgement and had it extract five specific fields instead. Extraction is checkable at a glance. A score is not, which is why a score generates argument and then rework.
+The cheapest fix is narrowing the job. A tool pointed at one task, with the context already loaded and the output shaped for what happens next, does not need to be re-prompted. We have written about [what an AI pilot actually costs](/wiki/what-an-ai-pilot-costs/), including the pattern that made the biggest difference in our own hiring work: we stopped asking the model to produce a judgement and had it extract five specific fields instead. Extraction is checkable at a glance. A score is not, which is why a score generates argument and then rework.
 
 ## The knowledge-transfer finding is the sharper one
 
