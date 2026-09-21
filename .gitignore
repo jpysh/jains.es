@@ -12,6 +12,3 @@ public/sitemap.xml
 public/feed.xml
 
 content/research-candidates.md
-
-# newsletter drafts stay local; the machinery that writes them is public
-content/newsletters/
