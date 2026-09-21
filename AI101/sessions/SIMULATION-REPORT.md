@@ -111,3 +111,146 @@ nothing about what the run intended. Its findings, verbatim:
 The auditor independently found the invented 2022, which the run's own
 measurement had also caught, and five defects the run had missed. The
 auditor is the most valuable step in the pipeline by a wide margin.
+
+---
+
+## 4. WHAT CHANGED, AND THE EVIDENCE
+
+Five changes, the cap. Every finding was sorted first.
+
+### Change 1 — prompt. Section 3 now carries its own sourcing requirement
+
+**Evidence.** `content/days/2026-09-21.md`, the whole of §3 The intersection,
+contains zero links. The worst line in it:
+
+> It is paying a premium for a corpus decision somebody else made in 2022.
+
+The auditor, with no knowledge of what was intended:
+
+> No source anywhere in the edition dates `cl100k_base` to 2022. The paper
+> does not date it. This is the WRITING.md case of a number with no
+> traceable source.
+
+**Why this is a prompt problem, not a writing lapse.** The rule existed. It
+was in `AI101/prompts/newsletter.md` under "Sourcing bar by section: 3 full
+tiers" — fifty lines below §3's own description, in a table read once at the
+top and not again while §3 was being written. A rule that lives away from the
+work it governs is a rule that gets read past.
+
+**The change.** `AI101/prompts/newsletter.md`, inside §3's own description:
+
+> EVERY FIGURE IN THIS SECTION CARRIES ITS OWN DATED LINK, even one already
+> linked in section 2. This section restates figures in a reader's own terms,
+> and a restatement is where an unsourced number gets invented. If a detail
+> makes the paragraph concrete and no source read today carries it, cut the
+> detail. Do not supply a plausible year, version or name to fill the gap.
+
+Nothing added to `LEARNED.md`, per the rule: a prompt problem is fixed at
+source.
+
+### Change 2 — mechanism. `build/check.sh` now refuses a dead internal wiki link
+
+**Evidence.** Auditor finding 6:
+
+> `content/wiki/tokenisation-and-the-cost-of-your-language.md:65` — "See
+> [what a merge is](/wiki/what-a-merge-is/)". No `content/wiki/what-a-merge-is.md`
+> exists. This is a body link, so unlike `prereqs`/`related` the build will
+> not drop it; it ships as a 404.
+
+**Why mechanism and not prompt.** No amount of instruction reliably stops an
+agent writing a forward link to tomorrow's page. It is exactly the class the
+workflow reserves for a script: "Something a script could check → a `lint.js`
+rule".
+
+**The change.** A rule in `build/check.sh` that scans every `.md` under
+`content/` for `(/wiki/<slug>/)` and fails if no `content/wiki/<slug>.md`
+exists. It fired immediately on the real defect:
+
+```
+FAIL: body links to wiki pages that do not exist:
+  /wiki/what-a-merge-is/
+1 failing
+```
+
+The content was fixed, never the check: the premature link was replaced with
+a plain sentence. `npm run check` now prints `ok: every /wiki/<slug>/ body
+link resolves to a page` and exits 0.
+
+This is the only change in the run that cannot be forgotten.
+
+### Change 3 — prompt. Front matter lists only sources the edition cites, and nothing undatable
+
+**Evidence.** Two auditor findings, same root:
+
+> **4.** `content/days/2026-09-21.md:12` lists the Philippines masterplan as
+> a source. The Philippines appears nowhere in the edition body.
+
+> **1.** `primary | OpenAI | 2022-12-01 | tiktoken | https://github.com/openai/tiktoken`
+> I opened the repo. It shows no release date [...] The `2022-12-01` is
+> asserted, not readable from the URL.
+
+**The change.** `AI101/prompts/newsletter.md`, a new block directly above the
+sourcing table:
+
+> Front matter: `sources:` lists only what this edition actually cites. An
+> item researched in the session but dropped from the edition has its source
+> line dropped too. [...] A source that cannot be dated from its own URL does
+> not go in front matter at all. Cite it inline in the prose, where no date
+> is claimed. Never substitute the date you accessed it, and never infer one.
+
+The second half restates a rule already in `WRITING.md`. It was restated
+because the prompt is what gets read at the moment of writing, and `WRITING.md`
+is not in the prompt's read list.
+
+### Change 4 — prompt. The word count is a floor as well as a ceiling
+
+**Evidence.** Day 1's edition is **884 words**. The lock says 900–1,100. The
+prompt's own framing gave permission to miss it:
+
+> Eight sections, in this order. Word counts are ceilings, not targets.
+
+Read against a lock phrased as "900–1,100 words. Hard ceiling", the prompt
+and the lock contradict each other about whether 900 is a floor.
+
+**The change.** `AI101/prompts/newsletter.md`:
+
+> The per-section word counts are ceilings, not targets. The EDITION total is
+> a band with two sides: 900 to 1,100 words. Under 900 is a miss, not a
+> virtue — it means a section was thin, and the fix is a better section,
+> never padding an existing one. Report the count against both bounds and say
+> which section is short.
+
+### Change 5 — prompt. The discovery window splits in two
+
+**Evidence.** From the day 1 session file, written before the audit:
+
+> **Window breach, recorded rather than hidden.** The brief says "last 24
+> hours". Four of these six are older: a preprint from July, a foundation
+> release from 14 September, a masterplan from 11 September, a regulator's
+> notice from 9 September. None was in the sweep, and none was reachable by
+> a feed.
+
+Those four include the best item either pass produced all day. A rule that
+would have excluded the lead story is a broken rule.
+
+**The change.** `AI101/prompts/daily-research.md` §8b now reads:
+
+> WINDOW — 24 hours for anything a feed could plausibly carry. FOURTEEN DAYS
+> for a primary a feed structurally cannot reach: a preprint, a regulator's
+> consultation notice, a central bank release, a company filing. [...] Print
+> the item's REAL publication date in the table, never the date you found it,
+> and never imply freshness the date does not support. A consultation window
+> that is still open is today's news on the day a reader can still act on it.
+
+### Sorted as human problems, changed nothing
+
+- **The register compression at `content/days/2026-09-21.md:31`** — "A newer
+  tokeniser cuts that cost by 73%", where the paper says multilingual
+  tokenisers as a class. The auditor called it "a headline compression", not a
+  citation failure. Whether a headline may compress is an editorial judgement
+  with no mechanical test. Human problem. Nothing changed.
+- **The 4x figure laundered on the wiki** (auditor finding 3) — the edition
+  attributes it to the curriculum; the wiki says "commonly repeated guidance".
+  The fix is to cite the curriculum or cut it, and which of the two is a
+  judgement about how much a seedling page may assert. Human problem.
+  Nothing changed.

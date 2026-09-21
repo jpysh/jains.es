@@ -62,8 +62,8 @@ those merges never happened, so the text stays fragmented into single-byte
 tokens. Merge failure correlates with the tax at Pearson r = 0.89.
 
 That is a strong correlation, and it matters because it names a cause rather
-than describing a symptom. See [what a merge is](/wiki/what-a-merge-is/) for
-how the merges are chosen in the first place.
+than describing a symptom. How the merges are chosen in the first place is a
+page this wiki does not have yet.
 
 ## It is not your script
 
