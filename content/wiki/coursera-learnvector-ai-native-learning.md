@@ -1,10 +1,9 @@
 ---
 title: Coursera just bet $100m that its content library is not the asset
-description: Coursera invested $100m in LearnVector, Andrew Ng's new AI-native learning company. What that says about the content licences on your desk.
-ogTitle: Coursera bet $100m against its own content library
-ogDescription: The tutoring layer, not the catalogue, is where the largest accredited-content business is putting its money.
-date: 2026-08-11
-category: edtech
+summary: Coursera invested $100m in LearnVector, Andrew Ng's new AI-native learning company. What that says about the content licences on your desk.
+stage: evergreen
+created: 2026-08-11
+tags: learning, training
 sources:
   - primary | Coursera (Business Wire) | 2026-07-28 | Coursera Makes $100 Million Strategic Investment in LearnVector, a New AI-Native Learning Company Founded by Andrew Ng | https://www.businesswire.com/news/home/20260728999835/en/Coursera-Makes-$100-Million-Strategic-Investment-in-LearnVector-a-New-AI-Native-Learning-Company-Founded-by-Andrew-Ng
   - primary | Coursera Blog | 2026-07-28 | Coursera invests in LearnVector to build the future of AI-native learning | https://blog.coursera.org/coursera-invests-in-learnvector-to-build-the-future-of-ai-native-learning/

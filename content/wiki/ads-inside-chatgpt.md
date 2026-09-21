@@ -1,10 +1,9 @@
 ---
 title: Conversational AI just got a rate card
-description: Amazon's DSP can now place ads inside ChatGPT, sold on CPC and CPM. The first priced, measurable inventory in an AI assistant, and a reason to test small now.
-ogTitle: Conversational AI just got a rate card
-ogDescription: Amazon is selling ad placements inside ChatGPT on CPC and CPM. Test small, learn the attribution.
-date: 2026-09-11
-category: retail-tech
+summary: Amazon's DSP can now place ads inside ChatGPT, sold on CPC and CPM. The first priced, measurable inventory in an AI assistant, and a reason to test small now.
+stage: evergreen
+created: 2026-09-11
+tags: retail, commerce
 sources:
   - reported | Retail Dive (Peter Adams) | 2026-09-11 | Amazon pilots ad services in ChatGPT: What marketers need to know | https://www.retaildive.com/news/amazon-pilots-ad-services-chatgpt-what-marketers-need-to-know/830068/
 ---

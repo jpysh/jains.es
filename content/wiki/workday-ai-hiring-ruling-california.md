@@ -1,10 +1,9 @@
 ---
 title: The home state of your screening vendor may be your compliance jurisdiction
-description: A California judge let FEHA claims against Workday's AI screening tools proceed for non-California plaintiffs, because the tools were built in California.
-ogTitle: When your vendor's state law becomes yours
-ogDescription: A California ruling ties AI screening liability to where the tool was built, not where you hire.
-date: 2026-07-07
-category: hrtech
+summary: A California judge let FEHA claims against Workday's AI screening tools proceed for non-California plaintiffs, because the tools were built in California.
+stage: evergreen
+created: 2026-07-07
+tags: work, hiring
 sources:
   - reported | HR Dive (Emilie Shumway) | 2026-06-23 | Workday can't shake California AI discrimination claims | https://www.hrdive.com/news/workday-california-AI-bias-lawsuit-feha/823555/
 ---

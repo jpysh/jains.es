@@ -1,10 +1,9 @@
 ---
 title: Amazon put a number on Alexa+ as a loyalty mechanic
-description: Amazon says shoppers who tried Alexa+ joined Prime at a nearly 25% higher rate. That makes an AI assistant a membership lever, not a CX experiment.
-ogTitle: Amazon put a number on Alexa+ as a loyalty mechanic
-ogDescription: A nearly 25% higher Prime signup rate among Alexa+ triallists. What that means for your programme.
-date: 2026-09-08
-category: retail-tech
+summary: Amazon says shoppers who tried Alexa+ joined Prime at a nearly 25% higher rate. That makes an AI assistant a membership lever, not a CX experiment.
+stage: evergreen
+created: 2026-09-08
+tags: retail, commerce
 sources:
   - reported | Retail Dive (Bryan Wassel) | 2026-09-04 | Amazon Prime members now get free Alexa+ access | https://www.retaildive.com/news/amazon-adds-perks-prime-free-alexa-access/829610/
 ---

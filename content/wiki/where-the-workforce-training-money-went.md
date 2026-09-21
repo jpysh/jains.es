@@ -1,10 +1,9 @@
 ---
 title: Public training money is now sector-targeted. Find out if yours is on the list.
-description: The US Department of Labor awarded nearly $162m through five cooperative agreements aimed at named sectors, from AI to shipbuilding. Employers can offset upskilling costs through the recipients.
-ogTitle: Public training money is now sector-targeted
-ogDescription: Nearly $162m from DOL went to named sectors through named intermediaries. Check whether yours is one of them.
-date: 2026-07-23
-category: edtech
+summary: The US Department of Labor awarded nearly $162m through five cooperative agreements aimed at named sectors, from AI to shipbuilding. Employers can offset upskilling costs through the recipients.
+stage: evergreen
+created: 2026-07-23
+tags: learning, training
 sources:
   - reported | HR Dive (Lara Ewen) | 2026-07-14 | Latest workforce development funds target specific industries — like nuclear energy and AI | https://www.hrdive.com/news/latest-workforce-development-funds-target-specific-industries/825159/
 ---

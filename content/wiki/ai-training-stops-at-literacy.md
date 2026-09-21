@@ -1,10 +1,9 @@
 ---
 title: Your AI training is one level below where the performance difference is
-description: The Conference Board found 55% of workers use AI regularly but only one in three had employer training, concentrated on literacy and basic prompting. Directing agents is where the gap shows.
-ogTitle: AI training stops one level too low
-ogDescription: The Conference Board found workers who direct AI agents outperform those who only prompt. Most curricula teach prompting.
-date: 2026-08-18
-category: edtech
+summary: The Conference Board found 55% of workers use AI regularly but only one in three had employer training, concentrated on literacy and basic prompting. Directing agents is where the gap shows.
+stage: evergreen
+created: 2026-08-18
+tags: learning, training
 sources:
   - reported | HR Dive (Kathryn Moody) | 2026-07-31 | Employers may not be training workers well enough for widespread AI disruption | https://www.hrdive.com/news/employers-may-not-be-training-workers-well-enough-for-widespread-ai-disrupt/826672/
 ---

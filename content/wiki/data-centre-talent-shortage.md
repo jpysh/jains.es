@@ -1,10 +1,9 @@
 ---
 title: You are now bidding against hyperscalers for electricians
-description: Kelly reports 650,000 expected data centre roles and a $178,000 midpoint for operators. Employers outside tech are competing for that talent without knowing it.
-ogTitle: You are now bidding against hyperscalers for electricians
-ogDescription: Data centre pay bands have moved. Facilities and electrical comp benchmarks have not.
-date: 2026-09-05
-category: hrtech
+summary: Kelly reports 650,000 expected data centre roles and a $178,000 midpoint for operators. Employers outside tech are competing for that talent without knowing it.
+stage: evergreen
+created: 2026-09-05
+tags: work, hiring
 sources:
   - reported | HR Dive (Laurel Kalser) | 2026-09-03 | Data center employers face acute shortage of skilled workers, report finds | https://www.hrdive.com/news/data-center-employers-face-acute-shortage-of-skilled-workers/829537/
 ---

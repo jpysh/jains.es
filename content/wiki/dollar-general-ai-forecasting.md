@@ -1,10 +1,9 @@
 ---
 title: Dollar General bought its forecasting engine instead of building it
-description: AI forecasting and replenishment across 21,000 stores and 34 DCs, from Relex rather than in-house. A useful benchmark for anyone costing a build.
-ogTitle: Dollar General bought its forecasting engine instead of building it
-ogDescription: 21,000 stores, 34 DCs, a vendor platform. What that says about your in-house forecasting plan.
-date: 2026-09-07
-category: retail-tech
+summary: AI forecasting and replenishment across 21,000 stores and 34 DCs, from Relex rather than in-house. A useful benchmark for anyone costing a build.
+stage: evergreen
+created: 2026-09-07
+tags: retail, commerce
 sources:
   - reported | Retail Dive (Kelly Stroh) | 2026-09-04 | Dollar General deploys AI across distribution centers, stores | https://www.retaildive.com/news/dollar-general-ai-distribution-centers-stores/829201/
 ---

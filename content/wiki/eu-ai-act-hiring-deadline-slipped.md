@@ -1,10 +1,9 @@
 ---
 title: The EU AI Act hiring deadline moved to December 2027. Keep building anyway.
-description: Annex III high-risk employment obligations were due on 2 August 2026. The Commission timeline now shows 2 December 2027 — a 16-month delay, not an exemption.
-ogTitle: The EU AI Act hiring deadline moved to 2027
-ogDescription: High-risk employment rules now apply from 2 December 2027. That is a delay, not a reprieve.
-date: 2026-08-05
-category: hrtech
+summary: Annex III high-risk employment obligations were due on 2 August 2026. The Commission timeline now shows 2 December 2027 — a 16-month delay, not an exemption.
+stage: evergreen
+created: 2026-08-05
+tags: work, hiring
 sources:
   - primary | European Parliament | 2026-03-18 | MEPs support postponement of certain rules on artificial intelligence | https://www.europarl.europa.eu/news/en/press-room/20260316IPR38219/meps-support-postponement-of-certain-rules-on-artificial-intelligence
 ---

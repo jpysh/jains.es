@@ -1,10 +1,9 @@
 ---
 title: A $265m fund closed in six months. Expect pre-seed vendors at your door.
-description: Reach Capital closed an oversubscribed $265m Fund V for AI in learning, work and health. Decide your policy on pre-Series-A learning vendors before one is pitched to you.
-ogTitle: A $265m fund means pre-seed vendors at your door
-ogDescription: Reach Capital's Fund V will back about 50 very early companies. Write your pilot policy before the pitch arrives.
-date: 2026-08-25
-category: edtech
+summary: Reach Capital closed an oversubscribed $265m Fund V for AI in learning, work and health. Decide your policy on pre-Series-A learning vendors before one is pitched to you.
+stage: evergreen
+created: 2026-08-25
+tags: learning, training
 sources:
   - reported | TechCrunch (Dominic-Madori Davis) | 2026-08-18 | Reach Capital raises $265M Fund V to back AI founders building to 'expand human potential' | https://techcrunch.com/2026/08/18/reach-capital-raises-265m-fund-v-to-back-ai-founders-building-to-expand-human-potential/
 ---

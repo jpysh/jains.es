@@ -1,10 +1,21 @@
-// Generates every page that isn't hand-written: the blog index, the three topic
-// pages, one page per post, sitemap.xml and feed.xml. Also rewrites the marked
-// block in index.html so the homepage list is never edited by hand.
+// Generates every page that isn't hand-written, plus sitemap.xml and feed.xml.
+// Also rewrites the marked block in index.html so the homepage list is never
+// edited by hand.
 //
-// Posts are Markdown with front matter in content/posts/. This script is the
-// only place that knows the URL shape, so a post's metadata lives in exactly
-// one file and nothing can drift out of sync.
+// Two content types, both Markdown with front matter, both rendered here:
+//
+//   content/days/<date>.md   -> /day/<n>/      the edition. Dated, a day old
+//   content/wiki/<slug>.md   -> /wiki/<slug>/  the topic. Accretes, outlives
+//
+// Plus /curriculum/, generated from AI101/CURRICULUM.md with the days already
+// published ticked off, so a reader can see what is coming without GitHub.
+//
+// The daily session is deliberately NOT a page. Nobody needs to know what was
+// studied on a Tuesday; its learning is folded into the topic page it belongs
+// to. Session files live in AI101/sessions/, committed but never rendered.
+//
+// This script is the only place that knows the URL shape, so a page's metadata
+// lives in exactly one file and nothing can drift out of sync.
 //
 // Run by predev and prebuild, so `npm run dev` and `npm run build` both see
 // current output. Writes are skipped when the content is unchanged, which keeps
@@ -18,22 +29,33 @@ const root = resolve(import.meta.dirname, '..');
 const ORIGIN = 'https://jains.es';
 const AUTHOR = 'Jains AI and Digital Transformation Agency';
 
-// Slugs are industry nouns because that is what readers search for; the display
-// name is the fuller description. Both are permanent once a topic page is live.
-export const CATEGORIES = {
-  'retail-tech': {
-    name: 'Retail and commerce tech',
-    blurb: 'Commerce technology, storefronts, payments and the AI actually reaching retail operations.',
-  },
-  hrtech: {
-    name: 'Work and talent tech',
-    blurb: 'Hiring, HR systems, skills and the technology reshaping how organisations staff themselves.',
-  },
-  edtech: {
-    name: 'Learning and training tech',
-    blurb: 'Corporate training, edtech platforms and how teams actually build capability.',
-  },
+// The wiki index groups by a page's FIRST tag. These clusters are ordered to
+// follow the curriculum's own arc, because that is the order a reader working
+// through the material wants. Anything with an unlisted first tag sorts after
+// these, alphabetically — a new tag appears on the index without a code change.
+const CLUSTERS = [
+  'tokenisation',
+  'training',
+  'attention',
+  'scaling',
+  'compression',
+  'inference',
+  'retail',
+  'work',
+  'learning',
+  'meta',
+];
+
+const REPO = 'https://github.com/jpysh/jains.es';
+
+// A page says out loud how finished it is. That is what makes publishing rough
+// work honest rather than sloppy, and it is what licenses shipping daily.
+const STAGES = {
+  seedling: 'Seedling — rough, and likely wrong in places',
+  budding: 'Budding — checked, still growing',
+  evergreen: 'Evergreen — audited against its sources',
 };
+
 
 const TIERS = {
   primary: 'Primary',
@@ -41,6 +63,16 @@ const TIERS = {
 };
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+// tags, prereqs and related are comma-separated strings, never YAML lists. The
+// parser below handles `key: value` and one list key; any other list hits the
+// kv regex and throws. Splitting a string at point of use is one line. Adding a
+// YAML dependency for this is not.
+const commaList = (v) => (v || '').split(',').map((x) => x.trim()).filter(Boolean);
+
+// 200 words a minute, rounded up, floor of 1. A number on the page lets a
+// reader decide before they start, which matters most on a phone.
+const readingTime = (body) => Math.max(1, Math.round(body.trim().split(/\s+/).length / 200));
 
 const longDate = (iso) =>
   new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', {
@@ -85,47 +117,76 @@ function parse(raw, file) {
 }
 
 // --- validation -------------------------------------------------------------
-// The build fails rather than shipping a post that silently falls out of its
-// topic page, loses its date, or carries an unattributed claim. This is the
-// whole reason a daily cadence can be trusted.
+// The build fails rather than shipping a page that loses its date or carries
+// an unattributed claim. This is the whole reason a daily cadence can be
+// trusted, and it is the strongest control on the site.
 
-function validate(posts) {
+// Sources are validated identically wherever they appear. Kept separate from
+// validateWiki() and validateDays() so both get the same source discipline
+// without sharing each other's required fields.
+function checkSources(meta, at, errors, { required }) {
+  if (required && !meta.sources.length) errors.push(`${at}: no sources`);
+  meta.sources.forEach((s, i) => {
+    const where = `${at}: source ${i + 1}`;
+    if (s.parts.length !== 5)
+      errors.push(`${where}: expected "tier | publisher | date | title | url", got ${s.parts.length} fields in "${s.raw}"`);
+    if (!TIERS[s.tier]) errors.push(`${where}: tier must be primary or reported, got "${s.tier}"`);
+    if (!s.publisher) errors.push(`${where}: no publisher`);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(s.date || '')) errors.push(`${where}: date must be YYYY-MM-DD, got "${s.date}"`);
+    if (!s.title) errors.push(`${where}: no title`);
+    if (!/^https?:\/\//.test(s.url || '')) errors.push(`${where}: url must start with http, got "${s.url}"`);
+  });
+}
+
+function fail(errors, what) {
+  if (!errors.length) return;
+  console.error(`\n${what} build failed — ${errors.length} problem${errors.length > 1 ? 's' : ''}:\n`);
+  for (const e of errors) console.error(`  ${e}`);
+  console.error('');
+  process.exit(1);
+}
+
+// A seedling may cite nothing — that is the point of saying it is a seedling.
+// An evergreen page has been audited, so it must show its working.
+function validateWiki(pages) {
   const errors = [];
-  const seen = new Map();
-
-  for (const p of posts) {
-    const at = p.file;
-    if (!p.meta.title) errors.push(`${at}: no title`);
-    if (!p.meta.description) errors.push(`${at}: no description (used for the meta description and the feed)`);
-    if (!p.meta.date) errors.push(`${at}: no date`);
-    else if (!/^\d{4}-\d{2}-\d{2}$/.test(p.meta.date)) errors.push(`${at}: date must be YYYY-MM-DD, got "${p.meta.date}"`);
-
-    if (!p.meta.category) errors.push(`${at}: no category`);
-    else if (!CATEGORIES[p.meta.category])
-      errors.push(`${at}: unknown category "${p.meta.category}" — must be one of ${Object.keys(CATEGORIES).join(', ')}`);
-
-    if (seen.has(p.slug)) errors.push(`${at}: duplicate slug "${p.slug}", already used by ${seen.get(p.slug)}`);
-    seen.set(p.slug, at);
-
-    if (!p.meta.sources.length) errors.push(`${at}: no sources — every post cites at least one`);
-    p.meta.sources.forEach((s, i) => {
-      const where = `${at}: source ${i + 1}`;
-      if (s.parts.length !== 5)
-        errors.push(`${where}: expected "tier | publisher | date | title | url", got ${s.parts.length} fields in "${s.raw}"`);
-      if (!TIERS[s.tier]) errors.push(`${where}: tier must be primary or reported, got "${s.tier}"`);
-      if (!s.publisher) errors.push(`${where}: no publisher`);
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(s.date || '')) errors.push(`${where}: date must be YYYY-MM-DD, got "${s.date}"`);
-      if (!s.title) errors.push(`${where}: no title`);
-      if (!/^https?:\/\//.test(s.url || '')) errors.push(`${where}: url must start with http, got "${s.url}"`);
-    });
+  for (const w of pages) {
+    const at = w.file;
+    if (!w.meta.title) errors.push(`${at}: no title`);
+    if (!w.meta.summary) errors.push(`${at}: no summary (used for the meta description and the index)`);
+    if (!commaList(w.meta.tags).length)
+      errors.push(`${at}: no tags — the first tag is the cluster the wiki index files it under`);
+    if (!w.meta.stage) errors.push(`${at}: no stage`);
+    else if (!STAGES[w.meta.stage])
+      errors.push(`${at}: unknown stage "${w.meta.stage}" — must be one of ${Object.keys(STAGES).join(', ')}`);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(w.meta.created || ''))
+      errors.push(`${at}: created must be YYYY-MM-DD, got "${w.meta.created}"`);
+    if (w.meta.modified && !/^\d{4}-\d{2}-\d{2}$/.test(w.meta.modified))
+      errors.push(`${at}: modified must be YYYY-MM-DD, got "${w.meta.modified}"`);
+    checkSources(w.meta, at, errors, { required: w.meta.stage === 'evergreen' });
   }
+  fail(errors, 'Wiki');
+}
 
-  if (errors.length) {
-    console.error(`\nBlog build failed — ${errors.length} problem${errors.length > 1 ? 's' : ''}:\n`);
-    for (const e of errors) console.error(`  ${e}`);
-    console.error('');
-    process.exit(1);
+// The day number is declared, never derived from file order. A missed day would
+// otherwise renumber every later edition and move URLs that are already live.
+function validateDays(days) {
+  const errors = [];
+  const seenDay = new Map();
+  for (const l of days) {
+    const at = l.file;
+    if (!l.meta.title) errors.push(`${at}: no title`);
+    if (!l.meta.summary) errors.push(`${at}: no summary`);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(l.meta.date || ''))
+      errors.push(`${at}: date must be YYYY-MM-DD, got "${l.meta.date}"`);
+    if (!/^\d+$/.test(String(l.meta.day || '')))
+      errors.push(`${at}: day must be a whole number, got "${l.meta.day}" — it is the URL, so it is declared, not counted`);
+    else if (seenDay.has(l.meta.day))
+      errors.push(`${at}: duplicate day ${l.meta.day}, already used by ${seenDay.get(l.meta.day)}`);
+    else seenDay.set(l.meta.day, at);
+    checkSources(l.meta, at, errors, { required: true });
   }
+  fail(errors, 'Editions');
 }
 
 // --- markdown ---------------------------------------------------------------
@@ -148,7 +209,11 @@ md.renderer.rules.link_open = (tokens, i, opts, env, self) => {
 const homeSrc = readFileSync(resolve(root, 'index.html'), 'utf8');
 const LOGO = homeSrc.match(/<svg width="0"[\s\S]*?<\/svg>/)[0];
 
-const head = ({ title, description, url, ogTitle, ogDescription, extra = '' }) => `<!DOCTYPE html>
+// `noScript` swaps the JS entry for a plain stylesheet link. Vite still hashes
+// and inlines-by-reference the CSS, but the page ships no executable script at
+// all — which is the whole point for wiki and lesson pages, read on low-tier
+// Android where script costs main-thread time as well as bytes.
+const head = ({ title, description, url, ogTitle, ogDescription, extra = '', noScript = false }) => `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -165,7 +230,7 @@ const head = ({ title, description, url, ogTitle, ogDescription, extra = '' }) =
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/space-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<script type="module" src="/src/main.js"></script>
+${noScript ? `<link rel="stylesheet" href="/src/styles.css">` : `<script type="module" src="/src/main.js"></script>`}
 ${extra}</head>
 <body>
 <span id="top" tabindex="-1"></span>
@@ -203,6 +268,28 @@ const footer = `
 </html>
 `;
 
+// One renderer for wiki pages and editions. The tier key is repeated on
+// every page on purpose: a reader arriving from a search result has not seen it.
+const sourcesBlock = (meta) =>
+  !meta.sources.length
+    ? ''
+    : `
+  <section class="sources">
+    <h2>Sources</h2>
+    <ol>
+${meta.sources
+  .map(
+    (s) => `      <li>
+        <span class="tier tier-${s.tier}">${TIERS[s.tier]}</span>
+        <a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>
+        <span class="src-meta">${esc(s.publisher)}, ${longDate(s.date)}</span>
+      </li>`
+  )
+  .join('\n')}
+    </ol>
+    <p class="tier-key"><strong>Primary</strong> — the regulator, vendor, paper or survey itself. <strong>Reported</strong> — a named outlet reporting a fact first.</p>
+  </section>`;
+
 const ld = (obj) => `<script type="application/ld+json">\n${JSON.stringify(obj, null, 2)}\n</script>\n`;
 
 const crumbs = (items) =>
@@ -231,175 +318,146 @@ const itemList = (posts) =>
 
 // --- page renderers ---------------------------------------------------------
 
-const postRows = (posts, { showTopic = false } = {}) =>
-  `<div class="posts">\n` +
-  posts
-    .map(
-      (p) => `  <a class="post" href="${p.path}">
-    <h3>${esc(p.meta.title)}</h3>
-    <span class="meta post-meta"><time datetime="${p.meta.date}">${longDate(p.meta.date)}</time>${
-      showTopic
-        ? `<span class="dot" aria-hidden="true">·</span><span class="post-topic">${esc(CATEGORIES[p.meta.category].name)}</span>`
-        : ''
-    }</span>
-  </a>`
-    )
-    .join('\n') +
-  `\n</div>`;
+// --- wiki and editions -------------------------------------------------------
+// Both ship zero JavaScript. Low-tier Android is roughly 9x slower than a
+// development machine, so script costs main-thread time as well as bytes on
+// exactly the device this audience holds.
 
-function renderPost(p, posts) {
-  const cat = CATEGORIES[p.meta.category];
+// The furniture that tells a reader how finished a page is and how long it will
+// take, before they commit to reading it.
+const wikiMeta = (w) => `  <p class="meta page-meta">
+    <span class="stage stage-${w.meta.stage}" title="${esc(STAGES[w.meta.stage])}">${w.meta.stage}</span>
+    <span class="dot" aria-hidden="true">·</span>
+    <span>updated <time datetime="${w.meta.modified || w.meta.created}">${longDate(w.meta.modified || w.meta.created)}</time></span>
+    <span class="dot" aria-hidden="true">·</span>
+    <span>~${w.mins} min</span>
+  </p>`;
 
-  // Related posts, generated rather than hand-linked. Same category first,
-  // newest first, topped up from the rest of the blog if the category is thin.
-  // Every post therefore carries links to its topic page and to three others,
-  // which is what stops a 23-post blog being 23 orphans.
-  const sameCat = posts.filter((o) => o.slug !== p.slug && o.meta.category === p.meta.category);
-  const others = posts.filter((o) => o.slug !== p.slug && o.meta.category !== p.meta.category);
-  const related = [...sameCat, ...others].slice(0, 3);
+const linkList = (label, slugs, bySlug) => {
+  const found = slugs.map((x) => bySlug.get(x)).filter(Boolean);
+  if (!found.length) return '';
+  return `  <p class="page-links"><span class="rail">${label}</span>${found
+    .map((t) => `<a href="${t.path}">${esc(t.meta.title)}</a>`)
+    .join(' ')}</p>`;
+};
 
-  const sources = `
-  <section class="sources">
-    <h2>Sources</h2>
-    <ol>
-${p.meta.sources
-  .map(
-    (s) => `      <li>
-        <span class="tier tier-${s.tier}">${TIERS[s.tier]}</span>
-        <a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>
-        <span class="src-meta">${esc(s.publisher)}, ${longDate(s.date)}</span>
-      </li>`
-  )
-  .join('\n')}
-    </ol>
-    <p class="tier-key"><strong>Primary</strong> — the regulator, vendor, paper or survey itself. <strong>Reported</strong> — a named outlet reporting a fact first.</p>
-  </section>`;
+const editLink = (file) =>
+  `  <p class="edit-page"><a href="${REPO}/edit/main/${file}" target="_blank" rel="noopener">Edit this page ↗</a></p>`;
 
-  const schema = ld({
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: p.meta.title,
-    description: p.meta.description,
-    datePublished: p.meta.date,
-    dateModified: p.meta.updated || p.meta.date,
-    articleSection: cat.name,
-    image: `${ORIGIN}/assets/og.jpg`,
-    inLanguage: 'en',
-    mainEntityOfPage: { '@type': 'WebPage', '@id': p.url },
-    author: { '@type': 'Organization', name: AUTHOR, url: `${ORIGIN}/` },
-    publisher: {
-      '@type': 'Organization',
-      name: AUTHOR,
-      url: `${ORIGIN}/`,
-      logo: { '@type': 'ImageObject', url: `${ORIGIN}/assets/logo.svg` },
-    },
-    citation: p.meta.sources.map((s) => ({
-      '@type': 'CreativeWork',
-      name: s.title,
-      url: s.url,
-      datePublished: s.date,
-      publisher: { '@type': 'Organization', name: s.publisher },
-    })),
-  });
+function renderWiki(w, bySlug) {
+  const prereqs = linkList('Read first', commaList(w.meta.prereqs), bySlug);
+  const related = linkList('Related', commaList(w.meta.related), bySlug);
+  const tags = commaList(w.meta.tags);
 
   return (
     head({
-      title: `${p.meta.title} — Jains`,
-      description: p.meta.description,
-      url: p.url,
-      ogTitle: p.meta.ogTitle || p.meta.title,
-      ogDescription: p.meta.ogDescription || p.meta.description,
+      title: `${w.meta.title} — Jains`,
+      description: w.meta.summary,
+      url: w.url,
+      noScript: true,
       extra:
         `<meta property="og:type" content="article">\n` +
-        `<meta property="article:published_time" content="${p.meta.date}">\n` +
-        `<meta property="article:section" content="${esc(cat.name)}">\n` +
-        schema +
+        ld({
+          '@context': 'https://schema.org',
+          '@type': 'TechArticle',
+          headline: w.meta.title,
+          description: w.meta.summary,
+          datePublished: w.meta.created,
+          dateModified: w.meta.modified || w.meta.created,
+          inLanguage: 'en',
+          keywords: tags.join(', ') || undefined,
+          mainEntityOfPage: { '@type': 'WebPage', '@id': w.url },
+          author: { '@type': 'Person', name: 'Piyush Jain' },
+          publisher: { '@type': 'Organization', name: AUTHOR, url: `${ORIGIN}/` },
+          citation: w.meta.sources.map((s) => ({
+            '@type': 'CreativeWork',
+            name: s.title,
+            url: s.url,
+            datePublished: s.date,
+            publisher: { '@type': 'Organization', name: s.publisher },
+          })),
+        }) +
         crumbs([
           ['Home', `${ORIGIN}/`],
-          ['Writing', `${ORIGIN}/blog/`],
-          [cat.name, `${ORIGIN}/blog/topic/${p.meta.category}/`],
-          [p.meta.title, p.url],
+          ['Wiki', `${ORIGIN}/wiki/`],
+          [w.meta.title, w.url],
         ]),
     }) +
     `
-<article class="article">
-  <nav class="crumbs" aria-label="Breadcrumb">
-    <a href="/blog/">Writing</a> <span aria-hidden="true">/</span> <a href="/blog/topic/${p.meta.category}/">${esc(cat.name)}</a>
-  </nav>
+<article class="article wiki">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/wiki/">Wiki</a></nav>
 
-  <h1>${esc(p.meta.title)}</h1>
-  <p class="meta"><time datetime="${p.meta.date}">${longDate(p.meta.date)}</time> · <a href="/blog/topic/${p.meta.category}/">${esc(cat.name)}</a></p>
+  <h1>${esc(w.meta.title)}</h1>
+${wikiMeta(w)}
+  <p class="lede dim">${esc(w.meta.summary)}</p>
+${prereqs}
 
-${md.render(p.body).trim()}
-${sources}
-  <hr>
-
-  <p>We build AI products and digital transformation for SMBs and enterprise HR and tech teams — live in one to seven days, about two hours a week of your time, handed over in a repository you own. <a href="/#work">See the work</a> or <a href="/#contact">tell us what's stuck.</a></p>
+${md.render(w.body).trim()}
+${sourcesBlock(w.meta)}
+${related}
+${editLink(w.file)}
 </article>
-${
-  related.length
-    ? `
-<section class="wrap related">
-  <p class="eyebrow">More in <a href="/blog/topic/${p.meta.category}/">${esc(cat.name)}</a></p>
-${postRows(related)}
-  <p class="more"><a href="/blog/">All writing →</a></p>
-</section>
-`
-    : ''
-}
 ` +
     footer
   );
 }
 
-function renderIndex(posts) {
-  // A category with no posts gets no heading and no chip: a jump link to an
-  // empty anchor is worse than an absent topic.
-  const groups = Object.entries(CATEGORIES)
-    .map(([slug, cat]) => ({ slug, cat, posts: posts.filter((p) => p.meta.category === slug) }))
-    .filter((g) => g.posts.length);
+function renderWikiIndex(pages) {
+  const start = pages.find((w) => w.slug === 'start-here');
+  const rest = pages.filter((w) => w.slug !== 'start-here');
+
+  // First tag is the cluster. Ordered by CLUSTERS, then anything unlisted
+  // alphabetically — so a new tag appears here without a code change.
+  const seen = [...new Set(rest.map((w) => commaList(w.meta.tags)[0]))];
+  const order = [...CLUSTERS.filter((c) => seen.includes(c)), ...seen.filter((c) => !CLUSTERS.includes(c)).sort()];
+  const groups = order.map((tag) => ({ tag, pages: rest.filter((w) => commaList(w.meta.tags)[0] === tag) }));
+
+  const recent = [...rest]
+    .sort((a, b) => (b.meta.modified || b.meta.created).localeCompare(a.meta.modified || a.meta.created))
+    .slice(0, 5);
 
   return (
     head({
-      title: 'Writing — Jains',
-      description: `Analysis for senior teams in retail, HR and learning technology. ${posts.length} articles on what is actually changing and what to do about it.`,
-      url: `${ORIGIN}/blog/`,
+      title: 'Wiki — Jains.es',
+      description: `Notes from learning to build language models from scratch. ${pages.length} page${pages.length === 1 ? '' : 's'}, each marked with how finished it is.`,
+      url: `${ORIGIN}/wiki/`,
+      noScript: true,
       extra:
         `<meta property="og:type" content="website">\n` +
-        ld({
-          '@context': 'https://schema.org',
-          '@type': 'Blog',
-          name: 'Jains — Writing',
-          url: `${ORIGIN}/blog/`,
-          inLanguage: 'en',
-          publisher: { '@type': 'Organization', name: AUTHOR, url: `${ORIGIN}/` },
-        }) +
-        itemList(posts) +
         crumbs([
           ['Home', `${ORIGIN}/`],
-          ['Writing', `${ORIGIN}/blog/`],
+          ['Wiki', `${ORIGIN}/wiki/`],
         ]),
     }) +
     `
 <section class="wrap blog-index">
-  <p class="eyebrow">Writing</p>
-  <h1 class="title">What's actually changing,<br>and what to do about it.</h1>
-  <p class="lede dim">Analysis for people who run retail, talent and learning functions. Every claim carries its source.</p>
-
-  <span class="rail">Browse by topic</span>
-  <nav class="topic-nav" aria-label="Topics">
-${groups.map((g) => `    <a href="#${g.slug}">${esc(g.cat.name)} <span>${g.posts.length}</span></a>`).join('\n')}
+  <p class="eyebrow">Wiki</p>
+  <h1 class="title">What I have worked out<br>so far.</h1>
+  <p class="lede dim">Every page says how finished it is. A seedling is rough and probably wrong in places — that is why it says so.</p>
+${start ? `\n  <p class="more"><a href="${start.path}">Start here →</a></p>\n` : ''}
+${
+  recent.length
+    ? `  <span class="rail">Changed most recently</span>
+  <nav class="page-links recent">
+${recent.map((w) => `    <a href="${w.path}">${esc(w.meta.title)}</a>`).join('\n')}
   </nav>
-
+`
+    : ''
+}
 ${groups
   .map(
-    (g) => `  <section class="topic-group" id="${g.slug}">
-    <h2><a href="/blog/topic/${g.slug}/">${esc(g.cat.name)}</a></h2>
-    <p class="dim">${esc(g.cat.blurb)}</p>
-${postRows(g.posts)
-  .split('\n')
-  .map((l) => `    ${l}`)
+    (g) => `  <section class="topic-group" id="${g.tag}">
+    <h2>${esc(g.tag.charAt(0).toUpperCase() + g.tag.slice(1))}</h2>
+    <div class="posts">
+${g.pages
+  .map(
+    (w) => `      <a class="post" href="${w.path}">
+        <h3>${esc(w.meta.title)} <span class="stage stage-${w.meta.stage}" title="${esc(STAGES[w.meta.stage])}">${w.meta.stage}</span></h3>
+        <span class="meta post-meta post-summary">${esc(w.meta.summary)}</span>
+      </a>`
+  )
   .join('\n')}
+    </div>
   </section>`
   )
   .join('\n\n')}
@@ -409,40 +467,140 @@ ${postRows(g.posts)
   );
 }
 
-function renderTopic(slug, cat, posts) {
+// The curriculum answers "what is coming", which a reader should not need
+// GitHub to see. It renders CURRICULUM.md as written rather than parsing its
+// tables: those are hand-edited, and coupling the build to their exact shape
+// would break this page every time a week is reworded.
+function renderCurriculum(days) {
+  const source = readFileSync(resolve(root, 'AI101/CURRICULUM.md'), 'utf8');
+  const body = source.replace(/^#\s+.*\n/, '');
+  const done = days.length;
+
   return (
     head({
-      title: `${cat.name} — Jains`,
-      description: cat.blurb,
-      url: `${ORIGIN}/blog/topic/${slug}/`,
+      title: 'Curriculum — Jains.es',
+      description:
+        'Twelve weeks from tokenisation to a transformer trained on a laptop, then three months on making models small enough to matter. Written down in advance so it can be held to.',
+      url: `${ORIGIN}/curriculum/`,
+      noScript: true,
       extra:
         `<meta property="og:type" content="website">\n` +
-        ld({
-          '@context': 'https://schema.org',
-          '@type': 'CollectionPage',
-          name: cat.name,
-          description: cat.blurb,
-          url: `${ORIGIN}/blog/topic/${slug}/`,
-          inLanguage: 'en',
-          isPartOf: { '@type': 'Blog', name: 'Jains — Writing', url: `${ORIGIN}/blog/` },
-        }) +
-        itemList(posts) +
         crumbs([
           ['Home', `${ORIGIN}/`],
-          ['Writing', `${ORIGIN}/blog/`],
-          [cat.name, `${ORIGIN}/blog/topic/${slug}/`],
+          ['Curriculum', `${ORIGIN}/curriculum/`],
+        ]),
+    }) +
+    `
+<article class="article">
+  <p class="eyebrow">Curriculum</p>
+  <h1>What is coming, and in what order</h1>
+  <p class="lede dim">Written in advance so it can be held to, and corrected from evidence rather than from how a week felt. ${
+    done
+      ? `<strong>${done} day${done === 1 ? '' : 's'} published so far</strong> — <a href="/day/">read them here</a>.`
+      : 'Day one lands shortly.'
+  }</p>
+
+${md.render(body).trim()}
+
+  <hr>
+  <p class="dim">Generated from <a href="${REPO}/blob/main/AI101/CURRICULUM.md" target="_blank" rel="noopener">AI101/CURRICULUM.md</a> in the repository. When a week proves too fast or too slow, that file changes and this page changes with it.</p>
+</article>
+` +
+    footer
+  );
+}
+
+function renderDay(l, days, bySlug) {
+  const i = days.indexOf(l);
+  const newer = days[i - 1];
+  const older = days[i + 1];
+
+  return (
+    head({
+      title: `Day ${l.meta.day}: ${l.meta.title} — Jains`,
+      description: l.meta.summary,
+      url: l.url,
+      noScript: true,
+      extra:
+        `<meta property="og:type" content="article">\n` +
+        `<meta property="article:published_time" content="${l.meta.date}">\n` +
+        ld({
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: `Day ${l.meta.day}: ${l.meta.title}`,
+          description: l.meta.summary,
+          datePublished: l.meta.date,
+          inLanguage: 'en',
+          mainEntityOfPage: { '@type': 'WebPage', '@id': l.url },
+          author: { '@type': 'Person', name: 'Piyush Jain' },
+          publisher: { '@type': 'Organization', name: AUTHOR, url: `${ORIGIN}/` },
+          citation: l.meta.sources.map((s) => ({
+            '@type': 'CreativeWork',
+            name: s.title,
+            url: s.url,
+            datePublished: s.date,
+            publisher: { '@type': 'Organization', name: s.publisher },
+          })),
+        }) +
+        crumbs([
+          ['Home', `${ORIGIN}/`],
+          ['Daily', `${ORIGIN}/day/`],
+          [`Day ${l.meta.day}`, l.url],
+        ]),
+    }) +
+    `
+<article class="article lesson">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/day/">Daily</a></nav>
+
+  <p class="eyebrow">Day ${l.meta.day}</p>
+  <h1>${esc(l.meta.title)}</h1>
+  <p class="meta"><time datetime="${l.meta.date}">${longDate(l.meta.date)}</time> <span class="dot" aria-hidden="true">·</span> ~${l.mins} min</p>
+  <p class="lede dim">${esc(l.meta.summary)}</p>
+
+${md.render(l.body).trim()}
+${sourcesBlock(l.meta)}
+  <nav class="page-nav" aria-label="Lessons">
+${older ? `    <a class="prev" href="${older.path}">← Day ${older.meta.day}</a>` : ''}
+${newer ? `    <a class="next" href="${newer.path}">Day ${newer.meta.day} →</a>` : ''}
+  </nav>
+${editLink(l.file)}
+</article>
+` +
+    footer
+  );
+}
+
+function renderDayIndex(days) {
+  return (
+    head({
+      title: 'Daily — Jains',
+      description: `Learning to build language models from scratch, one day at a time. ${days.length} day${days.length === 1 ? '' : 's'} so far, including the ones that did not work.`,
+      url: `${ORIGIN}/day/`,
+      noScript: true,
+      extra:
+        `<meta property="og:type" content="website">\n` +
+        itemList(days) +
+        crumbs([
+          ['Home', `${ORIGIN}/`],
+          ['Daily', `${ORIGIN}/day/`],
         ]),
     }) +
     `
 <section class="wrap blog-index">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="/blog/">Writing</a></nav>
-  <p class="eyebrow">Topic</p>
-  <h1 class="title">${esc(cat.name)}</h1>
-  <p class="lede dim">${esc(cat.blurb)}</p>
+  <p class="eyebrow">Daily</p>
+  <h1 class="title">Building a language model<br>from scratch, in public.</h1>
+  <p class="lede dim">One session a day, one artefact a day. The days that did not work are here too — those are usually the useful ones.</p>
 
-${postRows(posts)}
-
-  <p class="more"><a href="/blog/">All writing →</a></p>
+  <div class="posts">
+${days
+  .map(
+    (l) => `    <a class="post" href="${l.path}">
+      <h3><span class="day-n">Day ${l.meta.day}</span> ${esc(l.meta.title)}</h3>
+      <span class="meta post-meta"><time datetime="${l.meta.date}">${longDate(l.meta.date)}</time></span>
+    </a>`
+  )
+  .join('\n')}
+  </div>
 </section>
 ` +
     footer
@@ -451,19 +609,16 @@ ${postRows(posts)}
 
 // --- sitemap and feed -------------------------------------------------------
 
-function renderSitemap(posts) {
-  const newest = posts[0]?.meta.date;
+function renderSitemap(wiki, days) {
+  const newest = days[0]?.meta.date || wiki[0]?.meta.created;
   const urls = [
     { loc: `${ORIGIN}/`, lastmod: newest, priority: '1.0' },
-    { loc: `${ORIGIN}/blog/`, lastmod: newest, priority: '0.9' },
-    ...Object.entries(CATEGORIES)
-      .filter(([slug]) => posts.some((p) => p.meta.category === slug))
-      .map(([slug]) => ({
-        loc: `${ORIGIN}/blog/topic/${slug}/`,
-        lastmod: posts.find((p) => p.meta.category === slug).meta.date,
-        priority: '0.7',
-      })),
-    ...posts.map((p) => ({ loc: p.url, lastmod: p.meta.updated || p.meta.date, priority: '0.8' })),
+    { loc: `${ORIGIN}/curriculum/`, lastmod: newest, priority: '0.8' },
+    { loc: `${ORIGIN}/about/`, lastmod: newest, priority: '0.6' },
+    ...(days.length ? [{ loc: `${ORIGIN}/day/`, lastmod: days[0].meta.date, priority: '0.9' }] : []),
+    ...days.map((d) => ({ loc: d.url, lastmod: d.meta.date, priority: '0.8' })),
+    ...(wiki.length ? [{ loc: `${ORIGIN}/wiki/`, lastmod: wiki[0].meta.modified || wiki[0].meta.created, priority: '0.9' }] : []),
+    ...wiki.map((w) => ({ loc: w.url, lastmod: w.meta.modified || w.meta.created, priority: '0.8' })),
   ];
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -476,27 +631,26 @@ ${urls
 `;
 }
 
-function renderFeed(posts) {
+function renderFeed(days) {
   const rfc = (iso) => new Date(`${iso}T09:00:00Z`).toUTCString();
   return `<?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated by build/site.js. Do not edit; your changes will be overwritten. -->
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Jains — Writing</title>
-    <link>${ORIGIN}/blog/</link>
+    <title>Jollof Bytes</title>
+    <link>${ORIGIN}/day/</link>
     <atom:link href="${ORIGIN}/feed.xml" rel="self" type="application/rss+xml"/>
-    <description>Analysis for senior teams in retail, HR and learning technology.</description>
+    <description>A daily read on AI and the Global South, and one person learning to build a language model from scratch.</description>
     <language>en</language>
-    <lastBuildDate>${rfc(posts[0].meta.date)}</lastBuildDate>
-${posts
+    <lastBuildDate>${rfc(days[0].meta.date)}</lastBuildDate>
+${days
   .map(
-    (p) => `    <item>
-      <title>${esc(p.meta.title)}</title>
-      <link>${p.url}</link>
-      <guid isPermaLink="true">${p.url}</guid>
-      <pubDate>${rfc(p.meta.date)}</pubDate>
-      <category>${esc(CATEGORIES[p.meta.category].name)}</category>
-      <description>${esc(p.meta.description)}</description>
+    (d) => `    <item>
+      <title>Day ${d.meta.day}: ${esc(d.meta.title)}</title>
+      <link>${d.url}</link>
+      <guid isPermaLink="true">${d.url}</guid>
+      <pubDate>${rfc(d.meta.date)}</pubDate>
+      <description>${esc(d.meta.summary)}</description>
     </item>`
   )
   .join('\n')}
@@ -506,25 +660,27 @@ ${posts
 }
 
 // --- homepage block ---------------------------------------------------------
-// index.html stays hand-written apart from this one region, so the three newest
-// posts are never stale and the topic links never point at an empty category.
+// index.html stays hand-written apart from two marked regions. This one holds
+// the latest editions, so the homepage is never stale and never promises a
+// page that does not exist.
 
-function renderHomeBlock(posts) {
-  const latest = posts.slice(0, 3);
-  const topics = Object.entries(CATEGORIES).filter(([slug]) => posts.some((p) => p.meta.category === slug));
+function renderHomeBlock(days) {
+  if (!days.length)
+    return '  <p class="dim">Day one lands shortly. The <a href="/wiki/start-here/">start-here page</a> explains what this will be, and the <a href="/curriculum/">curriculum</a> says what is coming.</p>';
 
-  return `  <span class="rail">Browse by topic</span>
-  <nav class="topic-links" aria-label="Topics">
-${topics.map(([slug, cat]) => `    <a href="/blog/topic/${slug}/">${esc(cat.name)}</a>`).join('\n')}
-  </nav>
-
-  <span class="rail">Latest articles</span>
-${postRows(latest, { showTopic: true })
-  .split('\n')
-  .map((l) => `  ${l}`)
+  const latest = days.slice(0, 3);
+  return `  <div class="posts">
+${latest
+  .map(
+    (d) => `    <a class="post" href="${d.path}">
+      <h3><span class="day-n">Day ${d.meta.day}</span> ${esc(d.meta.title)}</h3>
+      <span class="meta post-meta"><time datetime="${d.meta.date}">${longDate(d.meta.date)}</time></span>
+    </a>`
+  )
   .join('\n')}
+  </div>
 
-  <p class="more"><a href="/blog/">All ${posts.length} article${posts.length === 1 ? '' : 's'} →</a></p>`;
+  <p class="more"><a href="/day/">Every edition →</a></p>`;
 }
 
 // --- write ------------------------------------------------------------------
@@ -545,49 +701,72 @@ function put(path, content) {
 // sitemap no longer lists. Prune rather than wiping the tree, so an unchanged
 // run writes nothing and vite's dev server has no reason to reload.
 function prune() {
-  for (const f of globSync('blog/**/index.html', { cwd: root })) {
-    if (kept.has(f)) continue;
-    rmSync(resolve(root, f));
-    rmSync(dirname(resolve(root, f)), { recursive: true, force: true });
-    console.log(`blog: removed stale ${f}`);
+  for (const f of globSync('{wiki,day,curriculum}/**/index.html', { cwd: root })) {
+    const full = resolve(root, f);
+    if (kept.has(f) || !existsSync(full)) continue;
+    rmSync(full, { force: true });
+    // Only remove the directory if this was the last thing in it. Wiping it
+    // recursively takes children that are still in the glob list with it, and
+    // the next iteration then throws on a path that no longer exists.
+    const dir = dirname(full);
+    if (existsSync(dir) && !readdirSync(dir).length) rmSync(dir, { recursive: true, force: true });
+    console.log(`site: removed stale ${f}`);
   }
 }
 
+function load(dirname, shape) {
+  const dir = resolve(root, `content/${dirname}`);
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir)
+    .filter((f) => f.endsWith('.md') && f !== 'README.md')
+    .map((file) => {
+      const slug = file.replace(/\.md$/, '');
+      const { meta, body } = parse(readFileSync(resolve(dir, file), 'utf8'), `content/${dirname}/${file}`);
+      return { slug, file: `content/${dirname}/${file}`, meta, body, mins: readingTime(body), ...shape(slug, meta) };
+    });
+}
+
 function main() {
-  const dir = resolve(root, 'content/posts');
-  const files = readdirSync(dir).filter((f) => f.endsWith('.md'));
-  if (!files.length) throw new Error('content/posts/ has no .md files');
+  // Topic pages. The body of knowledge, and the thing that outlives the feed.
+  const wiki = load('wiki', (slug) => ({ path: `/wiki/${slug}/`, url: `${ORIGIN}/wiki/${slug}/` }));
+  validateWiki(wiki);
+  wiki.sort((a, b) => a.meta.title.localeCompare(b.meta.title));
+  const bySlug = new Map(wiki.map((w) => [w.slug, w]));
+  for (const w of wiki) put(`wiki/${w.slug}/index.html`, renderWiki(w, bySlug));
+  if (wiki.length) put('wiki/index.html', renderWikiIndex(wiki));
 
-  const posts = files.map((file) => {
-    const slug = file.replace(/\.md$/, '');
-    const { meta, body } = parse(readFileSync(resolve(dir, file), 'utf8'), `content/posts/${file}`);
-    return { slug, file: `content/posts/${file}`, meta, body, path: `/blog/${slug}/`, url: `${ORIGIN}/blog/${slug}/` };
-  });
+  // Editions. The day number is the URL and is declared in front matter, so a
+  // missed day never renumbers a page that is already live.
+  const days = load('days', (slug, meta) => ({ path: `/day/${meta.day}/`, url: `${ORIGIN}/day/${meta.day}/` }));
+  validateDays(days);
+  days.sort((a, b) => Number(b.meta.day) - Number(a.meta.day));
+  for (const d of days) put(`day/${d.meta.day}/index.html`, renderDay(d, days, bySlug));
+  if (days.length) put('day/index.html', renderDayIndex(days));
 
-  validate(posts);
-  posts.sort((a, b) => (a.meta.date < b.meta.date ? 1 : a.meta.date > b.meta.date ? -1 : a.slug.localeCompare(b.slug)));
+  put('curriculum/index.html', renderCurriculum(days));
 
-  for (const p of posts) put(`blog/${p.slug}/index.html`, renderPost(p, posts));
-  put('blog/index.html', renderIndex(posts));
-  for (const [slug, cat] of Object.entries(CATEGORIES)) {
-    const inCat = posts.filter((p) => p.meta.category === slug);
-    if (inCat.length) put(`blog/topic/${slug}/index.html`, renderTopic(slug, cat, inCat));
-  }
+  put('public/sitemap.xml', renderSitemap(wiki, days));
+  if (days.length) put('public/feed.xml', renderFeed(days));
 
-  put('public/sitemap.xml', renderSitemap(posts));
-  put('public/feed.xml', renderFeed(posts));
-
-  const block = renderHomeBlock(posts);
-  const re = /(<!-- generated:posts -->)[\s\S]*?( *<!-- \/generated:posts -->)/;
-  if (!re.test(homeSrc)) throw new Error('index.html is missing the <!-- generated:posts --> markers');
-  put('index.html', homeSrc.replace(re, `$1\n${block}\n$2`));
+  // Hand-written pages carry marked regions this script owns. Note the doubled
+  // backslashes: inside a template literal `\s` is just `s`, so the character
+  // class has to survive into the RegExp constructor intact.
+  const marked = (src, name, block) => {
+    const re = new RegExp(`(<!-- generated:${name} -->)[\\s\\S]*?( *<!-- /generated:${name} -->)`);
+    if (!re.test(src)) throw new Error(`missing <!-- generated:${name} --> markers`);
+    return src.replace(re, `$1\n${block}\n$2`);
+  };
+  put('index.html', marked(homeSrc, 'posts', renderHomeBlock(days)));
 
   prune();
 
-  const counts = Object.entries(CATEGORIES)
-    .map(([slug]) => `${slug} ${posts.filter((p) => p.meta.category === slug).length}`)
+  const stages = Object.keys(STAGES)
+    .map((st) => `${st} ${wiki.filter((w) => w.meta.stage === st).length}`)
     .join(', ');
-  console.log(`blog: ${posts.length} posts (${counts}), ${written} file${written === 1 ? '' : 's'} written`);
+  console.log(
+    `site: ${wiki.length} wiki (${stages}), ${days.length} editions, ` +
+      `${written} file${written === 1 ? '' : 's'} written`
+  );
 }
 
 main();

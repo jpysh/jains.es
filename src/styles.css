@@ -962,3 +962,86 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
   55%  { opacity: 0; transform: translateY(10px) scale(0.94); pointer-events: none; }
   100% { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
 }
+
+/* ---------------------------------------------------------------------------
+   Wiki and lesson pages
+
+   Mobile first, as everywhere else: these are the phone rules and larger
+   screens inherit them. Both page types ship zero JavaScript, so nothing here
+   may depend on a class being added at runtime.
+   --------------------------------------------------------------------------- */
+
+.page-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--fg-dim);
+  margin: 0 0 20px;
+}
+
+/* A page says out loud how finished it is. Colour carries a hint, the title
+   attribute carries the sentence, and the word itself carries the meaning —
+   so it still reads with colour unavailable. */
+.stage {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.stage-seedling { color: var(--fg-dim); }
+.stage-budding { color: var(--fg); }
+.stage-evergreen { color: var(--accent); border-color: var(--accent); }
+
+.page-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 15px;
+  margin: 0 0 32px;
+}
+.page-links a { color: var(--accent); }
+
+.page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+/* 44px minimum, because the whole point of these pages is a phone. */
+.page-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--accent);
+  font-size: 15px;
+}
+.page-nav .next { margin-left: auto; }
+
+.edit-page { margin-top: 28px; font-size: 14px; }
+.edit-page a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--fg-dim);
+}
+.edit-page a:hover { color: var(--fg); }
+
+.day-n {
+  color: var(--fg-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The wiki index shows a summary under each title rather than a date, so the
+   nowrap that suits a date would truncate it. */
+.wiki-summary,
+.blog-index .posts .post-meta:not(:has(time)) {
+  white-space: normal;
+}

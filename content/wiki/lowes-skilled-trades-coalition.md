@@ -1,10 +1,9 @@
 ---
 title: 75 employers are about to agree a trades credential. Decide if you accept it.
-description: Lowe's Foundation launched a skilled trades coalition with 75-plus partners and shared progress benchmarks. Whether you recognise the credential decides whether your own training spend survives.
-ogTitle: 75 employers, one trades credential, one decision
-ogDescription: The operative detail in Lowe's coalition is shared benchmarks. Recognition is the part employers outside it control.
-date: 2026-09-06
-category: edtech
+summary: Lowe's Foundation launched a skilled trades coalition with 75-plus partners and shared progress benchmarks. Whether you recognise the credential decides whether your own training spend survives.
+stage: evergreen
+created: 2026-09-06
+tags: learning, training
 sources:
   - reported | HR Dive (Lara Ewen) | 2026-09-04 | Lowe's Foundation launches skilled trades coalition to train 1M workers by 2035 | https://www.hrdive.com/news/lowes-foundation-launches-skilled-trades-coalition-to-train-1m-workers-by/829662/
 ---

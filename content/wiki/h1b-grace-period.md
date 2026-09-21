@@ -1,10 +1,9 @@
 ---
 title: DHS wants to end the 60-day H-1B grace period. Model what that does to your terminations.
-description: A proposed DHS rule would eliminate the discretionary 60-day grace period after an H-1B holder's employment ends. Comments close 10 November 2026.
-ogTitle: DHS proposes ending the 60-day H-1B grace period
-ogDescription: A proposed rule would remove the 60-day window after employment ends. Comments close 10 November 2026.
-date: 2026-09-11
-category: hrtech
+summary: A proposed DHS rule would eliminate the discretionary 60-day grace period after an H-1B holder's employment ends. Comments close 10 November 2026.
+stage: evergreen
+created: 2026-09-11
+tags: work, hiring
 sources:
   - primary | Federal Register / DHS | 2026-09-11 | Eliminating the Discretionary 60-Day Grace Period | https://www.federalregister.gov/documents/2026/09/11/2026-18631/eliminating-the-discretionary-60-day-grace-period
   - reported | HR Dive (Kathryn Moody) | 2026-09-11 | DHS proposes end to 60-day H-1B grace period, calling it a 'burden' | https://www.hrdive.com/news/dhs-proposes-end-to-60-day-h-1b-grace-period-calling-it-a-burden/830160/
