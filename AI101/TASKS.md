@@ -64,3 +64,11 @@ Things only you can do. One line each. Delete when done, don't tick.
 - Pick two or three feeds for the *Made / making* section. Nothing in the 25
   feeds covers it, and section 4 was skipped on day 1 for that reason. Taste
   is not the agent's to pick.
+
+## 2026-09-22 — day 2
+
+- The *Made / making* section has now been skipped two days running. Either
+  pick the two or three feeds for it, or cut the section from the template.
+  A slot skipped daily is how a template rots.
+- Open the SEBI consultation paper PDF and check whether it carries a closing
+  date the landing page does not show.

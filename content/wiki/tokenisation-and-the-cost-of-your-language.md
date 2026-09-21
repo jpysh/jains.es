@@ -2,10 +2,11 @@
 title: Tokenisation and the cost of your language
 stage: seedling
 created: 2026-09-21
+modified: 2026-09-22
 summary: The same sentence costs several times more in Hindi than in English, because a tokeniser cuts it into more pieces. The multiplier is measurable, and it is a design choice rather than a property of the script.
 tags: tokenisation, cost, languages
 prereqs: start-here
-related: start-here
+related: what-a-merge-is, start-here
 sources:
   - primary | Priyansh Srivastava | 2026-07-27 | The Tokenizer Tax: Quantifying and Explaining the Cross-Lingual Cost of Subword Tokenization for Indian Languages | https://arxiv.org/abs/2607.24276
   - primary | Gates Foundation | 2026-09-14 | Gates Foundation Commits US$1 Billion to Help Build and Deliver Equitable AI | https://www.gatesfoundation.org/ideas/media-center/press-releases/2026/09/goalkeepers-report-equitable-ai
@@ -56,14 +57,31 @@ model that already shipped — you have to wait for the next one.
 ## The mechanism, named
 
 The paper identifies what actually drives the cost: **failed byte-pair
-merges**. Byte-pair encoding builds its vocabulary by repeatedly merging the
-most frequent adjacent pair. Where a script was rare in the training corpus,
-those merges never happened, so the text stays fragmented into single-byte
-tokens. Merge failure correlates with the tax at Pearson r = 0.89.
+merges**. Merge failure correlates with the tax at Pearson r = 0.89 across
+fourteen Indian languages.
 
-That is a strong correlation, and it matters because it names a cause rather
-than describing a symptom. How the merges are chosen in the first place is a
-page this wiki does not have yet.
+*Updated 2026-09-22.* This section previously stopped at that sentence, which
+named the cause without showing it. What follows was added after reading the
+vocabulary directly.
+
+**Your language is not missing. It is unmerged.**
+
+A tokeniser's vocabulary starts with all 256 possible bytes. Every byte your
+keyboard produces is on line one. A Devanagari character is three bytes in
+UTF-8, and all three are present.
+
+What is absent is the merges. Byte-pair encoding builds the rest of the
+vocabulary by counting adjacent pairs and gluing the most common one, about a
+hundred thousand times over. The pairs that would have joined your three bytes
+into one character never reached the top of that count, because the corpus did
+not hold enough of your language.
+
+So the fragmentation is not rejection. Nobody looked at your script and
+decided against it. That distinction matters, because a corpus can be changed
+and a script cannot.
+
+The full mechanism, and the one line of the algorithm that would change it,
+is on [what a merge is](/wiki/what-a-merge-is/).
 
 ## It is not your script
 
@@ -104,17 +122,28 @@ is the one that shows the cost is a choice.
 
 Written on day 1 of learning this, and these are open rather than rhetorical.
 
-- **Tokens per sentence, or tokens per character?** The two give different
-  multipliers from the same table. Raw token counts answer "what does this API
-  call cost". Tokens per character answers "how efficiently is this script
-  encoded". They are not interchangeable, and a headline figure that does not
-  say which it used is not checkable.
-- **Why 8.0x and not 4x?** Commonly repeated guidance puts the Indic penalty
-  near 4x. The measured figure across fourteen languages is 8.0x under the same
-  tokeniser. The difference may be sentence choice, metric, or age. Not yet
-  resolved.
+- ~~**Tokens per sentence, or tokens per character?**~~ **Settled
+  2026-09-22.** The two do give different multipliers from the same table, but
+  the choice is not free: the paper reports *fertility*, which is a defined
+  quantity, so a figure compared against it must use the same definition. What
+  was wrong here was treating a convention as a preference. It got through
+  because this page was written before its own source had been read closely
+  enough.
+- **Why 8.0x and not 4x?** The 8.0x is measured across fourteen languages in
+  arXiv 2607.24276. The 4x is the figure
+  [this project's own curriculum](https://github.com/jpysh/jains.es/blob/main/AI101/CURRICULUM.md)
+  told the author to expect, and it carries no source there. Stated that way
+  because an earlier version of this page called 4x "commonly repeated
+  guidance", which laundered an unsourced number into a consensus that was
+  never demonstrated. Not yet resolved, and the honest position is that only
+  one of the two figures has a source.
+- **What counts as a failed merge?** A Devanagari character is three UTF-8
+  bytes. When a token holds two of the three, is that one failure or two? The
+  r = 0.89 above depends on a convention for this. Raised 2026-09-22.
 
 ## Related
 
+- [What a merge is](/wiki/what-a-merge-is/) — the algorithm underneath the
+  cost measured on this page.
 - [Start here](/wiki/start-here/) — what this wiki is and how to read a page
   that says it is probably wrong.
