@@ -13,18 +13,14 @@ Follow [`WORKFLOW.md`](WORKFLOW.md) for what each step is meant to do.
 
 ## Before you start
 
-Two things make the simulation honest rather than decorative:
+Open NetNewsWire and let it refresh. The sweep reads its local store, so an
+app that has not run gives yesterday's news. Everything else is in place.
 
-1. **Add the five AI feeds to NetNewsWire** — Simon Willison, Hugging Face
-   blog, Import AI, The Batch, Ars Technica AI. URLs are in
-   [`sources/SOURCES.md`](sources/SOURCES.md). Delete the `site:X.com/sama`
-   Google News feed.
-2. **Open NetNewsWire and let it refresh.** The sweep reads its local store,
-   so an app that has not run gives yesterday's news.
-
-If you skip step 1 the news sections will come out thin. That is not a bug in
-the pipeline; it is the pipeline telling you the feed list has three AI
-sources and one of them is a dead search.
+The news comes from **two passes**, not one. The sweep reads the feeds; the
+discovery pass in `prompts/daily-research.md` section 8b goes and finds up to
+ten stories the feed list had no way to know about. If the sweep comes back
+thin, discovery is what should carry the edition — and whether it does is one
+of the things this simulation is for.
 
 ---
 
@@ -89,8 +85,13 @@ THEN STOP and report, in this order:
      themselves. Quote them.
   d. One thing that should be a hook or a lint rule rather than a
      sentence in a prompt.
-  e. Whether the news sweep returned enough to fill section 2. If not,
-     how many usable AI items it actually found.
+  e. The two news passes, separately. How many items the SWEEP
+     returned that cleared the bar, and how many DISCOVERY returned.
+     Which pass produced the item you would lead the edition with?
+     If discovery produced nothing the sweep did not already have, say
+     so — that means the pass is costing web fetches for nothing.
+  f. How many countries appeared across the ten discovery items. One or
+     two means the spread cap is not doing its job.
 
 Do not tidy anything up. Leave the branch as it is. I want to see the
 mess, not a cleaned version of it.
@@ -135,6 +136,16 @@ THE WIKI — content/wiki/*.md
   8. Does every page open with something concrete rather than a
      definition? Quote any that opens with a definition.
   9. Are prereqs and related pointing at slugs that exist?
+
+THE TWO NEWS PASSES
+  e1. Did discovery find anything the sweep could not? Name the items.
+      A discovery pass that only re-finds the feeds is pure cost.
+  e2. Did any item breach the two-per-country cap? Count them.
+  e3. Did any excluded frame get through — a corruption scandal, a
+      religion story — or was anything wrongly excluded that was
+      genuinely a technology story with a fraud in it?
+  e4. Every discovery item: was the link actually opened, and does the
+      page carry the number quoted? Check three at random and say which.
 
 THE LOOP
   10. The correction seeded into LEARNED.md before day 2 — quote the day
