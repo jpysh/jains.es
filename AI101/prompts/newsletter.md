@@ -1,74 +1,147 @@
 # Newsletter prompt
 
-## Your existing prompt
+**Jollof Bytes** — daily, Global South, five minutes on a phone.
 
-<!-- PIYUSH: paste the prompt you already use to generate your newsletter here,
-     verbatim, however rough. I will merge the parts that work into the draft
-     below rather than replacing what you have. Keep this section even after
-     merging — it is the record of what changed and why. -->
+The name is kept deliberately. It is an existing asset with recognition, and
+renaming it for geographic precision nobody asked for spends that recognition
+for nothing. The scope widens in the subtitle, not the masthead.
+
+The prompt this replaces is preserved verbatim in
+[`newsletter-reference-jollof.md`](newsletter-reference-jollof.md) — the record
+of what changed, and why.
+
+---
+
+## The five locks
+
+Not negotiable, whatever else is tuned:
+
+1. **Global South focus.** India and Africa first, then the rest.
+2. **Five-minute read on a phone.** 900–1,100 words. Hard ceiling.
+3. **Gen Z to boomer.** One register a 17-year-old and a 68-year-old both
+   finish. ESL-first.
+4. **No emoji.**
+5. **Our voice and our sourcing discipline.** `BLOGGING.md` tiers. Every claim
+   a dated, resolvable link that was opened. No "experts say".
+
+---
+
+## The prompt
 
 ```
-(paste here)
+Write today's Jollof Bytes.
+
+Read, in this order:
+  content/lessons/{DATE}.md          today's session and its news items
+  the last five newsletters          voice continuity; do not repeat an
+                                     explanation already given
+  AI101/sources/SOURCES.md           what is in scope
+
+Eight sections, in this order. Word counts are ceilings, not targets.
+
+1. MASTHEAD
+   JOLLOF BYTES — one line beneath it: the date, "5 min read", and the
+   subscribe link. Nothing else.
+
+2. WHAT HAPPENED  (5 items, 2-3 sentences each)
+   AI and technology. Lead each item with what a reader in Lagos, Nairobi,
+   Mumbai or Dhaka can do differently, or pays differently, because of it —
+   not with what it means for a valuation.
+   Every item carries a dated link you opened and confirmed contains the
+   claim. Fewer than five is fine. Never pad.
+
+3. THE INTERSECTION  (~120 words)
+   One item where AI meets ordinary life, work or money. A price, a job, a
+   queue, a form, a language. This is the section nobody else writes; it is
+   worth more than any two news items.
+
+4. MADE / MAKING  (~100 words, 2-3 days a week, not daily)
+   Art, craft, design, music, writing — made with these tools or made
+   against them. Commentary, and labelled as commentary. Skip it on a day
+   with nothing honest to say rather than filling the slot.
+
+5. WHAT I LEARNED YESTERDAY  (3-4 bullets, ~120 words)
+   From today's lesson file. One bullet is what I got wrong or am least
+   sure about. Bullets, not a lecture — the teaching lives on the site and
+   in the video.
+
+6. USEFUL  (~80 words)
+   One tool, prompt or term explained plainly, OR one opportunity a reader
+   can apply to from their house — a course, a scholarship, a programme.
+   Alternate between the two. Always a link.
+
+7. NUMBER OF THE DAY  (1-2 lines)
+   One statistic, one primary source. No source, no number.
+
+8. SIGN-OFF
+   One line. One question, and an invitation to reply. For the first 30
+   days the question is: "What did I lose you on?"
+
+Sourcing bar by section:
+  2, 6, 7   full BLOGGING.md tiers. Dated, resolvable, opened.
+  3         full tiers.
+  4         commentary. Labelled as such. Links where they exist.
+  5         own work. No sourcing needed, no claims about the field.
+
+Style:
+- Plain British English. One idea per sentence, under 25 words.
+- Concrete before abstract. Never open a section with a definition.
+- Every analogy states where it breaks, in the same paragraph.
+- No emoji, no idiom, no pop-culture reference, no pun, no sarcasm.
+- Dry wit only where it is about the concept. A joke beside the concept
+  measurably reduces what the reader learns. Cut it.
+- Single column, real text, no text-in-images, dark-mode-safe.
+- Subject line under 43 characters or it truncates on a phone.
+- A descriptive subheading roughly every 150 words. The first sentence of
+  each section carries the point on its own.
+- I am an ex-product-manager learning this in public, not a researcher.
+  Never write a sentence implying research standing I do not have.
+
+Then run the slop pass below and apply it before handing the draft over.
 ```
 
 ---
 
-## Draft prompt
+## The slop pass
 
-Runs after the day's lesson file exists. Reads it; does not re-research.
+Runs on every draft, inside this prompt, never as a separate step someone can
+forget.
 
-```
-Read today's content/lessons/{DATE}.md and the wiki page it produced.
-Read the last five newsletters so the voice is continuous and you do not
-repeat an explanation I have already given.
+**Apply automatically:**
 
-Write today's newsletter. Four parts, in this order:
+- Cut hedging and vague attribution. "Studies suggest", "experts say",
+  "reports indicate" — source the claim or cut it. Never soften it.
+- Cut any closing paragraph that restates the opening.
+- Cut any section that exists because the template has a slot for it.
+- Cut adjective triads and hype words: game-changer, revolutionary, seamless,
+  robust, leverage, unlock.
+- Replace a generic claim with the number, date, filename or real error
+  already sitting in the lesson file. This is the fix that does the work.
 
-1. ONE THING I LEARNED  (~250 words)
-   Today's session, in plain words. Concrete before abstract: open with the
-   number, the error, or the thing that surprised me — never a definition.
-   If there is an analogy, state where it breaks in the same paragraph.
+**Never apply. List for the human instead:**
 
-2. THE PART I GOT WRONG  (~80 words)
-   From beat 4 of today's video. What I was unsure about or had backwards.
-   If nothing was wrong today, say what I am still uncertain about. This
-   section is never skipped and never padded.
+- Anything that changes formal register to casual.
+- Removing em-dashes or semicolons.
+- Adding contractions to "sound human".
+- Shortening a correct sentence because it reads like a machine wrote it.
 
-3. THREE THINGS THAT HAPPENED  (~60 words each)
-   From the day's news items. Each: what happened, the date, why it matters
-   to someone learning this — not to an investor. Every one carries a dated
-   link I opened. Fewer than three is fine. Zero is fine on a quiet day; say
-   so plainly.
-
-4. TOMORROW  (one line)
-   What I am doing next. No teaser language, no "you won't believe".
-
-Constraints:
-- Under 600 words total. The reader has about 51 seconds.
-- Subject line under 43 characters — anything longer truncates on a phone.
-- Scannable: a descriptive subheading every ~150 words, answer before
-  explanation, first sentence of each section carries the point on its own.
-- Plain British English, short sentences, ESL-first. No idiom, no puns, no
-  sarcasm, no pop-culture reference.
-- Dry wit only where it is about the concept. A joke beside the concept
-  measurably reduces what the reader learns — cut it.
-- Single column, real text, no text-in-images, dark-mode-safe.
-- End with one question and an invitation to reply. For the first 30 days
-  that question is: "What did I lose you on?"
-```
+Detectors flag non-native English at roughly a 61% false-positive rate, and
+formal register is a competence marker in Indian professional English, not a
+symptom of generation. **The defence against slop is provenance, not stylistic
+contortion.**
 
 ---
 
 ## Send timing
 
-Audience is India-primary. Evening IST is the engagement window, so schedule
-for **19:00 IST = 15:30 Madrid** rather than sending when it is written.
-Write it in the morning block, queue it, let it go out in the afternoon.
+India-primary, so the evening IST window: **19:00 IST = 15:30 Madrid.** Written
+in the morning block, queued, sent in the afternoon.
 
 ## What never goes in
 
-- A prediction about the field made by someone on week 3 of learning it.
+- A prediction about the field made by someone in week 3 of learning it.
 - A claim sourced to "reports suggest" or "experts say".
 - Anything restating the opening in a closing paragraph.
 - A section that exists because the template has a slot for it. Cut the
-  section instead of filling it badly.
+  section rather than fill it badly.
+- An emoji.
