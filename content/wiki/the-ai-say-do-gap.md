@@ -1,10 +1,9 @@
 ---
 title: Announcing AI ambition costs more trust than saying nothing
-description: An analysis of 500,000+ Glassdoor reviews found high-talk, low-execution employers drew 27.5% negative reviews against 7.2% for quiet adopters.
-ogTitle: Announcing AI ambition costs more trust than silence
-ogDescription: Glassdoor review data puts a number on the AI say-do gap, and it is not flattering to the loudest employers.
-date: 2026-09-10
-category: hrtech
+summary: An analysis of 500,000+ Glassdoor reviews found high-talk, low-execution employers drew 27.5% negative reviews against 7.2% for quiet adopters.
+stage: evergreen
+created: 2026-09-10
+tags: work, hiring
 sources:
   - reported | HR Dive (Lara Ewen) | 2026-09-08 | Employers that only 'talk the talk' on AI may jeopardize worker trust | https://www.hrdive.com/news/employers-that-only-talk-the-talk-on-ai-may-jeopardize-worker-trust/829804/
 ---

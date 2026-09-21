@@ -1,10 +1,9 @@
 ---
 title: 'Ship in a day: how Guldaar went from idea to live site in 24 hours'
-description: A full storefront and a homestay booking site, live on their own domains within a day. The hour-by-hour method, what we cut, and how to run the same process on your business.
-ogTitle: 'Ship in a day: how Guldaar went from idea to live site in 24 hours'
-ogDescription: The hour-by-hour method behind a same-day launch, and how to run it on your business.
-date: 2026-09-11
-category: retail-tech
+summary: A full storefront and a homestay booking site, live on their own domains within a day. The hour-by-hour method, what we cut, and how to run the same process on your business.
+stage: evergreen
+created: 2026-09-11
+tags: retail, commerce
 sources:
   - primary | Jains | 2026-09-11 | Guldaar Bazaar — South Asian clothing and jewellery storefront | https://guldaarbazaar.com
   - primary | Jains | 2026-09-11 | Guldaar Basera — Himalayan homestay booking site | https://guldaarbasera.com

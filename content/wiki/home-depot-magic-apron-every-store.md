@@ -1,10 +1,9 @@
 ---
 title: Home Depot pointed its AI assistant at customers, and at its own inventory data
-description: Magic Apron now covers 2,000+ US stores with aisle-level location and real-time stock. A customer-facing assistant publishes your inventory accuracy to everyone.
-ogTitle: Home Depot's AI assistant now exposes its inventory accuracy
-ogDescription: Aisle-level answers in 2,000+ stores. The prerequisite was data hygiene, not a model.
-date: 2026-09-02
-category: retail-tech
+summary: Magic Apron now covers 2,000+ US stores with aisle-level location and real-time stock. A customer-facing assistant publishes your inventory accuracy to everyone.
+stage: evergreen
+created: 2026-09-02
+tags: retail, commerce
 sources:
   - reported | Retail Dive (Tatiana Walk-Morris) | 2026-09-01 | The Home Depot extends AI assistance in local stores | https://www.retaildive.com/news/the-home-depot-extends-ai-assistance-stores/829240/
 ---

@@ -1,10 +1,9 @@
 ---
 title: 29% of workers delivered work they could not explain
-description: TalentLMS surveyed 1,200 US employees and found nearly a third had submitted work they could not account for. That is an audit and handover problem, not a training statistic.
-ogTitle: 29% delivered work they could not explain
-ogDescription: TalentLMS found AI is converting visible skills gaps into invisible ones. What to add to your review process.
-date: 2026-07-30
-category: edtech
+summary: TalentLMS surveyed 1,200 US employees and found nearly a third had submitted work they could not account for. That is an audit and handover problem, not a training statistic.
+stage: evergreen
+created: 2026-07-30
+tags: learning, training
 sources:
   - reported | HR Dive (Laurel Kalser) | 2026-07-16 | AI may conceal growing 'learning debt' for fast-changing roles | https://www.hrdive.com/news/ai-may-conceal-growing-learning-debt-for-fast-changing-roles/825396/
 ---

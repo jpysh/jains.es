@@ -1,10 +1,9 @@
 ---
 title: Stop measuring AI adoption by how much your managers use it
-description: A paper in Academy of Management Review argues generative AI overreliance erodes the contextual and moral judgement managers build through experience.
-ogTitle: Stop measuring AI adoption by usage volume
-ogDescription: Peer-reviewed research on managerial de-skilling attacks the adoption metric most boards see.
-date: 2026-09-10
-category: hrtech
+summary: A paper in Academy of Management Review argues generative AI overreliance erodes the contextual and moral judgement managers build through experience.
+stage: evergreen
+created: 2026-09-10
+tags: work, hiring
 sources:
   - reported | HR Dive (Ryan Golden) | 2026-09-09 | Generative AI overuse may hurt leaders' judgment, researchers warn | https://www.hrdive.com/news/generative-ai-overuse-may-hurt-leaders-judgment/829898/
 ---

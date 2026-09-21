@@ -1,6 +1,5 @@
 ---
 title: Start here
-type: synthesis
 stage: seedling
 created: 2026-09-21
 summary: What this wiki is, who is writing it, and how to read a page that says it is probably wrong.

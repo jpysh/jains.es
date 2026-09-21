@@ -1,10 +1,9 @@
 ---
 title: Ulta's plate readers cost more in brand damage than they could have saved
-description: Ulta confirmed Flock licence plate readers at under 1% of its stores. The backlash landed on a footprint far too small to be paying for itself.
-ogTitle: Ulta's plate readers cost more in brand damage than they could save
-ogDescription: A sub-1% surveillance pilot is not contained. Get the customer-comms position signed off first.
-date: 2026-09-09
-category: retail-tech
+summary: Ulta confirmed Flock licence plate readers at under 1% of its stores. The backlash landed on a footprint far too small to be paying for itself.
+stage: evergreen
+created: 2026-09-09
+tags: retail, commerce
 sources:
   - reported | Retail Dive (Dani James) | 2026-09-04 | Ulta's use of Flock technology causes upset online | https://www.retaildive.com/news/ulta-flock-technology-backlash/829623/
 ---

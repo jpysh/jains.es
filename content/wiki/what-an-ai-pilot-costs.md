@@ -1,10 +1,9 @@
 ---
 title: What an AI pilot actually costs a 50-person company
-description: Real numbers for a first AI project at a mid-sized company — what it costs to build, what it costs to run, and the 40% we built and deleted.
-ogTitle: What an AI pilot actually costs a 50-person company
-ogDescription: Real numbers for a first AI project — build cost, running cost, and the parts we deleted.
-date: 2026-09-11
-category: hrtech
+summary: Real numbers for a first AI project at a mid-sized company — what it costs to build, what it costs to run, and the 40% we built and deleted.
+stage: evergreen
+created: 2026-09-11
+tags: work, hiring
 sources:
   - primary | Jains | 2026-09-11 | Excelminds Jobs — job board and candidate pipeline | https://excelmindsjobs.com
 ---

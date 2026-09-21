@@ -1,10 +1,9 @@
 ---
 title: Net off the rework before you present the AI savings
-description: BambooHR found workers spend about 1.5 hours a day on AI, nearly half of it fixing errors and refining prompts — roughly 20 days a year of rework.
-ogTitle: Net off the rework before you present the AI savings
-ogDescription: BambooHR puts nearly half of employee AI time into troubleshooting. Most business cases count the gross.
-date: 2026-09-04
-category: hrtech
+summary: BambooHR found workers spend about 1.5 hours a day on AI, nearly half of it fixing errors and refining prompts — roughly 20 days a year of rework.
+stage: evergreen
+created: 2026-09-04
+tags: work, hiring
 sources:
   - reported | HR Dive (Ryan Golden) | 2026-09-02 | Almost half the time spent on AI is on fixing its output, BambooHR says | https://www.hrdive.com/news/almost-half-the-time-workers-spend-on-ai-is-spent-fixing-its-output/829404/
 ---

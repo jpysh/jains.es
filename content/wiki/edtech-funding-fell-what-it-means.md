@@ -1,10 +1,9 @@
 ---
 title: Edtech funding fell 26% and deal count held. That changes your renewals.
-description: HolonIQ reported $1bn of edtech venture funding in H1 2026, down 26%, with deal volume flat. Smaller cheques mean thinner runway at your learning vendors.
-ogTitle: Edtech funding fell 26%, deal count held
-ogDescription: Flat deal volume on a smaller pot means thinner runway at your learning vendors. What to ask before you renew.
-date: 2026-07-16
-category: edtech
+summary: HolonIQ reported $1bn of edtech venture funding in H1 2026, down 26%, with deal volume flat. Smaller cheques mean thinner runway at your learning vendors.
+stage: evergreen
+created: 2026-07-16
+tags: learning, training
 sources:
   - primary | HolonIQ | 2026-07-14 | $1B in EdTech Venture Capital for 1H. Funding falls short of last year's midpoint. Asia & MENA buck the trend. | https://www.holoniq.com/notes/1b-in-edtech-venture-capital-to-date-funding-falls-short-of-last-years-midpoint-asia-mena-buck-the-trend
 ---

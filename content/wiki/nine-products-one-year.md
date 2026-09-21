@@ -1,10 +1,9 @@
 ---
 title: 'Nine products, one year, one team: the stack'
-description: Nine products shipped in a year by one team. The six decisions made once and never revisited, and the open-source one you can run yourself.
-ogTitle: 'Nine products, one year, one team: the stack'
-ogDescription: The six decisions behind nine shipped products, and the open-source one you can run yourself.
-date: 2026-09-11
-category: retail-tech
+summary: Nine products shipped in a year by one team. The six decisions made once and never revisited, and the open-source one you can run yourself.
+stage: evergreen
+created: 2026-09-11
+tags: retail, commerce
 sources:
   - primary | Jains | 2026-09-11 | AyurCalm Scheduler — MIT-licensed appointment scheduler | https://github.com/jpysh/ayurcalm-scheduler
 ---
