@@ -222,3 +222,129 @@ after you have published a few lessons by hand.
    does set third-party cookies, so the page says so plainly and links
    Substack's policy. Still no banner: the cookies are Substack's, on
    their frame, and you set none.
+
+---
+
+## The control surface — what you edit, and where
+
+Six things you touch. Everything else is generated from them.
+
+| You edit | Controls | How often |
+|---|---|---|
+| **NetNewsWire app** | Which feeds get swept | When something stops earning its place |
+| **`AI101/CURRICULUM.md`** | What you study, day by day | When a week proves too fast or too slow |
+| **`content/lessons/<date>.md`** | Today's angle, beats, script, outcome | Every morning, 06:00 |
+| **`AI101/prompts/LEARNED.md`** | Every prompt's behaviour, permanently | Daily, one line |
+| **`AI101/prompts/*.md`** | How things are written | Rarely |
+| **`AI101/OPEN-QUESTIONS.md`** | What you did not understand yet | After a session |
+| **`AI101/sources/SOURCES.md`** | Scout-only sources | Weekly |
+
+Feeds are configured **in the NetNewsWire app**, not in `SOURCES.md`. The app
+syncs through iCloud and the sweep reads its local store, so adding a feed
+there is the whole action. `SOURCES.md` records the list and configures the
+sources the scout fetches itself — arXiv, GitHub, vendor pages — which
+NetNewsWire never sees.
+
+---
+
+## Diagram 3 — the edit and re-run loop
+
+```mermaid
+flowchart TD
+    subgraph EDIT["What you edit"]
+        NNW["NetNewsWire app<br/>feeds"]
+        CUR["CURRICULUM.md<br/>what you study"]
+        LEARN["prompts/LEARNED.md<br/>one line per correction"]
+    end
+
+    DAY["/day"]
+    NNW --> DAY
+    CUR --> DAY
+    LEARN --> DAY
+
+    DAY --> LESSON["content/lessons/DATE.md<br/>angle · horizon · outcome<br/>code · 5 beats · script<br/>news · wiki · offline"]
+
+    LESSON --> READ{"06:00<br/>you read it<br/>on your phone"}
+    READ -->|"good"| STUDY["study · record"]
+    READ -->|"wrong angle"| STEER["/day again 'steer'"]
+    STEER --> LESSON
+    STEER -.->|"appends the steer"| LEARN
+
+    STUDY --> OUT["you fill in<br/>OUTCOME + what broke"]
+    OUT --> LESSON
+    OUT --> OPENQ["AI101/OPEN-QUESTIONS.md<br/>what is still unanswered"]
+    OPENQ --> DAY
+
+    LESSON --> NL["/newsletter"]
+    LESSON --> WIKI["/wiki"]
+
+    NL --> NLF["content/newsletters/DATE.md<br/>local only, gitignored"]
+    WIKI --> WF["content/wiki/*.md"]
+
+    NLF --> REV{"you read it"}
+    REV -->|"good"| SUB["paste into Substack"]
+    REV -->|"section 3 is weak"| NLA["/newsletter again 'steer'"]
+    NLA --> NLF
+    NLA -.->|"appends the steer"| LEARN
+
+    WF --> AUDIT["/audit<br/>fresh context<br/>opens every citation"]
+    NLF --> AUDIT
+    AUDIT --> PUB["publish"]
+
+    LEARN -.->|"read by every prompt<br/>from tomorrow on"| NL
+    LEARN -.-> WIKI
+```
+
+**Read it as:** you never hand-patch generated prose. You steer and it
+regenerates, and **every steer is appended to `LEARNED.md`**, which every
+prompt reads from the next run onwards. That is the difference between
+correcting the same thing forty times and correcting it once.
+
+Hand-editing still works — everything is Markdown on disk, and `git diff` shows
+exactly what a re-run would overwrite for anything tracked. But the steer is the
+loop that compounds.
+
+**Newsletter drafts are gitignored.** They stay on your machine; the prompts and
+commands that write them are public. The sent version is public on Substack, so
+nothing is hidden that matters — only the hours between draft and send.
+
+---
+
+## Re-run semantics
+
+| Command | Re-run form | Keeps | Regenerates |
+|---|---|---|---|
+| `/day` | `/day again "<steer>"` | Your edited angle and horizon | Code, beats, script, news |
+| `/newsletter` | `/newsletter again "<steer>"` | Nothing — it is cheap | The whole draft |
+| `/wiki` | `/wiki again` | Pages at `stage: evergreen` | Seedling and budding pages |
+| `/audit` | idempotent | — | Report only, never edits |
+
+`/day again` never overwrites the angle or the horizon, because the angle is the
+one judgement with no verifiable success criterion and it belongs to the person
+whose name is on it.
+
+It also never writes `## OUTCOME`. You write that after the session — one line
+on what you can now do that you could not that morning. An outcome written by
+the agent that planned the session is not evidence of anything, and `/sunday`
+reads the week's outcomes to decide whether the curriculum is running fast or
+slow. That is the only correction signal the curriculum gets.
+
+---
+
+## `LEARNED.md` — the flywheel
+
+One line per correction, dated, appended automatically by any `again` command
+and by hand whenever something annoys you.
+
+```
+2026-09-24 | newsletter | Section 2 items keep leading with the valuation.
+                          Lead with what a reader pays or does differently.
+2026-09-25 | script     | 800 words is 9 minutes when read aloud, not 6.
+                          Target 600.
+2026-09-26 | day        | Stop proposing sessions that need a GPU. The mini
+                          cannot train. Kaggle or the M2 Air only.
+```
+
+Every prompt reads it. It is the only file in the project that is allowed to
+grow without being pruned, because it is the record of what the system got
+wrong and the reason it stops doing so.

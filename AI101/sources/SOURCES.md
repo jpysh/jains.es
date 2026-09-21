@@ -1,8 +1,15 @@
 # Sources
 
-The scout reads this file every night. Adding a line here changes what gets
-scouted tomorrow; deleting one stops it. This is the only place sources are
-configured.
+Sources live in two places, and they do not overlap.
+
+**Feeds are configured in the NetNewsWire app.** It syncs through iCloud, and
+`AI101/tools/news-sweep.sh` reads its local store. Adding a feed there is the
+whole action. The `news` and `signal` blocks below are the *record* of that
+list, kept so the repository shows what is being read.
+
+**This file configures what the scout fetches itself** — arXiv listings, GitHub
+repositories, vendor pages. NetNewsWire never sees those. Adding a line to the
+`learn` block changes what gets scouted tomorrow; deleting one stops it.
 
 Each source carries a **tier** and a **role**. Tier follows `BLOGGING.md`:
 `primary` is the paper, filing, vendor announcement or dataset itself;
