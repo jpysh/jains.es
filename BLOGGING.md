@@ -173,3 +173,87 @@ minute. A failing build leaves the previous version live. After a deploy:
 curl -s https://jains.es/sitemap.xml | grep -c "<loc>"
 curl -o /dev/null -w '%{http_code}\n' https://jains.es/README.md   # 404 is correct
 ```
+
+---
+
+# Wiki pages and lessons
+
+The 23 posts above are the archive and their rules do not change. These are the
+two page types the learning project adds. Same parser, same source discipline,
+different front matter.
+
+## Wiki — `content/wiki/<slug>.md` → `/wiki/<slug>/`
+
+```
+---
+title: Byte-pair encoding
+type: concept | lesson | person | synthesis
+stage: seedling | budding | evergreen
+created: YYYY-MM-DD
+modified: YYYY-MM-DD          optional; falls back to created
+summary: One sentence. Meta description and the line under the title on the index.
+tags: tokenisation, bpe                     comma-separated string, never a list
+prereqs: unicode-and-utf8, what-a-token-is  comma-separated slugs
+related: vocabulary-size                    comma-separated slugs
+sources:
+  - primary | Publisher | YYYY-MM-DD | Exact title | https://...
+---
+```
+
+`prereqs` and `related` are slugs. A slug that does not resolve is dropped
+silently rather than rendering a dead link — so a page can name a prerequisite
+that has not been written yet, and the link appears the day it is.
+
+### Stage
+
+Every page says out loud how finished it is, and the badge is the first thing
+under the title.
+
+- **seedling** — rough, written the day it was learnt, likely wrong in places.
+  **Sources are not required.** That is what the label buys.
+- **budding** — checked and revised, still growing.
+- **evergreen** — audited against its sources by `/audit`, every citation
+  opened. **The build refuses an evergreen page with no sources.**
+
+A page only moves to `evergreen` after `wiki-audit` has passed over it. Moving
+it by hand defeats the only signal a reader has.
+
+## Lessons — `content/lessons/<date>.md` → `/day/<n>/`
+
+```
+---
+title: Your language costs more
+day: 1
+date: YYYY-MM-DD
+summary: One sentence.
+sources:
+  - primary | Publisher | YYYY-MM-DD | Exact title | https://...
+---
+```
+
+**`day` is the URL, and it is declared rather than counted.** If the build
+derived it from file order, one missed day would shift every later lesson onto
+a new address and 404 pages that are already indexed. Duplicate day numbers
+fail the build.
+
+The lesson file also carries sections that never reach the page — the session
+plan, the five beats, the script, the news items, `## OUTCOME` and `## OPEN`.
+They are working material. `AI101/WORKFLOW.md` explains what reads them.
+
+## What the build refuses
+
+On top of everything in the list above, for these two types:
+
+- an unknown `type` or `stage`
+- a malformed `created`, `modified` or `date`
+- an evergreen wiki page with no sources
+- a `day` that is not a whole number, or one already used
+- any front-matter list other than `sources:` — `tags`, `prereqs` and `related`
+  are comma-separated strings, and a YAML list there throws
+
+```bash
+npm run check    # proves the build still refuses each of these
+```
+
+Run it after touching validation in `build/site.js`. A gate that does not fire
+is not a mechanism.
