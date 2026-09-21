@@ -32,8 +32,8 @@ Committed because the method is part of what is published.
 content/
   days/<date>.md           one edition per day
   wiki/<slug>.md           one page per topic
-AI101/
-  PLAN.md  CURRICULUM.md  RUNBOOK.md  WORKFLOW.md  VISION.md
+AI101/                     the operating system — see AI101/README.md
+  PLAN.md  CURRICULUM.md  RUNBOOK.md  WORKFLOW.md  VISION.md  SIMULATION.md
   prompts/                 daily-research, newsletter, LEARNED
   sources/                 SOURCES.md, subscriptions.opml
   sessions/<date>.md       the daily working file
@@ -41,6 +41,7 @@ AI101/
 build/
   site.js                  generates every page, validates, refuses bad input
   check.sh                 proves the validation still fires
+  make-logo.py             regenerates the wordmark and favicon, by hand
 src/
   main.js                  entry for the pages that carry script
   styles.css               all styling
