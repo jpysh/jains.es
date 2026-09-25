@@ -10,7 +10,7 @@ Static Assets. No framework, no database, no server.
 - **[CLAUDE.md](CLAUDE.md)** — the things that are expensive to get wrong
 - **[WRITING.md](WRITING.md)** — front matter, source tiers, how pages accrete
 - **[AI101/WORKFLOW.md](AI101/WORKFLOW.md)** — the daily pipeline, with diagrams
-- **[AI101/PLAN.md](AI101/PLAN.md)** — why any of this is shaped as it is
+- **[DECISIONS.md](DECISIONS.md)** — why the rules are shaped as they are; long design history in `AI101/archive/`
 
 ## Two surfaces
 
@@ -33,7 +33,7 @@ content/
   days/<date>.md           one edition per day
   wiki/<slug>.md           one page per topic
 AI101/                     the operating system — see AI101/README.md
-  PLAN.md  CURRICULUM.md  RUNBOOK.md  WORKFLOW.md  VISION.md  SIMULATION.md
+  CURRICULUM.md  WORKFLOW.md  archive/
   prompts/                 daily-research, newsletter, LEARNED
   sources/                 SOURCES.md, subscriptions.opml
   sessions/<date>.md       the daily working file
@@ -47,7 +47,7 @@ src/
   styles.css               all styling
   hero.js                  the homepage particle field, after first paint
 public/                    copied verbatim; _headers holds the CSP
-.claude/commands/          /day /newsletter /wiki /audit /sunday /altitude
+.claude/commands/          /daily /audit
 ```
 
 `wiki/`, `day/`, `curriculum/`, `sitemap.xml` and `feed.xml` are **generated
@@ -56,12 +56,8 @@ and gitignored**. Edit the Markdown in `content/`.
 ## Daily
 
 ```bash
-/day            # 06:00  research, session plan, script. Opens a PR
-/newsletter     # 09:20  writes content/days/<date>.md
-/wiki           # 10:05  folds the session into its topic pages
-/audit          #        fresh context, opens every citation
-/sunday         # weekly sweeps corrections into the prompts
-/altitude       # monthly deletes the rules that never fired
+/daily          # session, edition, wiki, Short, audit, one PR
+/audit          # fresh context, opens every citation (also run inside /daily)
 ```
 
 ## Build and deploy

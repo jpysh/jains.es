@@ -53,3 +53,22 @@ Things only you can do. One line each. Delete when done, don't tick.
 - [ ] Find any archive of excelmindsjobs.com — Wayback, a local backup, an old
   export. Not for mailing; it's the only surviving record of what you told
   those people, and it may matter later.
+
+## 2026-09-21 — day 1
+
+- Add the five "wanted" feeds in `AI101/sources/SOURCES.md` to NetNewsWire.
+  Simon Willison and the Hugging Face blog would both have reached arXiv
+  2607.24276 before a web search did.
+- Delete the `site:X.com/sama` Google News search in NetNewsWire. Returned
+  nothing again on 2026-09-21.
+- Pick two or three feeds for the *Made / making* section. Nothing in the 25
+  feeds covers it, and section 4 was skipped on day 1 for that reason. Taste
+  is not the agent's to pick.
+
+## 2026-09-22 — day 2
+
+- The *Made / making* section has now been skipped two days running. Either
+  pick the two or three feeds for it, or cut the section from the template.
+  A slot skipped daily is how a template rots.
+- Open the SEBI consultation paper PDF and check whether it carries a closing
+  date the landing page does not show.

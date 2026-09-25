@@ -7,7 +7,7 @@ renaming it for geographic precision nobody asked for spends that recognition
 for nothing. The scope widens in the subtitle, not the masthead.
 
 The prompt this replaces is preserved verbatim in
-[`newsletter-reference-jollof.md`](newsletter-reference-jollof.md) — the record
+[`newsletter-reference-jollof.md`](../archive/newsletter-reference-jollof.md) — the record
 of what changed, and why.
 
 ---
@@ -43,7 +43,11 @@ Read, in this order:
 Write it to content/days/{DATE}.md. That file is the published edition at
 /day/{N}/ and the text pasted into Substack. One artefact, two places.
 
-Eight sections, in this order. Word counts are ceilings, not targets.
+Eight sections, in this order. The per-section word counts are ceilings,
+not targets. The EDITION total is a band with two sides: 900 to 1,100
+words. Under 900 is a miss, not a virtue — it means a section was thin,
+and the fix is a better section, never padding an existing one. Report
+the count against both bounds and say which section is short.
 
 1. MASTHEAD
    JOLLOF BYTES — one line beneath it: the date, "5 min read", and the
@@ -60,6 +64,12 @@ Eight sections, in this order. Word counts are ceilings, not targets.
    One item where AI meets ordinary life, work or money. A price, a job, a
    queue, a form, a language. This is the section nobody else writes; it is
    worth more than any two news items.
+   EVERY FIGURE IN THIS SECTION CARRIES ITS OWN DATED LINK, even one
+   already linked in section 2. This section restates figures in a
+   reader's own terms, and a restatement is where an unsourced number
+   gets invented. If a detail makes the paragraph concrete and no source
+   read today carries it, cut the detail. Do not supply a plausible year,
+   version or name to fill the gap.
 
 4. MADE / MAKING  (~100 words, 2-3 days a week, not daily)
    Art, craft, design, music, writing — made with these tools or made
@@ -90,6 +100,14 @@ Linking:
   first mention. A concept named three times across three editions and
   still with no page is a wiki page waiting to be written — say so in the
   handover line rather than explaining it a fourth time.
+
+Front matter: `sources:` lists only what this edition actually cites.
+  An item researched in the session but dropped from the edition has its
+  source line dropped too. A source supporting no claim on the page is a
+  citation a reader cannot check against anything.
+  A source that cannot be dated from its own URL does not go in front
+  matter at all. Cite it inline in the prose, where no date is claimed.
+  Never substitute the date you accessed it, and never infer one.
 
 Sourcing bar by section:
   2, 6, 7   full BLOGGING.md tiers. Dated, resolvable, opened.

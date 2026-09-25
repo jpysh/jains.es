@@ -10,19 +10,16 @@ this folder holds what produces it.
 
 | File | What it is |
 |---|---|
-| [`PLAN.md`](PLAN.md) | Why any of this is shaped as it is. The decisions and what they cost |
 | [`CURRICULUM.md`](CURRICULUM.md) | Twelve weeks, day by day. Rendered at [jains.es/curriculum](https://jains.es/curriculum/) |
-| [`WORKFLOW.md`](WORKFLOW.md) | **Start here if you want the mechanics.** What runs when, three diagrams |
-| [`RUNBOOK.md`](RUNBOOK.md) | The daily schedule, Madrid time |
-| [`VISION.md`](VISION.md) | The long horizon. Read for one line a day, never taught directly |
-| [`SIMULATION.md`](SIMULATION.md) | A dry run of two days, with a review prompt |
+| [`WORKFLOW.md`](WORKFLOW.md) | **Start here.** `/daily`, one diagram |
+| [`archive/`](archive/) | Vision, plan, runbook, simulation and its report. Reference, not read daily |
 
 ## These change
 
 | File | Changes | Who |
 |---|---|---|
-| [`prompts/`](prompts/) | Weekly, via the `/sunday` sweep | agent, reviewed |
-| [`prompts/LEARNED.md`](prompts/LEARNED.md) | Daily. **Staging, not a record** — `/day` refuses to run past 20 lines | both |
+| [`prompts/`](prompts/) | When a correction repeats | agent, reviewed |
+| [`prompts/LEARNED.md`](prompts/LEARNED.md) | Daily. One line per correction; pruned by hand monthly | both |
 | [`sources/SOURCES.md`](sources/SOURCES.md) | Weekly. What gets scouted, and the discovery brief | human |
 | [`OPEN-QUESTIONS.md`](OPEN-QUESTIONS.md) | After a session. Things not understood yet, each with a test | human |
 | [`TASKS.md`](TASKS.md) | Things only the human can do offline | both |
