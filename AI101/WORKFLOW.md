@@ -1,41 +1,31 @@
 # Workflow — one day, one command
 
-`/daily` does the whole day. You are the only human, at three points (the red boxes).
+`/daily` does the whole day. You are the only human, at three points (the red boxes). Nothing is invented: every claim carries a sentence quoted
+from a page opened in the run, and step 5 re-opens every page to check it.
 The previous three-block version is in `archive/WORKFLOW-v1.md`.
 
 ```mermaid
 flowchart TD
-    subgraph IN["Inputs (read every run)"]
-        NNW[("NetNewsWire local store<br/>tools/news-sweep.sh — free, offline")]
-        WEB["Web discovery<br/>max 15 searches, 25 fetches"]
-        CUR["CURRICULUM.md — today's topic"]
-        OQ["OPEN-QUESTIONS.md"]
-        LRN["prompts/LEARNED.md — past corrections"]
-        WIKI0[("content/wiki/ — existing pages")]
-    end
+    NNW[("NetNewsWire sweep<br/>free, offline")] --> S1
+    WEB["Web discovery<br/>max 15 searches"] --> S1
+    CUR["CURRICULUM.md<br/>today's topic"] --> S1
+    CTX["LEARNED.md, OPEN-QUESTIONS.md,<br/>existing wiki pages"] --> S1
 
-    S1["1 Session<br/>prompts/daily-research.md<br/>→ AI101/sessions/DATE.md"]
-    H1{{"YOU: approve angle,<br/>5 news items, wiki targets"}}
-    S2["2 Edition<br/>prompts/newsletter.md + slop pass<br/>→ content/days/DATE.md"]
-    S3["3 Wiki<br/>fold into topic pages<br/>→ content/wiki/*.md"]
-    S4["4 Short script<br/>45–60 s, ~130 words<br/>→ content/shorts/DATE.md"]
-    A["5 Audit — fresh subagent<br/>opens every citation"]
-    B["6 Validators<br/>npm run build + npm run check<br/>tier, date, tags, dead links"]
-    PR["7 One pull request<br/>numbers + audit result"]
-    H2{{"YOU: merge"}}
-    H3{{"YOU: paste to Substack,<br/>film the Short, do the 120-min session"}}
-    OUT["Cloudflare deploy<br/>/day/N/ and /wiki/slug/"]
-
-    IN --> S1 --> H1 --> S2 --> S3 --> S4 --> A
-    A -- findings --> S2
-    A -- clean --> B
+    S1["1 Session<br/>AI101/sessions/DATE.md"] --> H1{{"YOU: approve angle,<br/>news items + quoted sources"}}
+    H1 --> S2["2 Edition<br/>content/days/DATE.md"]
+    S2 --> S3["3 Wiki<br/>content/wiki/*.md"]
+    S3 --> S4["4 Short script<br/>content/shorts/DATE.md"]
+    S4 --> V["5 Verify<br/>check-links.sh + fresh audit agent<br/>quote must be on the page"]
+    V -- "finding: cut or re-source" --> S2
+    V -- clean --> B["6 npm run build + check"]
     B -- fails --> S2
-    B -- passes --> PR --> H2 --> OUT
-    H2 --> H3
-    H3 -- "your corrections" --> LRN
-    H3 -- "OUTCOME and OPEN lines" --> OQ
+    B -- passes --> PR["7 One pull request"]
+    PR --> H2{{"YOU: merge"}}
+    H2 --> OUT["Cloudflare deploy<br/>/day/N/ and /wiki/slug/"]
+    H2 --> H3{{"YOU: paste to Substack,<br/>film the Short, study"}}
+    H3 -. "corrections" .-> CTX
 
-    classDef human fill:#fde2e2,stroke:#c0392b
+    classDef human fill:#fde2e2,stroke:#c0392b,color:#000
     class H1,H2,H3 human
 ```
 

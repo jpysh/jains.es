@@ -10,7 +10,9 @@ For each:
 
 1. Open **every** citation. Confirm the linked page exists, is dated, and
    actually contains the claim attributed to it.
-2. List every claim with no source, and every source that does not support
+2. Quote the exact source sentence that supports each claim. A paraphrase that
+   goes further than the source ("first", "biggest", a cause, a trend) is a finding.
+   List every claim with no source, and every source that does not support
    its claim. Quote the sentence and the source line.
 3. Check nothing predates a source it cites.
 4. Check the tier is right. The tier describes **the URL**, not the
