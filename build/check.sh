@@ -71,4 +71,18 @@ sources:
 body' "day must be a whole number"
 
 node build/site.js >/dev/null 2>&1 || { echo "FAIL: clean tree does not build"; fails=$((fails+1)); }
+
+# Dead internal wiki links. site.js drops a bad `prereqs`/`related` slug, but a
+# link in the BODY is passed straight through and ships as a 404. Added after a
+# day-1 page linked /wiki/what-a-merge-is/ on the day before that page existed.
+dead=$(grep -rhno '(/wiki/[a-z0-9-]*/)' content/ --include='*.md' \
+  | sed 's#.*(/wiki/##; s#/)##' | sort -u \
+  | while read -r slug; do [ -f "content/wiki/$slug.md" ] || echo "$slug"; done)
+if [ -n "$dead" ]; then
+  echo "FAIL: body links to wiki pages that do not exist:"
+  printf '  /wiki/%s/\n' $dead
+  fails=$((fails+1))
+else
+  echo "ok: every /wiki/<slug>/ body link resolves to a page"
+fi
 [ $fails -eq 0 ] && echo "all checks pass" || { echo "$fails failing"; exit 1; }

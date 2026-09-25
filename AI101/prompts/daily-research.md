@@ -73,10 +73,21 @@ Write AI101/sessions/{DATE}.md with these sections:
        reason to expect comes from, and it is the one that stops the
        edition sounding like twenty-five feeds read aloud.
 
-       Find up to TEN stories from the last 24 hours that are NOT in the
-       sweep. Dedupe by story, not only by URL: the same announcement
-       carried by three outlets is one story, and you keep the most
-       primary of the three.
+       Find up to TEN stories that are NOT in the sweep. Dedupe by
+       story, not only by URL: the same announcement carried by three
+       outlets is one story, and you keep the most primary of the three.
+
+       WINDOW — 24 hours for anything a feed could plausibly carry.
+       FOURTEEN DAYS for a primary a feed structurally cannot reach: a
+       preprint, a regulator's consultation notice, a central bank
+       release, a company filing. Those are published once, are not
+       syndicated, and a search index takes days to surface them, so a
+       24-hour rule on them returns nothing and the slot gets padded
+       with something weaker. Print the item's REAL publication date in
+       the table, never the date you found it, and never imply
+       freshness the date does not support. A consultation window that
+       is still open is today's news on the day a reader can still act
+       on it.
 
        Scope: technology, business, economy and finance, read by someone
        with a technology or business background in India, Africa or the
