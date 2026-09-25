@@ -10,7 +10,7 @@ wiki pages, and nothing new is published to `/blog/`.
 ## Two surfaces
 
 ```
-content/days/<date>.md   ->  /day/<n>/      the edition, written by /newsletter
+content/days/<date>.md   ->  /day/<n>/      the edition, written by /daily
 content/wiki/<slug>.md   ->  /wiki/<slug>/  the topic, written by /wiki
 ```
 

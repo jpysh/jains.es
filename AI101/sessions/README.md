@@ -9,5 +9,5 @@ Tuesday. The learning reaches readers folded into the topic page it belongs
 to, at `/wiki/<slug>/`, and as the video. These files are committed because
 the method is part of what is being published, not because they are content.
 
-Written by `/day`. Read by `/newsletter`, by `/wiki`, and by `/sunday` for the
+Written and read by `/daily`, and by the monthly prune for the
 week's outcomes.

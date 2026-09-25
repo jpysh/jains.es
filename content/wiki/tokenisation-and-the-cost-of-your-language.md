@@ -10,7 +10,6 @@ related: what-a-merge-is, start-here
 sources:
   - primary | Priyansh Srivastava | 2026-07-27 | The Tokenizer Tax: Quantifying and Explaining the Cross-Lingual Cost of Subword Tokenization for Indian Languages | https://arxiv.org/abs/2607.24276
   - primary | Gates Foundation | 2026-09-14 | Gates Foundation Commits US$1 Billion to Help Build and Deliver Equitable AI | https://www.gatesfoundation.org/ideas/media-center/press-releases/2026/09/goalkeepers-report-equitable-ai
-  - primary | OpenAI | 2022-12-01 | tiktoken | https://github.com/openai/tiktoken
 ---
 
 Send one sentence to a language model's API in English. Send the official

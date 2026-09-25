@@ -7,7 +7,7 @@ renaming it for geographic precision nobody asked for spends that recognition
 for nothing. The scope widens in the subtitle, not the masthead.
 
 The prompt this replaces is preserved verbatim in
-[`newsletter-reference-jollof.md`](newsletter-reference-jollof.md) — the record
+[`newsletter-reference-jollof.md`](../archive/newsletter-reference-jollof.md) — the record
 of what changed, and why.
 
 ---
