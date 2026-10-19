@@ -1269,3 +1269,6 @@ section[id], main, .card { scroll-margin-top: 76px; }
   }
   .claims .num span { color: #b8b8b1; font-size: 14px; }
 }
+
+.service .proof { margin-top: 10px; font-size: 14px; }
+.service .proof a { color: var(--accent); text-underline-offset: 3px; display: inline-block; padding-block: 6px; }
