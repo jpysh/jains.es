@@ -1215,3 +1215,22 @@ html { scroll-snap-type: y proximity; }
 }
 
 .nav-links a[aria-current="true"] { color: var(--fg); background: var(--bg-soft); box-shadow: inset 0 -2px 0 var(--accent); }
+
+/* Phones: "More work" cards are compact so two fit one screen, and the page
+   snaps to each pair rather than to every card. */
+@media (max-width: 600px) {
+  #more-work .grid { gap: 14px; }
+  #more-work .card { padding: 14px 16px; }
+  #more-work .card h3 { font-size: 21px; }
+  #more-work .card .go { padding: 6px 12px; }
+  #more-work .card p {
+    margin-top: 8px; font-size: 14px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  #more-work .tags { display: none; }
+  #more-work .shot { padding-top: 12px; }
+  #more-work .shot::after { inset: 12px 0 0; }
+  #more-work .shot img { height: clamp(150px, 24svh, 200px); }
+  #more-work .card { scroll-snap-align: none; }
+  #more-work .card:nth-child(odd) { scroll-snap-align: start; }
+}
