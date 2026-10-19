@@ -757,7 +757,11 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
   .tag { font-size: 12px; padding: 5px 11px; }
 
   .hero { min-height: 78vh; }
-  .post { flex-direction: row; gap: 28px; align-items: baseline; }
+
+  /* Keep desktop reading width close to the phone's: full-width prose and
+     rows ran under the hero visual and past a comfortable line length. */
+  .wrap > p { max-width: 62ch; }
+  .posts { max-width: 62ch; }
 
 }
 
