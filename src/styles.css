@@ -1197,18 +1197,13 @@ section[id], main, .card { scroll-margin-top: 76px; }
 @supports (animation-timeline: view()) and (animation-range: entry) {
   @media (prefers-reduced-motion: no-preference) {
     .shot img {
-      animation: rise linear both;
+      animation: shot-rise linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 90%;
     }
-    .band .title {
-      animation: fadeup linear both;
-      animation-timeline: view();
-      animation-range: entry 5% entry 90%;
-    }
   }
 }
-@keyframes rise {
+@keyframes shot-rise {
   from { transform: translateY(40px) scale(0.96); opacity: 0.4; }
   to { transform: none; opacity: 1; }
 }
