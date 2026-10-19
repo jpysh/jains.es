@@ -1124,9 +1124,8 @@ span.stage {
 /* Anchors land below the sticky nav. */
 section[id], main, .card { scroll-margin-top: 76px; }
 
-/* No vertical snapping. Sections and cards taller than the screen made
-   browsers pull the reader back to their top mid-scroll. Only the quotes
-   row snaps, sideways, where every item is shorter than the screen. */
+/* No scroll snapping. Sections and cards taller than the screen made
+   browsers pull the reader back to their top mid-scroll. */
 .foot-links { gap: 4px 18px; }
 
 /* ---------- homepage bands ---------- */
@@ -1238,20 +1237,6 @@ section[id], main, .card { scroll-margin-top: 76px; }
   .claims .num strong { font-size: 30px; }
   .claims .num span { font-size: 13px; line-height: 1.35; margin-top: 8px; }
 
-  /* Quotes swipe sideways: one screen holds all three, the next peeks in. */
-  .quotes {
-    grid-auto-flow: column;
-    grid-auto-columns: 86%;
-    grid-template-columns: none;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    overscroll-behavior-x: contain;
-    margin-inline: -20px;
-    padding: 4px 20px 12px;
-    scrollbar-width: none;
-  }
-  .quotes::-webkit-scrollbar { display: none; }
-  .quote { scroll-snap-align: center; }
 }
 
 /* Legibility over the particle field. On phones the text column covers the
@@ -1272,3 +1257,33 @@ section[id], main, .card { scroll-margin-top: 76px; }
 
 .service .proof { margin-top: 10px; font-size: 14px; }
 .service .proof a { color: var(--accent); text-underline-offset: 3px; display: inline-block; padding-block: 6px; }
+
+/* ---------- homepage: quotes, founder, blog ---------- */
+
+/* Quotes stack on phones: three short quotes read faster than a hidden
+   carousel, and nobody has to discover a sideways swipe. */
+@media (max-width: 600px) {
+  .quotes { gap: 12px; }
+  .quote { padding: 20px 20px 18px; border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; }
+  .quote blockquote { font-size: 18px; line-height: 1.4; margin: 0 0 16px; }
+  .quote .avatar { width: 34px; height: 34px; font-size: 12px; }
+}
+
+.founder {
+  display: flex; align-items: flex-start; gap: 14px;
+  margin: 8px 0 28px; padding: 16px; max-width: 520px;
+  border-radius: 16px; background: rgba(0, 0, 0, 0.07);
+}
+.founder .avatar { background: #101010; color: var(--accent); width: 48px; height: 48px; font-size: 15px; }
+.founder b { display: block; font-size: 17px; }
+.founder span { display: block; font-size: 15px; line-height: 1.4; margin-top: 2px; }
+.founder a { display: inline-block; margin-top: 6px; padding-block: 8px; font-weight: 600; color: #101010; text-underline-offset: 3px; }
+.band-contact .title { max-width: 18ch; }
+
+.blog-intro { color: var(--fg-dim); max-width: 46ch; margin: 0 0 28px; }
+.band-blog .post { padding: 22px 0; }
+.band-blog .more { display: flex; flex-wrap: wrap; gap: 4px 24px; }
+.band-blog .more a { padding-block: 12px; }
+.card .go { display: inline-flex; align-items: center; min-height: 44px; }
+.service .proof a { padding-block: 10px; }
+.founder a { padding-block: 11px; }

@@ -707,7 +707,7 @@ ${latest
   .join('\n')}
   </div>
 
-  <p class="more"><a href="/day/">Every edition →</a></p>`;
+  <p class="more"><a href="/day/">Every edition →</a><a href="/wiki/">Learning centre →</a></p>`;
 }
 
 // --- write ------------------------------------------------------------------
