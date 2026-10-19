@@ -1140,9 +1140,9 @@ section[id], main, .card { scroll-margin-top: 76px; }
   transition: background 0.6s ease, box-shadow 0.6s ease;
 }
 /* The flagship band takes on the colour of the card in view (set by main.js). */
-.band-work { --band: color-mix(in srgb, var(--tint, #FD5E11) 9%, #17161a); }
+.band-work { --band: color-mix(in srgb, var(--tint, #FD5E11) 7%, #121216); }
 .band-studio { --band: #131a17; }
-.band-quotes { --band: #1a1620; }
+.band-quotes { --band: #1b1724; }
 .band-about { --band: var(--bg); }
 .band-blog { --band: #15181f; }
 .band-contact {
@@ -1264,7 +1264,7 @@ section[id], main, .card { scroll-margin-top: 76px; }
    carousel, and nobody has to discover a sideways swipe. */
 @media (max-width: 600px) {
   .quotes { gap: 12px; }
-  .quote { padding: 20px 20px 18px; border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; }
+  .quote { padding: 20px 20px 18px; border-left: 3px solid #6f6a80; border-radius: 0 var(--radius) var(--radius) 0; }
   .quote blockquote { font-size: 18px; line-height: 1.4; margin: 0 0 16px; }
   .quote .avatar { width: 34px; height: 34px; font-size: 12px; }
 }
@@ -1287,3 +1287,8 @@ section[id], main, .card { scroll-margin-top: 76px; }
 .card .go { display: inline-flex; align-items: center; min-height: 44px; }
 .service .proof a { padding-block: 10px; }
 .founder a { padding-block: 11px; }
+
+/* Lime is the call to action. Elsewhere it is rationed: the quote edges are
+   neutral, and the footer sits on its own darker ground so the blog band
+   does not run into it. */
+body:has(.band) footer { background: #0f1013; box-shadow: 0 0 0 100vmax #0f1013; clip-path: inset(0 -100vmax); }
