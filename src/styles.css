@@ -1128,3 +1128,90 @@ section[id], main, .card { scroll-margin-top: 76px; }
 html { scroll-snap-type: y proximity; }
 .stage, section, .card { scroll-snap-align: start; }
 .foot-links { gap: 4px 18px; }
+
+/* ---------- homepage bands ---------- */
+
+/* Full-bleed colour without wrapper markup: the shadow paints the band edge
+   to edge and clip-path trims it to the section's own height. */
+.band {
+  --band: var(--bg);
+  background: var(--band);
+  box-shadow: 0 0 0 100vmax var(--band);
+  clip-path: inset(0 -100vmax);
+  transition: background 0.6s ease, box-shadow 0.6s ease;
+}
+/* The flagship band takes on the colour of the card in view (set by main.js). */
+.band-work { --band: color-mix(in srgb, var(--tint, #FD5E11) 9%, #17161a); }
+.band-studio { --band: #131a17; }
+.band-quotes { --band: #1a1620; }
+.band-about { --band: var(--bg); }
+.band-blog { --band: #15181f; }
+.band-contact {
+  --band: var(--accent);
+  color: #101010;
+}
+.band-contact .eyebrow { color: #2a3a14; }
+.band-contact .eyebrow::before { background: #101010; }
+.band-contact em.s { color: #101010; }
+.band-contact .pill { background: #101010; color: var(--accent); }
+.band-contact .pill.ghost { background: transparent; color: #101010; border-color: rgba(0, 0, 0, 0.4); }
+.band-contact .dim { opacity: 1; animation: none; }
+.band-contact :focus-visible { outline-color: #101010; }
+
+.band-work .numbers { margin-top: 56px; }
+
+/* Hero: shorter so the first flagship card peeks above the fold. */
+.hero { min-height: 0; padding-block: 56px 40px; }
+.hero-cta .pill { flex: 1 1 140px; justify-content: center; }
+.hero .today { margin: 28px 0 0; font-size: 14px; text-transform: none; letter-spacing: 0; }
+.today a { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; color: var(--fg-dim); text-decoration: none; }
+.today a:hover { color: var(--fg); }
+.live {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .live { animation: pulse 2s ease-out infinite; }
+}
+@keyframes pulse {
+  from { box-shadow: 0 0 0 0 rgba(180, 250, 100, 0.6); }
+  to { box-shadow: 0 0 0 10px rgba(180, 250, 100, 0); }
+}
+
+/* Flagship case notes open in place. Native <details>, no script. */
+.card .go { text-decoration: none; }
+.case { margin-top: 16px; border-top: 1px solid rgba(0, 0, 0, 0.14); }
+.case summary {
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 48px; cursor: pointer; font-weight: 600; font-size: 15px; list-style: none;
+}
+.case summary::-webkit-details-marker { display: none; }
+.case summary::after { content: "+"; font-size: 22px; font-weight: 400; transition: transform 0.25s ease; }
+.case[open] summary::after { transform: rotate(45deg); }
+.case dl { margin: 0 0 6px; font-size: 15px; line-height: 1.45; }
+.case dt { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.6; margin-top: 12px; }
+.case dd { margin: 2px 0 0; max-width: 46ch; }
+.case a { color: inherit; }
+
+/* Screenshots rise into their card as it scrolls in. */
+@supports (animation-timeline: view()) and (animation-range: entry) {
+  @media (prefers-reduced-motion: no-preference) {
+    .shot img {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 90%;
+    }
+    .band .title {
+      animation: fadeup linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 90%;
+    }
+  }
+}
+@keyframes rise {
+  from { transform: translateY(40px) scale(0.96); opacity: 0.4; }
+  to { transform: none; opacity: 1; }
+}
+
+.nav-links a[aria-current="true"] { color: var(--fg); background: var(--bg-soft); box-shadow: inset 0 -2px 0 var(--accent); }

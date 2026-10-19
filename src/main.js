@@ -38,3 +38,32 @@ if (canvas && !reduceMotion && webglAvailable()) {
     addEventListener('load', () => setTimeout(start, 80), { once: true });
   }
 }
+
+/**
+ * Homepage only: tint the flagship band with the card in view, and light the
+ * nav link for the section in view. Without script the bands keep their base
+ * colour and the nav is plain links, so nothing is lost.
+ */
+const band = document.querySelector('.band-work');
+if (band && 'IntersectionObserver' in window) {
+  const tintIO = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) if (e.isIntersecting) band.style.setProperty('--tint', e.target.dataset.tint);
+    },
+    { rootMargin: '-45% 0px -45% 0px' }
+  );
+  document.querySelectorAll('[data-tint]').forEach((el) => tintIO.observe(el));
+
+  const links = [...document.querySelectorAll('.nav-links a')];
+  const navIO = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        const key = e.target.dataset.nav;
+        for (const a of links) a.setAttribute('aria-current', String(a.getAttribute('href') === `#${key}`));
+      }
+    },
+    { rootMargin: '-45% 0px -45% 0px' }
+  );
+  document.querySelectorAll('[data-nav]').forEach((el) => navIO.observe(el));
+}

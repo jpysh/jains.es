@@ -685,6 +685,12 @@ ${days
 // the latest editions, so the homepage is never stale and never promises a
 // page that does not exist.
 
+function renderToday(days) {
+  if (!days.length) return '';
+  const d = days[0];
+  return `<a href="${d.path}"><span class="live" aria-hidden="true"></span>Latest: Day ${d.meta.day}, ${esc(d.meta.title)} →</a>`;
+}
+
 function renderHomeBlock(days) {
   if (!days.length)
     return '  <p class="dim">Day one lands shortly. The <a href="/wiki/start-here/">start-here page</a> explains what this will be, and the <a href="/curriculum/">curriculum</a> says what is coming.</p>';
@@ -777,7 +783,7 @@ function main() {
     if (!re.test(src)) throw new Error(`missing <!-- generated:${name} --> markers`);
     return src.replace(re, `$1\n${block}\n$2`);
   };
-  put('index.html', marked(marked(homeSrc, 'posts', renderHomeBlock(days)), 'footer', footerBlock));
+  put('index.html', marked(marked(marked(homeSrc, 'posts', renderHomeBlock(days)), 'today', renderToday(days)), 'footer', footerBlock));
 
   for (const page of ['404.html', 'privacy/index.html']) {
     const src = readFileSync(resolve(root, page), 'utf8');

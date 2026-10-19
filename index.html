@@ -48,7 +48,7 @@
   <div class="nav-links">
     <a href="#work">Work</a>
     <a href="/wiki/">Learn</a>
-    <a href="/day/">Blog</a>
+    <a href="#blog">Blog</a>
   </div>
 </nav>
 <main id="main">
@@ -61,23 +61,20 @@
       <a class="pill" href="#work">See the work</a>
       <a class="pill ghost" href="#contact">Talk to us</a>
     </div>
+    <p class="today"><!-- generated:today -->
+<a href="/day/2/"><span class="live" aria-hidden="true"></span>Latest: Day 2, Your language is unmerged →</a>
+<!-- /generated:today --></p>
   </header>
-<section class="wrap" style="padding-top:0">
-  <div class="numbers">
-    <div class="num reveal"><strong>9</strong><span>products designed, built and running under our own name</span></div>
-    <div class="num reveal"><strong>MIT</strong><span>AyurCalm Scheduler is open source. Read every line before you trust it</span></div>
-    <div class="num reveal"><strong>Daily</strong><span>a sourced newsletter since 21 September 2026. We show our working</span></div>
-  </div>
-</section>
 </div>
-<section class="wrap" id="work">
+<section class="band band-work" id="work" data-nav="work">
+<div class="wrap">
   <p class="eyebrow">Flagship work</p>
   <h2 class="title">Two products we<br>build, run and use.</h2>
   <div class="grid">
-    <a class="card wide reveal" style="--card:#FD5E11" href="https://jains.es/ruta">
+    <article class="card wide reveal" style="--card:#FD5E11" data-tint="#FD5E11">
       <div class="card-head">
         <h3>AyurCalm Scheduler</h3>
-        <span class="go">Try it ↗</span>
+        <a class="go" href="https://jains.es/ruta">Try it live ↗</a>
       </div>
       <p>Clinic booking that the clinic owns. Therapists, rooms and treatments in one calendar, on the clinic's own server. No per-seat fee.</p>
       <div class="tags">
@@ -86,12 +83,20 @@
         <span class="tag">Self-hosted</span>
         <span class="tag">TypeScript</span>
       </div>
+      <details class="case">
+        <summary>How we built it</summary>
+        <dl>
+          <dt>Problem</dt><dd>Small Ayurveda, massage and therapy clinics pay per-seat fees for booking tools they cannot control.</dd>
+          <dt>What we built</dt><dd>One calendar for therapists, rooms and treatments. It runs on the clinic's own server.</dd>
+          <dt>Where it is now</dt><dd>Live at <a href="https://jains.es/ruta">jains.es/ruta</a>. The code is <a href="https://github.com/jpysh/ayurcalm-scheduler" target="_blank" rel="noopener">on GitHub ↗</a> under the MIT licence.</dd>
+        </dl>
+      </details>
       <div class="shot"><img src="/assets/projects/ayurcalm.jpg" alt="AyurCalm Scheduler dashboard" loading="lazy" width="1280" height="800"></div>
-    </a>
-    <a class="card reveal" style="--card:#F18FFF" href="https://guldaarbazaar.com" target="_blank" rel="noopener">
+    </article>
+    <article class="card reveal" style="--card:#F18FFF" data-tint="#F18FFF">
       <div class="card-head">
         <h3>Guldaar Bazaar</h3>
-        <span class="go">Visit ↗</span>
+        <a class="go" href="https://guldaarbazaar.com" target="_blank" rel="noopener">Visit the shop ↗</a>
       </div>
       <p>South Asian clothing and jewellery, sold into Europe. Storefront, catalogue and checkout, from an empty domain to taking orders.</p>
       <div class="tags">
@@ -99,11 +104,26 @@
         <span class="tag">E-commerce</span>
         <span class="tag">Cross-border</span>
       </div>
+      <details class="case">
+        <summary>How we built it</summary>
+        <dl>
+          <dt>Problem</dt><dd>South Asian makers had no direct shop for buyers in Europe.</dd>
+          <dt>What we built</dt><dd>A storefront, catalogue and checkout on the shop's own domain.</dd>
+          <dt>Where it is now</dt><dd>Live and taking orders at <a href="https://guldaarbazaar.com" target="_blank" rel="noopener">guldaarbazaar.com ↗</a>.</dd>
+        </dl>
+      </details>
       <div class="shot"><img src="/assets/projects/guldaarbazaar.jpg" alt="Guldaar Bazaar storefront" loading="lazy" width="1280" height="800"></div>
-    </a>
+    </article>
   </div>
+  <div class="numbers">
+    <div class="num reveal"><strong>9</strong><span>products designed, built and running under our own name</span></div>
+    <div class="num reveal"><strong>MIT</strong><span>AyurCalm Scheduler is open source. Read every line before you trust it</span></div>
+    <div class="num reveal"><strong>Daily</strong><span>a sourced newsletter since 21 September 2026. We show our working</span></div>
+  </div>
+</div>
 </section>
-<section class="wrap" id="more-work">
+<section class="band band-studio" id="more-work" data-nav="work">
+<div class="wrap">
   <p class="eyebrow">More work</p>
   <h2 class="title">Seven more, all live.</h2>
   <div class="grid">
@@ -199,8 +219,10 @@
       <div class="shot"><img src="/assets/projects/consciouscoco.jpg" alt="The Conscious Coco screenshot" loading="lazy" width="1280" height="800"></div>
     </a>
   </div>
+</div>
 </section>
-<section class="wrap">
+<section class="band band-studio" data-nav="work">
+<div class="wrap">
   <p class="eyebrow">What we do</p>
   <h2 class="lede dim">Most AI projects die in the deck. Ours go live and stay live.</h2>
   <div class="services" style="margin-top:56px">
@@ -217,8 +239,10 @@
       <p>Storefront, job board, booking system, internal tool. Live on your domain and handed over with the keys. No retainer required.</p>
     </div>
   </div>
+</div>
 </section>
-<section class="wrap">
+<section class="band band-quotes" data-nav="work">
+<div class="wrap">
   <p class="eyebrow">What clients say</p>
   <h2 class="title">The people who hired us,<br>in their words.</h2>
   <div class="quotes">
@@ -244,22 +268,28 @@
       </div>
     </div>
   </div>
+</div>
 </section>
-<section class="wrap" id="about">
+<section class="band band-about" id="about" data-nav="about">
+<div class="wrap">
   <p class="eyebrow">About</p>
   <h2 class="title">Who does the work.</h2>
   <p class="lede dim">jains.es is led by Piyush Jain, a product manager for years, most recently at Amazon. The person you talk to is the person who builds it.</p>
   <p><a href="https://www.linkedin.com/in/jainpiyushjain" target="_blank" rel="noopener">Piyush on LinkedIn ↗</a></p>
+</div>
 </section>
-<section class="wrap" id="contact">
+<section class="band band-contact" id="contact" data-nav="contact">
+<div class="wrap">
   <p class="eyebrow">Start a project</p>
   <h2 class="title">A reply within <em class="s">24 hours</em>,<br>from the person<br>who will do the work.</h2>
   <div class="foot-cta">
     <a class="pill" href="https://wa.me/420777558262?text=Hi%20&mdash;%20I%20found%20jains.es%20and%20wanted%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">WhatsApp us</a>
     <a class="pill ghost" href="mailto:helloayursen@gmail.com?subject=Project%20enquiry%20via%20jains.es">Email us</a>
   </div>
+</div>
 </section>
-<section class="wrap" id="blog">
+<section class="band band-blog" id="blog" data-nav="blog">
+<div class="wrap">
   <p class="eyebrow">The blog</p>
   <h2 class="title">Learning in public,<br>one edition a day.</h2>
   <div class="grid">
@@ -291,6 +321,7 @@
   <p class="more"><a href="/day/">Every edition →</a></p>
   <!-- /generated:posts -->
   <p class="more"><a href="/wiki/">The learning centre: wiki and curriculum →</a></p>
+</div>
 </section>
 </main>
 
