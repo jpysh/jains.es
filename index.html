@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>jains.es — software small businesses can own</title>
-<meta name="description" content="A product studio that builds booking systems, shops and AI tools for small businesses. Live in days, handed over with the code. Plus a daily, sourced newsletter.">
+<title>Booking systems, shops and AI tools — jains.es</title>
+<meta name="description" content="Software studio building clinic scheduling, direct-booking websites, online shops and AI tools for small businesses in Europe and India. Live in days, yours to own.">
 <link rel="canonical" href="https://jains.es/">
 <meta property="og:site_name" content="Jains.es">
 <meta property="og:type" content="website">
@@ -21,19 +21,61 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Jains.es",
-  "url": "https://jains.es/",
-  "description": "Product studio building software small businesses can own, plus a daily sourced newsletter.",
-  "inLanguage": "en",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Jains.es",
-    "url": "https://jains.es/",
-    "email": "helloayursen@gmail.com",
-    "logo": { "@type": "ImageObject", "url": "https://jains.es/assets/logo.svg" },
-    "sameAs": ["https://github.com/jpysh"]
-  }
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://jains.es/#website",
+      "name": "jains.es",
+      "url": "https://jains.es/",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://jains.es/#org" }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://jains.es/#org",
+      "name": "jains.es",
+      "url": "https://jains.es/",
+      "description": "Software studio building booking systems, online shops and AI tools that small businesses own.",
+      "email": "helloayursen@gmail.com",
+      "logo": "https://jains.es/assets/logo.svg",
+      "image": "https://jains.es/assets/og.jpg",
+      "areaServed": [
+        { "@type": "Place", "name": "Europe" },
+        { "@type": "Country", "name": "India" }
+      ],
+      "knowsAbout": ["Clinic scheduling software", "Direct booking websites", "E-commerce", "AI automation", "Self-hosted software"],
+      "founder": { "@id": "https://jains.es/#founder" },
+      "sameAs": ["https://github.com/jpysh", "https://www.linkedin.com/in/jainpiyushjain"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI products" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digital transformation" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Small-business websites, shops and booking systems" } }
+        ]
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://jains.es/#founder",
+      "name": "Piyush Jain",
+      "jobTitle": "Founder",
+      "worksFor": { "@id": "https://jains.es/#org" },
+      "sameAs": ["https://www.linkedin.com/in/jainpiyushjain", "https://github.com/jpysh"]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "AyurCalm Scheduler",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web, self-hosted",
+      "description": "Self-hosted appointment and therapy scheduler for Ayurveda, massage and therapy clinics.",
+      "url": "https://jains.es/ruta",
+      "license": "https://opensource.org/licenses/MIT",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+      "creator": { "@id": "https://jains.es/#org" }
+    }
+  ]
 }
 </script>
 </head>
@@ -98,7 +140,7 @@
           <dt>Where it is now</dt><dd>Live at <a href="https://jains.es/ruta">jains.es/ruta</a>. The code is <a href="https://github.com/jpysh/ayurcalm-scheduler" target="_blank" rel="noopener">on GitHub ↗</a> under the MIT licence.</dd>
         </dl>
       </details>
-      <div class="shot"><img src="/assets/projects/ayurcalm.jpg" alt="AyurCalm Scheduler dashboard" loading="lazy" width="1280" height="800"></div>
+      <div class="shot"><img src="/assets/projects/ayurcalm.webp" alt="AyurCalm Scheduler dashboard" loading="lazy" width="1280" height="800"></div>
     </article>
     <article class="card reveal" style="--card:#F18FFF" data-tint="#F18FFF">
       <div class="card-head">
@@ -119,7 +161,7 @@
           <dt>Where it is now</dt><dd>Live and taking orders at <a href="https://guldaarbazaar.com" target="_blank" rel="noopener">guldaarbazaar.com ↗</a>.</dd>
         </dl>
       </details>
-      <div class="shot"><img src="/assets/projects/guldaarbazaar.jpg" alt="Guldaar Bazaar storefront" loading="lazy" width="1280" height="800"></div>
+      <div class="shot"><img src="/assets/projects/guldaarbazaar.webp" alt="Guldaar Bazaar storefront" loading="lazy" width="1280" height="800"></div>
     </article>
   </div>
 </div>
@@ -163,7 +205,7 @@
         <span class="tag">Job board</span>
         <span class="tag">Candidate pipeline</span>
       </div>
-      <div class="shot"><img src="/assets/projects/excelminds.jpg" alt="Excelminds Jobs screenshot" loading="lazy" width="1280" height="800"></div>
+      <div class="shot"><img src="/assets/projects/excelminds.webp" alt="Excelminds Jobs screenshot" loading="lazy" width="1280" height="800"></div>
     </a>
 
     <a class="card reveal" id="guldaar-basera" style="--card:#d98a3a" href="https://guldaarbasera.com" target="_blank" rel="noopener">
@@ -176,7 +218,7 @@
         <span class="tag">Hospitality</span>
         <span class="tag">Direct booking</span>
       </div>
-      <div class="shot"><img src="/assets/projects/guldaarbasera.jpg" alt="Guldaar Basera screenshot" loading="lazy" width="1280" height="800"></div>
+      <div class="shot"><img src="/assets/projects/guldaarbasera.webp" alt="Guldaar Basera screenshot" loading="lazy" width="1280" height="800"></div>
     </a>
 
     <a class="card reveal" id="aido" style="--card:#5fa8c9" href="https://aido.jains.es" target="_blank" rel="noopener">
@@ -189,7 +231,7 @@
         <span class="tag">Enterprise</span>
         <span class="tag">Product site</span>
       </div>
-      <div class="shot"><img src="/assets/projects/aido.jpg" alt="Aido screenshot" loading="lazy" width="1280" height="800"></div>
+      <div class="shot"><img src="/assets/projects/aido.webp" alt="Aido screenshot" loading="lazy" width="1280" height="800"></div>
     </a>
 
     <a class="card reveal" id="ggp" style="--card:#5b95f0" href="https://ggp.jains.es" target="_blank" rel="noopener">
@@ -202,7 +244,7 @@
         <span class="tag">Consulting</span>
         <span class="tag">Positioning</span>
       </div>
-      <div class="shot"><img src="/assets/projects/ggp.jpg" alt="GGP screenshot" loading="lazy" width="1280" height="800"></div>
+      <div class="shot"><img src="/assets/projects/ggp.webp" alt="GGP screenshot" loading="lazy" width="1280" height="800"></div>
     </a>
 
     <a class="card reveal" id="oliveu" style="--card:#a3b53a" href="https://olive.jains.es" target="_blank" rel="noopener">
@@ -215,7 +257,7 @@
         <span class="tag">D2C</span>
         <span class="tag">Brand</span>
       </div>
-      <div class="shot"><img src="/assets/projects/olive.jpg" alt="OliveU India screenshot" loading="lazy" width="1280" height="800"></div>
+      <div class="shot"><img src="/assets/projects/olive.webp" alt="OliveU India screenshot" loading="lazy" width="1280" height="800"></div>
     </a>
 
     <a class="card reveal" style="--card:#e0c341" href="https://guldaarwords.jains.es" target="_blank" rel="noopener">
@@ -228,7 +270,7 @@
         <span class="tag">Game</span>
         <span class="tag">Browser</span>
       </div>
-      <div class="shot"><img src="/assets/projects/guldaarwords.jpg" alt="Guldaarwords screenshot" loading="lazy" width="1280" height="800"></div>
+      <div class="shot"><img src="/assets/projects/guldaarwords.webp" alt="Guldaarwords screenshot" loading="lazy" width="1280" height="800"></div>
     </a>
 
     <a class="card reveal" style="--card:#d9845f" href="https://theconsciouscoco.org" target="_blank" rel="noopener">
@@ -241,7 +283,7 @@
         <span class="tag">Editorial</span>
         <span class="tag">Non-profit</span>
       </div>
-      <div class="shot"><img src="/assets/projects/consciouscoco.jpg" alt="The Conscious Coco screenshot" loading="lazy" width="1280" height="800"></div>
+      <div class="shot"><img src="/assets/projects/consciouscoco.webp" alt="The Conscious Coco screenshot" loading="lazy" width="1280" height="800"></div>
     </a>
   </div>
 </div>
