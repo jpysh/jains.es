@@ -271,11 +271,9 @@ const footerBlock = `
     <nav class="foot-links" aria-label="Footer">
       <a href="/#work">Work</a>
       <a href="/day/">Blog</a>
-      <a href="/wiki/">Wiki</a>
-      <a href="/curriculum/">Curriculum</a>
+      <a href="/wiki/">Learn</a>
       <a href="/#about">About</a>
       <a href="/privacy/">Privacy</a>
-      <a href="${REPO}" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </div>
 </footer>

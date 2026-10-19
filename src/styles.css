@@ -1121,4 +1121,10 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
 }
 
 /* Anchors land below the sticky nav. */
-section[id], main { scroll-margin-top: 76px; }
+section[id], main, .card { scroll-margin-top: 76px; }
+
+/* Proximity, not mandatory: the page settles on a section or card when a
+   scroll ends near one, but long sections still scroll freely. */
+html { scroll-snap-type: y proximity; }
+.stage, section, .card { scroll-snap-align: start; }
+.foot-links { gap: 4px 18px; }
