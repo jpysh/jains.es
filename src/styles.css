@@ -1124,10 +1124,9 @@ span.stage {
 /* Anchors land below the sticky nav. */
 section[id], main, .card { scroll-margin-top: 76px; }
 
-/* Proximity, not mandatory: the page settles on a section or card when a
-   scroll ends near one, but long sections still scroll freely. */
-html { scroll-snap-type: y proximity; }
-.stage, section, .card { scroll-snap-align: start; }
+/* No vertical snapping. Sections and cards taller than the screen made
+   browsers pull the reader back to their top mid-scroll. Only the quotes
+   row snaps, sideways, where every item is shorter than the screen. */
 .foot-links { gap: 4px 18px; }
 
 /* ---------- homepage bands ---------- */
@@ -1159,11 +1158,11 @@ html { scroll-snap-type: y proximity; }
 .band-contact .dim { opacity: 1; animation: none; }
 .band-contact :focus-visible { outline-color: #101010; }
 
-.band-work .numbers { margin-top: 56px; }
+.claims { padding-block: 0 48px; }
 
 /* Hero: shorter so the first flagship card peeks above the fold. */
 .hero { min-height: 0; padding-block: 56px 40px; }
-.hero-cta .pill { flex: 1 1 0; justify-content: center; padding-inline: 14px; }
+@media (max-width: 600px) { .hero-cta .pill { flex: 1 1 0; justify-content: center; padding-inline: 14px; } }
 .hero .today { margin: 28px 0 0; font-size: 14px; text-transform: none; letter-spacing: 0; }
 .today a { display: inline-flex; text-wrap: balance; align-items: center; gap: 10px; min-height: 48px; color: var(--fg-dim); text-decoration: none; }
 .today a:hover { color: var(--fg); }
@@ -1217,8 +1216,7 @@ html { scroll-snap-type: y proximity; }
 
 .nav-links a[aria-current="true"] { color: var(--fg); background: var(--bg-soft); box-shadow: inset 0 -2px 0 var(--accent); }
 
-/* Phones: "More work" cards are compact so two fit one screen, and the page
-   snaps to each pair rather than to every card. */
+/* Phones: "More work" cards are compact so two fit one screen. */
 @media (max-width: 600px) {
   #more-work .grid { gap: 14px; }
   #more-work .card { padding: 14px 16px; }
@@ -1232,15 +1230,13 @@ html { scroll-snap-type: y proximity; }
   #more-work .shot { padding-top: 12px; }
   #more-work .shot::after { inset: 12px 0 0; }
   #more-work .shot img { height: clamp(150px, 24svh, 200px); }
-  #more-work .card { scroll-snap-align: none; }
-  #more-work .card:nth-child(odd) { scroll-snap-align: start; }
 }
 
 @media (max-width: 600px) {
   /* The three facts read as one row, not a full screen of stacked numbers. */
-  .band-work .numbers { grid-template-columns: repeat(3, 1fr); gap: 14px; padding-top: 0; }
-  .band-work .num strong { font-size: 30px; }
-  .band-work .num span { font-size: 12px; line-height: 1.35; }
+  .claims .numbers { grid-template-columns: repeat(3, 1fr); gap: 14px; padding-top: 0; }
+  .claims .num strong { font-size: 30px; }
+  .claims .num span { font-size: 13px; line-height: 1.35; margin-top: 8px; }
 
   /* Quotes swipe sideways: one screen holds all three, the next peeks in. */
   .quotes {

@@ -20,23 +20,29 @@ function webglAvailable() {
  * either way — the canvas is never allowed to block it.
  */
 const canvas = document.querySelector('.hero-canvas');
-if (canvas && !reduceMotion && webglAvailable()) {
+// Low-end phones and data savers keep the static wash: the particle field
+// costs seconds of main-thread time on a 4-core budget Android.
+const lowEnd =
+  navigator.connection?.saveData ||
+  (navigator.deviceMemory && navigator.deviceMemory < 4) ||
+  (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4);
+if (canvas && !reduceMotion && !lowEnd && webglAvailable()) {
   const start = () =>
     import('./hero.js')
       .then(({ initHero }) => {
         const small = window.matchMedia('(max-width: 760px)').matches;
-        initHero(canvas, { count: small ? 1800 : 4200 });
+        initHero(canvas, { count: small ? 1100 : 4200 });
         canvas.classList.add('is-live');
       })
       .catch(() => {
         /* Static fallback is already painted; nothing to undo. */
       });
 
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(start, { timeout: 1200 });
-  } else {
-    addEventListener('load', () => setTimeout(start, 80), { once: true });
-  }
+  // After load, then idle: the headline paints and settles before any GL work.
+  const idle = () =>
+    'requestIdleCallback' in window ? requestIdleCallback(start, { timeout: 2500 }) : setTimeout(start, 200);
+  if (document.readyState === 'complete') idle();
+  else addEventListener('load', idle, { once: true });
 }
 
 /**
