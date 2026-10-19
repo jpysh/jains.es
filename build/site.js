@@ -241,9 +241,13 @@ ${extra}</head>
 
 ${LOGO}
 
-<nav class="nav">
-  <a class="mark" href="/" aria-label="jains.es — home"><svg class="logo" role="img" aria-label="jains.es"><use href="#logo"/></svg></a>
-  <a class="pill" href="/day/">The daily log</a>
+<nav class="nav" aria-label="Main">
+  <a class="mark" href="/"><svg class="logo" role="img" aria-label="jains.es — home"><use href="#logo"/></svg></a>
+  <div class="nav-links">
+    <a href="/#work">Work</a>
+    <a href="/wiki/">Learn</a>
+    <a href="/day/">Blog</a>
+  </div>
 </nav>
 `;
 
@@ -265,11 +269,11 @@ const footerBlock = `
     </form>
 
     <nav class="foot-links" aria-label="Footer">
-      <a href="/day/">Daily</a>
+      <a href="/#work">Work</a>
+      <a href="/day/">Blog</a>
       <a href="/wiki/">Wiki</a>
       <a href="/curriculum/">Curriculum</a>
-      <a href="/about/">About</a>
-      <a href="/work/">Work</a>
+      <a href="/#about">About</a>
       <a href="/privacy/">Privacy</a>
       <a href="${REPO}" target="_blank" rel="noopener">GitHub</a>
     </nav>
@@ -634,7 +638,6 @@ function renderSitemap(wiki, days) {
   const urls = [
     { loc: `${ORIGIN}/`, lastmod: newest, priority: '1.0' },
     { loc: `${ORIGIN}/curriculum/`, lastmod: newest, priority: '0.8' },
-    { loc: `${ORIGIN}/about/`, lastmod: newest, priority: '0.6' },
     ...(days.length ? [{ loc: `${ORIGIN}/day/`, lastmod: days[0].meta.date, priority: '0.9' }] : []),
     ...days.map((d) => ({ loc: d.url, lastmod: d.meta.date, priority: '0.8' })),
     ...(wiki.length ? [{ loc: `${ORIGIN}/wiki/`, lastmod: wiki[0].meta.modified || wiki[0].meta.created, priority: '0.9' }] : []),
@@ -778,7 +781,7 @@ function main() {
   };
   put('index.html', marked(marked(homeSrc, 'posts', renderHomeBlock(days)), 'footer', footerBlock));
 
-  for (const page of ['404.html', 'work/index.html', 'about/index.html', 'privacy/index.html']) {
+  for (const page of ['404.html', 'privacy/index.html']) {
     const src = readFileSync(resolve(root, page), 'utf8');
     put(page, marked(src, 'footer', footerBlock));
   }

@@ -21,12 +21,12 @@
 }
 
 :root {
-  --bg: #0a0a0a;
-  --bg-soft: #141414;
-  --fg: #f4f4f0;
+  --bg: #16181c;
+  --bg-soft: #1e2126;
+  --fg: #e6e6e6;
   --fg-dim: #8b8b85;
   --accent: #b4fa64;
-  --line: #242424;
+  --line: #2e3138;
   --radius: 20px;
   --maxw: 1180px;
 
@@ -115,7 +115,7 @@ em.s {
   justify-content: space-between;
   gap: 16px;
   padding: 14px 24px;
-  background: rgba(10, 10, 10, 0.72);
+  background: rgba(22, 24, 28, 0.78);
   backdrop-filter: saturate(140%) blur(14px);
   border-bottom: 1px solid transparent;
 }
@@ -141,10 +141,28 @@ em.s {
 }
 
 .mark .logo { width: 78px; }
+.mark { min-height: 48px; }
+
+.nav-links { display: flex; gap: 4px; }
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--fg-dim);
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.nav-links a:hover, .nav-links a:focus-visible { color: var(--fg); background: var(--bg-soft); }
 
 .pill {
-  display: inline-block;
-  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 10px 22px;
   border-radius: 999px;
   background: var(--fg);
   color: var(--bg);
@@ -523,7 +541,7 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
   border-top: 1px solid var(--line);
   padding-top: 20px;
 }
-.foot-links a { color: var(--fg-dim); text-decoration: none; padding-block: 4px; }
+.foot-links a { color: var(--fg-dim); text-decoration: none; padding-block: 12px; }
 
 
 /* ---------- article ---------- */
@@ -932,7 +950,7 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
   height: 46px;
   border-radius: 999px;
   color: var(--fg);
-  background: rgba(10, 10, 10, 0.72);
+  background: rgba(22, 24, 28, 0.78);
   backdrop-filter: saturate(1.4) blur(14px);
   -webkit-backdrop-filter: saturate(1.4) blur(14px);
   border: 1px solid var(--line);
@@ -1101,3 +1119,6 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 28px; }
   .sub-row { flex-direction: row; align-items: center; }
   .sub input { min-width: 0; }
 }
+
+/* Anchors land below the sticky nav. */
+section[id], main { scroll-margin-top: 76px; }

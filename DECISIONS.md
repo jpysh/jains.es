@@ -93,8 +93,6 @@ Roughly 90% of the traffic is mobile.
 | Page | File | Footer |
 |---|---|---|
 | `/` | `index.html` | generated into the marker |
-| `/work/` | `work/index.html` | generated into the marker |
-| `/about/` | `about/index.html` | generated into the marker |
 | `/privacy/` | `privacy/index.html` | generated into the marker |
 | 404 | `404.html` | generated into the marker |
 
@@ -185,3 +183,8 @@ Three, and deliberately no fourth. `AI101/WORKFLOW.md` has the detail.
   grows. **`/day` refuses to run when it passes 20 lines.**
 - **Monthly** — `/altitude` is the only thing that deletes instructions, and
   must propose at least one deletion. Without it the prompts only grow.
+
+
+## The homepage is the agency, not the learning log (2026-10-19)
+
+The site sells work first. Most visitors who matter are prospective clients, so `/` leads with three flagship projects (AyurCalm Scheduler, Guldaar Bazaar, the daily) and folds in what `/work/` and `/about/` held. Three surfaces remain: the homepage, the learning centre (`/wiki/`, `/curriculum/`) and the blog (`/day/`). Old URLs 301 via `public/_redirects`, so nothing linked from outside breaks. Contact appears once, at the foot of the homepage, because clients write after they have seen the work. Proof on the cards uses verifiable facts only (live, open source, dated); no estimated figures until real ones are supplied.
