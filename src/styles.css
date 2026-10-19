@@ -1228,7 +1228,7 @@ section[id], main, .card { scroll-margin-top: 76px; }
 
 @media (max-width: 600px) {
   /* The three facts read as one row, not a full screen of stacked numbers. */
-  .claims .numbers { grid-template-columns: repeat(3, 1fr); gap: 14px; padding-top: 0; }
+  .claims .numbers { grid-template-columns: repeat(3, 1fr); gap: 14px; padding-top: 24px; }
   .claims .num strong { font-size: 30px; }
   .claims .num span { font-size: 13px; line-height: 1.35; margin-top: 8px; }
 
