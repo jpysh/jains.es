@@ -19,8 +19,9 @@ content/days/<date>.md   ->  /day/<n>/       the edition. Dated, a day old
 content/wiki/<slug>.md   ->  /wiki/<slug>/   the topic. Accretes, outlives
 ```
 
-`/curriculum/` is generated from `AI101/CURRICULUM.md`. `/`, `/about/`,
-`/privacy/` and `/work/` are hand-written.
+`/curriculum/` is generated from `AI101/CURRICULUM.md`. `/` and `/privacy/` are
+hand-written. `/work/` and `/about/` were folded into `/` and 301 to
+`/#work` and `/#about` via `public/_redirects`.
 
 `AI101/sessions/<date>.md` is the third file of a day and is **not a page**:
 the plan, the beats, the script, and the two sections only the human fills.
@@ -107,7 +108,7 @@ how it was caught.
 
 ## Zero JavaScript where it counts
 
-Wiki pages, editions, `/about/` and `/privacy/` ship no executable script —
+Wiki pages, editions and `/privacy/` ship no executable script —
 only `ld+json`, which is data. Low-tier Android is roughly 9× slower than a
 development machine, so script costs main-thread time as well as bytes on
 exactly the device most of this audience holds.

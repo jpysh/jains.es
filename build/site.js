@@ -217,13 +217,17 @@ const LOGO = homeSrc.match(/<svg width="0"[\s\S]*?<\/svg>/)[0];
 // and inlines-by-reference the CSS, but the page ships no executable script at
 // all — which is the whole point for wiki and lesson pages, read on low-tier
 // Android where script costs main-thread time as well as bytes.
+// Google shows about 155 characters of a description. Cut on a word boundary
+// so the snippet ends on a whole word, not mid-token.
+const clip = (s = '', n = 155) => (s.length <= n ? s : s.slice(0, s.lastIndexOf(' ', n - 1)).replace(/[,;:—–-]\s*$/, '') + '…');
+
 const head = ({ title, description, url, ogTitle, ogDescription, extra = '', noScript = false }) => `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
-<meta name="description" content="${esc(description)}">
+<meta name="description" content="${esc(clip(description))}">
 <link rel="canonical" href="${url}">
 <link rel="alternate" type="application/rss+xml" title="Jains — Writing" href="${ORIGIN}/feed.xml">
 <meta property="og:url" content="${url}">
@@ -241,9 +245,13 @@ ${extra}</head>
 
 ${LOGO}
 
-<nav class="nav">
-  <a class="mark" href="/" aria-label="jains.es — home"><svg class="logo" role="img" aria-label="jains.es"><use href="#logo"/></svg></a>
-  <a class="pill" href="/day/">The daily log</a>
+<nav class="nav" aria-label="Main">
+  <a class="mark" href="/"><svg class="logo" role="img" aria-label="jains.es — home"><use href="#logo"/></svg></a>
+  <div class="nav-links">
+    <a href="/#work">Work</a>
+    <a href="/wiki/">Learn</a>
+    <a href="/day/">Blog</a>
+  </div>
 </nav>
 `;
 
@@ -265,13 +273,11 @@ const footerBlock = `
     </form>
 
     <nav class="foot-links" aria-label="Footer">
-      <a href="/day/">Daily</a>
-      <a href="/wiki/">Wiki</a>
-      <a href="/curriculum/">Curriculum</a>
-      <a href="/about/">About</a>
-      <a href="/work/">Work</a>
+      <a href="/#work">Work</a>
+      <a href="/day/">Blog</a>
+      <a href="/wiki/">Learn</a>
+      <a href="/#about">About</a>
       <a href="/privacy/">Privacy</a>
-      <a href="${REPO}" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </div>
 </footer>
@@ -371,7 +377,7 @@ function renderWiki(w, bySlug) {
 
   return (
     head({
-      title: `${w.meta.title} — Jains`,
+      title: `${w.meta.title} — jains.es`,
       description: w.meta.summary,
       url: w.url,
       noScript: true,
@@ -438,7 +444,7 @@ function renderWikiIndex(pages) {
 
   return (
     head({
-      title: 'Wiki — Jains.es',
+      title: 'Wiki — jains.es',
       description: `Notes from learning to build language models from scratch. ${pages.length} page${pages.length === 1 ? '' : 's'}, each marked with how finished it is.`,
       url: `${ORIGIN}/wiki/`,
       noScript: true,
@@ -498,7 +504,7 @@ function renderCurriculum(days) {
 
   return (
     head({
-      title: 'Curriculum — Jains.es',
+      title: 'Curriculum — jains.es',
       description:
         'Twelve weeks from tokenisation to a transformer trained on a laptop, then three months on making models small enough to matter. Written down in advance so it can be held to.',
       url: `${ORIGIN}/curriculum/`,
@@ -537,7 +543,7 @@ function renderDay(l, days, bySlug) {
 
   return (
     head({
-      title: `Day ${l.meta.day}: ${l.meta.title} — Jains`,
+      title: `Day ${l.meta.day}: ${l.meta.title} — jains.es`,
       description: l.meta.summary,
       url: l.url,
       noScript: true,
@@ -593,7 +599,7 @@ ${editLink(l.file)}
 function renderDayIndex(days) {
   return (
     head({
-      title: 'Daily — Jains',
+      title: 'Blog — jains.es',
       description: `Learning to build language models from scratch, one day at a time. ${days.length} day${days.length === 1 ? '' : 's'} so far, including the ones that did not work.`,
       url: `${ORIGIN}/day/`,
       noScript: true,
@@ -629,12 +635,16 @@ ${days
 
 // --- sitemap and feed -------------------------------------------------------
 
+// The homepage is hand-written, so no front matter dates it. Bump this when it
+// changes materially.
+const HOME_MODIFIED = '2026-10-19';
+
 function renderSitemap(wiki, days) {
   const newest = days[0]?.meta.date || wiki[0]?.meta.created;
   const urls = [
-    { loc: `${ORIGIN}/`, lastmod: newest, priority: '1.0' },
+    { loc: `${ORIGIN}/`, lastmod: HOME_MODIFIED, priority: '1.0' },
+    { loc: `${ORIGIN}/privacy/`, lastmod: '2026-10-19', priority: '0.3' },
     { loc: `${ORIGIN}/curriculum/`, lastmod: newest, priority: '0.8' },
-    { loc: `${ORIGIN}/about/`, lastmod: newest, priority: '0.6' },
     ...(days.length ? [{ loc: `${ORIGIN}/day/`, lastmod: days[0].meta.date, priority: '0.9' }] : []),
     ...days.map((d) => ({ loc: d.url, lastmod: d.meta.date, priority: '0.8' })),
     ...(wiki.length ? [{ loc: `${ORIGIN}/wiki/`, lastmod: wiki[0].meta.modified || wiki[0].meta.created, priority: '0.9' }] : []),
@@ -684,6 +694,12 @@ ${days
 // the latest editions, so the homepage is never stale and never promises a
 // page that does not exist.
 
+function renderToday(days) {
+  if (!days.length) return '';
+  const d = days[0];
+  return `<a href="${d.path}"><span class="live" aria-hidden="true"></span>Latest: Day ${d.meta.day}, ${esc(d.meta.title)} →</a>`;
+}
+
 function renderHomeBlock(days) {
   if (!days.length)
     return '  <p class="dim">Day one lands shortly. The <a href="/wiki/start-here/">start-here page</a> explains what this will be, and the <a href="/curriculum/">curriculum</a> says what is coming.</p>';
@@ -700,7 +716,7 @@ ${latest
   .join('\n')}
   </div>
 
-  <p class="more"><a href="/day/">Every edition →</a></p>`;
+  <p class="more"><a href="/day/">Every edition →</a><a href="/wiki/">Learning centre →</a></p>`;
 }
 
 // --- write ------------------------------------------------------------------
@@ -776,9 +792,9 @@ function main() {
     if (!re.test(src)) throw new Error(`missing <!-- generated:${name} --> markers`);
     return src.replace(re, `$1\n${block}\n$2`);
   };
-  put('index.html', marked(marked(homeSrc, 'posts', renderHomeBlock(days)), 'footer', footerBlock));
+  put('index.html', marked(marked(marked(homeSrc, 'posts', renderHomeBlock(days)), 'today', renderToday(days)), 'footer', footerBlock));
 
-  for (const page of ['404.html', 'work/index.html', 'about/index.html', 'privacy/index.html']) {
+  for (const page of ['404.html', 'privacy/index.html']) {
     const src = readFileSync(resolve(root, page), 'utf8');
     put(page, marked(src, 'footer', footerBlock));
   }
